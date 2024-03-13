@@ -1,0 +1,150 @@
+ .hearder-img {
+     background-image: url(../../Assets/images/bg-header.png);
+     width: full;
+     /* background-color: #fff; */
+     position: relative;
+     /* height: 140px; */
+     margin-top: -40px;
+     padding: 72px 0px;
+     background-size: cover;
+     background-repeat: no-repeat;
+ }
+
+ .upcoming_events_heading {
+     /* border-bottom: 2px solid #c7c7c7; */
+     padding: 18px 0px;
+     text-transform: capitalize;
+     color: #000;
+     font-family: 'Poppins' !important;
+     font-weight: 600;
+ }
+
+ .event_card_date {
+     font-size: 14px;
+     font-weight: 600;
+     padding: 6px 0px;
+     color: #6f6f6f;
+ }
+
+ .event_title {
+     color: #000;
+     font-size: 22px;
+     font-weight: 500;
+ }
+
+ .event_para {
+     color: #000;
+     text-align: justify;
+     font-size: 15px;
+     font-weight: 300;
+ }
+
+ .main_events_card {
+     margin-bottom: 18px;
+ }
+
+ .event_readmore_btn {
+     border: none;
+     background: linear-gradient(91deg, #d2a263 1.57%, #9e6318 102.36%);
+     color: #fff;
+     padding: 7px 20px;
+     border-radius: 10px;
+     display: inline-block;
+ }
+
+ .event_card_body {
+     background-color: #fff;
+     padding: 20px;
+     margin-top: -145px;
+     position: relative;
+     transform: translateX(14px);
+     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+ }
+
+ .event_card_img img {
+     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+ }
+
+ .event_card_body:hover {
+     background: linear-gradient(91deg, #d2a263 1.57%, #9e6318 102.36%);
+ }
+
+ .event_card_body:hover .event_title {
+     color: #fff;
+ }
+
+ .event_card_body:hover .event_card_date {
+     color: #fff;
+ }
+
+ .event_card_body:hover .event_para {
+     color: #fff;
+ }
+
+ .event_card_body:hover .event_readmore_btn {
+     background: linear-gradient(91deg, #4a4a4a 1.57%, #2f2f2f 102.36%);
+ }
+
+
+ @media(max-width: 768px) {
+     .event_card_body {
+         transform: translateX(12px);
+
+     }
+ }
+
+
+ @media(max-width: 425px) {
+     .event_card_body {
+         transform: translateX(4px);
+     }
+
+     .event_para {
+         font-size: 12px;
+     }
+
+     .event_title {
+         font-size: 18px;
+     }
+ }
+
+ .title-event {
+     font-family: Poppins;
+     /* font-size: larger; */
+     font-weight: 600;
+     font-size: larger;
+ }
+
+ .para-event {
+     margin-top: 0;
+     margin-bottom: 1rem;
+     font-size: small;
+
+ }
+
+ 
+
+span.event-para {
+    color: black;
+    font-size:large ;
+    font-weight: 600;
+    /* padding: 20px; */
+}
+
+.event-info.col-md-4 {
+    background-color: azure;
+    padding: 22px 35px;
+}
+
+
+span.cost {
+    font-family: math;
+    color: black;
+    font-size: 20px;
+}
+
+
+span.cost-price {
+    color: black;
+    font-weight: 600;
+}

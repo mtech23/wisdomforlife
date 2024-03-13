@@ -1,0 +1,132 @@
+
+.user_profile_name{
+    font-size: 20px;
+    color: #000;
+    font-weight: 600;
+    text-align: center;
+}
+
+.profile_left_part {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height: 100%;
+}
+
+.profile_right_part {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.user_profile_details{
+    padding: 20px 0px;
+}
+
+.user_profile_para{
+    color: #000;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+}
+
+
+.profile_course_number{
+    color: #D2A263;
+    background-color: #fff;
+    padding: 10px 12px;
+    font-size: 22px;
+    font-weight: 600;
+    box-shadow: rgba(99, 99, 99, 0.2) 2px 3px 8px 0px;
+}
+
+.profile_course_enrolls{
+    margin-left: 10px;
+    font-size: 16px;
+    color: #323232;
+    font-weight: 600;
+}
+
+.profile_course_details {
+    /* text-align: center; */
+    margin-bottom: 30px;
+    display: flex;
+    align-items: baseline;
+}
+
+.profile_edit_heading{
+    color: #000;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.input_name{
+    border: 1px solid #989898;
+    background-color: transparent;
+}
+
+.profile_edit_para{
+    color: #000;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.profile_edit_para span{
+    font-weight: 600;
+}
+
+.profile_picture_avatars{
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.profile_picture_avatars img{
+    border-radius: 10px;
+}
+
+#formFileSm:focus{
+    box-shadow: none;
+}
+
+.profile_save_btn{
+    background: linear-gradient(91deg, #d2a263 1.57%, #9e6318 102.36%);
+    color: #fff;
+    border: none;
+    padding: 6px 35px;
+    border-radius: 6px;
+}
+
+.email_input{
+    border: none;
+    outline-style: dashed;
+    outline-color: #D2A263;
+}
+
+.profile_logout_btn{
+    background-color: #323232;
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.profile_logout_btn:hover{
+    color: #fff;
+}
+
+.general_settings_main{
+    padding: 34px 0px;
+}
+
+
+@media(max-width: 1024px){
+    .profile_course_details {
+        align-items: center;
+    }
+}
