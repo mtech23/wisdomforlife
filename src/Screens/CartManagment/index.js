@@ -124,40 +124,42 @@ export const CartManagement = () => {
                                         <h3> My Cart </h3>
                                         <div class="table-responsive">
                                         <table class="table tableh">
-                                            <tr>
-                                                <td className="firsttd"><img src={Rectangle1} alt="" class="img-fluid" /></td>
+                                            <tr className="  mb-5 ">
+                                                <td className="firsttd mx-auto "><img src={Rectangle1} alt="" class="img-fluid" /></td>
                                                 <td className="secountsttd" ><h5>Web Development Beginner - Master <br />| HTML, CSS.</h5>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br /> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
+                                                    <p className="cart-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br /> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
+                                                    <button>Remove</button>
+                                                </td>
+                                                {/* <td><p class="dollar">$99</p></td> */}
+                                            </tr>
+                                            <tr className="  mb-5 ">
+                                                <td className="firsttd mx-auto "><img src={Rectangle89} alt="" class="img-fluid" /></td>
+                                                <td className="secountsttd" ><h5>Web Development Beginner - Master <br />| HTML, CSS.</h5>
+                                                    <p className="cart-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br /> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
                                                     <button>Remove</button>
                                                 </td>
                                                 <td><p class="dollar">$99</p></td>
                                             </tr>
-                                            <tr>
-                                                <td ><img src={Rectangle89} alt="" class="img-fluid" /></td>
-                                                <td ><h5 >Web Development Beginner - Master <br />| HTML, CSS.</h5>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br /> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
+                                            
+
+                                            <tr className="  mb-5 ">
+                                                <td className="firsttd mx-auto "><img src={Rectangle91} alt="" class="img-fluid" /></td>
+                                                <td className="secountsttd" ><h5>Web Development Beginner - Master <br />| HTML, CSS.</h5>
+                                                    <p className="cart-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br /> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
                                                     <button>Remove</button>
                                                 </td>
-                                                <td><p class="dollar" >$99</p></td>
+                                                <td><p class="dollar">$99</p></td>
                                             </tr>
-                                            <tr>
-                                                <td ><img src={Rectangle91} alt="" class="img-fluid" /></td>
-                                                <td ><h5 >Web Development Beginner - Master <br />| HTML, CSS.</h5>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br /> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
+
+                                            <tr className="  mb-5 ">
+                                                <td className="firsttd mx-auto "><img src={Rectangle178} alt="" class="img-fluid" /></td>
+                                                <td className="secountsttd" ><h5>Web Development Beginner - Master <br />| HTML, CSS.</h5>
+                                                    <p className="cart-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br /> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
                                                     <button>Remove</button>
                                                 </td>
-                                                <td><p class="dollar" >$99</p></td>
+                                                <td><p class="dollar">$99</p></td>
                                             </tr>
-                                            <tr>
-                                                <div class="lastrow">
-                                                    <td ><img src={Rectangle178} alt="" class="img-fluid" /></td>
-                                                    <td ><h5>Web Development Beginner - Master <br />| HTML, CSS.</h5>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br /> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
-                                                        <button>Remove</button>
-                                                    </td>
-                                                    <td><p class="dollar" >$99</p></td>
-                                                </div>
-                                            </tr>
+                                         
                                         </table>
                                         </div>
                                      

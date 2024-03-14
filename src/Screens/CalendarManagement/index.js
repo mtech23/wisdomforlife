@@ -125,7 +125,13 @@ export const CalendarManagement = () => {
             borderWidth: "3px", //make outer edge of calendar thicker
         },
 
+        title: {
+            // Change the title color to green
+            color: 'red',
+        },
+
         //you can also use emotion's string styles
+
         today: css`
           /* highlight today by making the text red and giving it a red border */
           color: red;
@@ -143,15 +149,15 @@ export const CalendarManagement = () => {
 
                 <div className="row">
 
-                    <div className="col-md-12">
+                    <div className=" col-md-12">
+                        <div className="calender-bdy  p-5 ">
+                            <Calendar
+                                apiKey={API_KEY}
+                                calendars={calendars}
+                                styles={styles}
 
-                        <Calendar
-                            apiKey={API_KEY}
-                            calendars={calendars}
-                            styles={styles}
-
-                        />
-
+                            />
+                        </div>
 
                     </div>
 

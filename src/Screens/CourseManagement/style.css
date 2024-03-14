@@ -429,7 +429,7 @@ padding: 10px 0px;
       }
       
       ul li:before {
-        content: '✓';
+        /* content: '✓'; */
         color :Green ;
         font-weight: 900;
       }

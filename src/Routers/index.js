@@ -6,7 +6,9 @@ import ForgetPassword2 from "../Screens/Auth/ForgetPassword2";
 import ForgetPassword3 from "../Screens/Auth/ForgetPassword3";
 import { Dashboard } from "../Screens/Dashboard";
 import { BoardManagement } from "../Screens/BoardManagement";
-import {EnrollNow} from '../Screens/CourseManagement/enrollnow'
+import { EnrollNow } from '../Screens/CourseManagement/enrollnow'
+import { InvoiceManagement } from '../Screens/InvoiceManagement'
+
 
 // import { LeadListing } from "../Screens/LeadListing";
 // import DepartDetails from "../Screens/LeadListing/DepartDetails";
@@ -15,7 +17,7 @@ import {EnrollNow} from '../Screens/CourseManagement/enrollnow'
 // import { DetailListing } from "../Screens/LeadListing/DetailListig";
 
 // Book Routes 
-import {CartManagement} from '../Screens/CartManagment'
+import { CartManagement } from '../Screens/CartManagment'
 
 import { BookManagement } from "../Screens/BookManagement";
 import { AddBook } from "../Screens/BookManagement/AddBook";
@@ -51,17 +53,17 @@ import { UserDetail } from "../Screens/UserManagement/UserDetail";
 import { AddUser } from "../Screens/UserManagement/AddUser";
 import { EditUser } from "../Screens/UserManagement/EditUser";
 import { CourseManagemet } from "../Screens/CourseManagement";
-import {StudentForum} from "../Screens/StudentForum";
+import { StudentForum } from "../Screens/StudentForum";
 import { PersonalNotes } from "../Screens/PersonalNotes";
-import {EventsAndNews} from "../Screens/EventsAndNews";
-import {EventsAndNewsdetail} from "../Screens/EventsAndNews/EventsAndNewsdetail";
+import { EventsAndNews } from "../Screens/EventsAndNews";
+import { EventsAndNewsdetail } from "../Screens/EventsAndNews/EventsAndNewsdetail";
 
 import { ProfileManagement } from "../Screens/ProfileManagement";
 import { CalendarManagement } from "../Screens/CalendarManagement";
 
-import Profile from "../Screens/Profile";
-import EditProfile from "../Screens/Profile/EditProfile";
-import ChangePassword from "../Screens/Profile/ChangePassword";
+// import Profile from "../Screens/Profile";
+// import EditProfile from "../Screens/Profile/EditProfile";
+// import ChangePassword from "../Screens/Profile/ChangePassword";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 import Error from "../Screens/Error";
 
@@ -77,18 +79,18 @@ export default function AdminRouter() {
         <Route path="/forget-password3" element={<ForgetPassword3 />} />
 
         <Route path="/dashboard" element={<ProtectedRoutes Components={Dashboard} />} />
-        <Route path="/course-management" element={<CourseManagemet />}/>
-        <Route path="/enroll-now" element={<EnrollNow />}/>
+        <Route path="/course-management" element={<CourseManagemet />} />
+        <Route path="/enroll-now" element={<EnrollNow />} />
 
 
 
-        <Route path="/student-forum" element={<StudentForum />}/>
-        <Route path="/personal-notes" element={<PersonalNotes />}/>
-        <Route path="/events-and-news" element={<EventsAndNews />}/>
-        
-        <Route path="/events-and-news/detail" element={<EventsAndNewsdetail />}/>
+        <Route path="/student-forum" element={<StudentForum />} />
+        <Route path="/personal-notes" element={<PersonalNotes />} />
+        <Route path="/events-and-news" element={<EventsAndNews />} />
+
+        <Route path="/events-and-news/detail" element={<EventsAndNewsdetail />} />
         <Route path="/profile-management" element={<ProfileManagement />}/>
-        <Route path="/calendar-management" element={<CalendarManagement />}/>
+        <Route path="/calendar-management" element={<CalendarManagement />} />
 
         {/* <Route path="/role-management" element={<ProtectedRoutes Components={Roles} />} /> */}
 
@@ -145,13 +147,13 @@ export default function AdminRouter() {
 
         {/* <Route path="/target-listing" element={<ProtectedRoutes Components={UnitTarget} />} />
         <Route path="/target-listing/target-detail/:id" element={<ProtectedRoutes Components={TargetDetails} />} /> */}
-        <Route path="/profile" element={<ProtectedRoutes Components={Profile} />} />
-        <Route path="/profile/edit-profile" element={<ProtectedRoutes Components={EditProfile} />} />
-        <Route path="/profile/change-password" element={<ChangePassword />} />
+        {/* <Route path="/profile" element={<ProtectedRoutes Components={Profile} />} /> */}
+        {/* <Route path="/profile/edit-profile" element={<ProtectedRoutes Components={EditProfile} />} /> */}
+        {/* <Route path="/profile/change-password" element={<ChangePassword />} /> */}
         {/* <Route path="/board-management " element={<BoardManagement />} /> */}
 
         <Route path="/board-management" element={<ProtectedRoutes Components={BoardManagement} />} />
-
+        <Route path="/invoice-management" element={<ProtectedRoutes Components={InvoiceManagement} />} />
 
 
         {/* board-management */}
