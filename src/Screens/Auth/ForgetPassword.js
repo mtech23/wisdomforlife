@@ -27,7 +27,7 @@ const ForgetPassword = () => {
         <>
             <AuthLayout authTitle='Password Recovery' authPara='Enter your email address to receive a verification code.' backOption={true}>
                 <form>
-                    <CustomInput label='Email Address' required id='userEmail' type='email' placeholder='Enter Your Email Address' labelClass='mainLabel' inputClass='mainInput' onChange={(event) => {
+                    <CustomInput label='Email Address' required id='userEmail' type='email' placeholder='Enter Your Email Address' labelclassName='mainLabel' inputclassName='mainInput' onChange={(event) => {
                         setFormData({ ...formData, email: event.target.value })
                     }} />
                     <div className="mt-4 text-center">

@@ -138,8 +138,8 @@ export const EditAds = () => {
                                                     id='ad_title'
                                                     type='text'
                                                     placeholder='Enter Book Title'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
+                                                    labelclassName='mainLabel'
+                                                    inputclassName='mainInput'
                                                     name="ad_title"
                                                     value={formData.ad_title}
                                                     onChange={handleChange}
@@ -151,8 +151,8 @@ export const EditAds = () => {
                                                     required
                                                     id='file'
                                                     type='file'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
+                                                    labelclassName='mainLabel'
+                                                    inputclassName='mainInput'
                                                     name="image"
                                                     // value={formData.image}
                                                     onChange={filehandleChange}

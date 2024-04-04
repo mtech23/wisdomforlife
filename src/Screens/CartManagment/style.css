@@ -34,7 +34,7 @@ body {
     color:#323232;
 }
 .tableh{
-    table-layout: fixed;
+    table-layout: auto;
 }
 .cart h5{
     
@@ -47,9 +47,10 @@ color: #0D0D0D;
 
 
 }
-.firsttd{
+
+/* .firsttd{
     width: 145px;
-}
+} */
  
 .cart p{
 
@@ -214,22 +215,22 @@ p.cart-para {
 }
 
 
-.secountsttd {
+/* .secountsttd {
     width: 80%;
-}
+} */
 
 .dollar {
     /* margin-top: 30px; */
-    font-size: 21px !important;
+    font-size: 18px !important;
     font-weight: 600 !important;
     /* letter-spacing: 0 !important; */
     text-align: center !important;
     background: #233862 !important;
     color: #fff !important;
-    width: 81px;
-    height: 84px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    padding-top: 38px !important;
+    padding-top: 20px !important;
 }
 
 

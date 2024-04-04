@@ -137,8 +137,8 @@ export const EditGenre = () => {
                                                     id='title'
                                                     type='text'
                                                     placeholder='Enter Genre Title'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
+                                                    labelclassName='mainLabel'
+                                                    inputclassName='mainInput'
                                                     name="title"
                                                     value={formData.title}
                                                     onChange={handleChange}
@@ -152,8 +152,8 @@ export const EditGenre = () => {
                                                     id='name'
                                                     type='text'
                                                     placeholder='Enter Name'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
+                                                    labelclassName='mainLabel'
+                                                    inputclassName='mainInput'
                                                     name="name"
                                                     value={formData.name}
                                                     onChange={handleChange}
@@ -166,8 +166,8 @@ export const EditGenre = () => {
                                                     required
                                                     id='file'
                                                     type='file'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
+                                                    labelclassName='mainLabel'
+                                                    inputclassName='mainInput'
                                                     name="image"
                                                     // value={formData.image}
                                                     onChange={filehandleChange}

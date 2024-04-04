@@ -15,11 +15,11 @@ const CustomInput = (props) => {
   return (
     <>
       <div className="inputWrapper">
-        {props?.label && <label htmlFor={props?.id} className={props?.labelClass}>{props?.label}<span>{props?.required ? '*' : ''}</span></label>}
+        {props?.label && <label htmlFor={props?.id} className={props?.labelclass}>{props?.label}<span>{props?.required ? '*' : ''}</span></label>}
         {props?.type === 'password'
           ?
           <div className="passwordWrapper">
-            <input type={typePass ? 'password' : 'text'} placeholder={props?.placeholder} required={props?.required} id={props?.id} name={props?.name} className={`${props?.inputClass} passInput`} onChange={props?.onChange} value={props.value} />
+            <input type={typePass ? 'password' : 'text'} placeholder={props?.placeholder} required={props?.required} id={props?.id} name={props?.name} className={`${props?.inputclass} passInput`} onChange={props?.onChange} value={props.value} />
             <button type='button' className='eyeButton' onClick={togglePassType}><FontAwesomeIcon icon={typePass ? faEyeSlash : faEye} /></button>
           </div>
           :
@@ -29,7 +29,7 @@ const CustomInput = (props) => {
             disabled={props.disabled}
             id={props?.id}
             name={props?.name}
-            className={props?.inputClass}
+            className={props?.inputclass}
             onChange={props?.onChange}
             multiple={props?.multiple}
             accept={props.accept}

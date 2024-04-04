@@ -63,7 +63,7 @@ export const Roles = () => {
 
 
   const filterData = data && (
-    data.filter(item =>
+    data?.filter(item =>
       item.name.toLowerCase().includes(inputValue.toLowerCase())
     )
   )
@@ -171,7 +171,7 @@ export const Roles = () => {
                       {/* <CustomButton text="Add Role" variant='primaryButton' onClick={() => {
                         setUser(true)
                       }} /> */}
-                      <CustomInput type="text" placeholder="Search Here..." value={inputValue} inputClass="mainInput" onChange={handleChange} />
+                      <CustomInput type="text" placeholder="Search Here..." value={inputValue} inputclassName="mainInput" onChange={handleChange} />
                     </div>
                   </div>
                 </div>
@@ -232,8 +232,8 @@ export const Roles = () => {
               placeholder="Add Roles"
               required
               name="name"
-              labelClass='mainLabel'
-              inputClass='mainInput'
+              labelclassName='mainLabel'
+              inputclassName='mainInput'
               value={formData.name}
               onChange={(event) => {
                 setFormData({ ...formData, name: event.target.value });
@@ -252,8 +252,8 @@ export const Roles = () => {
               placeholder="Edit Roles"
               required
               name="name"
-              labelClass='mainLabel'
-              inputClass='mainInput'
+              labelclassName='mainLabel'
+              inputclassName='mainInput'
               value={formData.name}
               onChange={(event) => {
                 setFormData({ ...formData, name: event.target.value });
@@ -263,7 +263,7 @@ export const Roles = () => {
             />
 
             <SelectBox
-              selectClass="mainInput"
+              selectclassName="mainInput"
               name="Status"
               label="Status"
               value={formData.status}

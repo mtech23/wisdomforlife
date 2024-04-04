@@ -28,18 +28,18 @@ const ForgetPassword2 = () => {
         <>
             <AuthLayout authTitle='Verification Code' authPara='Please Check Your Email For Verification Code.' subauthPara='Your Cod is 4 digit in Length' backOption={true}>
                 <form>
-                    <div class="inputWrapper"><label for="verificationCode" class="mainLabel">Verification Code<span>*</span></label></div>
+                    <div className="inputWrapper"><label for="verificationCode" className="mainLabel">Verification Code<span>*</span></label></div>
                     <div className='verification-box justify-content-between'>
-                        <CustomInput required id='verificationCode' type='number' labelClass='mainLabel' inputClass='mainInput text-center' onChange={(event) => {
+                        <CustomInput required id='verificationCode' type='number' labelclassName='mainLabel' inputclassName='mainInput text-center' onChange={(event) => {
                             setFormData({ ...formData, code: event.target.value })
                         }} />
-                        <CustomInput required id='verificationCode' type='number' labelClass='mainLabel' inputClass='mainInput text-center' onChange={(event) => {
+                        <CustomInput required id='verificationCode' type='number' labelclassName='mainLabel' inputclassName='mainInput text-center' onChange={(event) => {
                             setFormData({ ...formData, code: event.target.value })
                         }} />
-                        <CustomInput required id='verificationCode' type='number' labelClass='mainLabel' inputClass='mainInput text-center' onChange={(event) => {
+                        <CustomInput required id='verificationCode' type='number' labelclassName='mainLabel' inputclassName='mainInput text-center' onChange={(event) => {
                             setFormData({ ...formData, code: event.target.value })
                         }} />
-                        <CustomInput required id='verificationCode' type='number' labelClass='mainLabel' inputClass='mainInput text-center' onChange={(event) => {
+                        <CustomInput required id='verificationCode' type='number' labelclassName='mainLabel' inputclassName='mainInput text-center' onChange={(event) => {
                             setFormData({ ...formData, code: event.target.value })
                         }} />
                     </div>

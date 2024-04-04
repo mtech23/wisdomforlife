@@ -96,8 +96,8 @@ export const AddRecipent = () => {
                                                     id='name'
                                                     type='text'
                                                     placeholder='Enter Recipent Name'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
+                                                    labelclassName='mainLabel'
+                                                    inputclassName='mainInput'
                                                     name="name"
                                                     value={formData.name}
                                                     onChange={handleChange}
@@ -110,8 +110,8 @@ export const AddRecipent = () => {
                                                     id='email'
                                                     type='email'
                                                     placeholder='Enter Recipent Email'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
+                                                    labelclassName='mainLabel'
+                                                    inputclassName='mainInput'
                                                     name="email"
                                                     value={formData.email}
                                                     onChange={handleChange}
@@ -124,8 +124,8 @@ export const AddRecipent = () => {
                                                     id='pass'
                                                     type='password'
                                                     placeholder='Enter Password'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
+                                                    labelclassName='mainLabel'
+                                                    inputclassName='mainInput'
                                                     name="password"
                                                     value={formData.password}
                                                     onChange={handleChange}

@@ -51,7 +51,7 @@ export const GenreManagement = () => {
     setInputValue(e.target.value);
   }
 
-  const filterData = data.filter(item =>
+  const filterData = data?.filter(item =>
     item.name.toLowerCase().includes(inputValue.toLowerCase())
   );
 
@@ -137,7 +137,7 @@ export const GenreManagement = () => {
                   <div className="col-md-6 mb-2">
                     <div className="addUser">
                       <CustomButton text="Add Genre" variant='primaryButton' onClick={hanldeRoute} />
-                      <CustomInput type="text" placeholder="Search Here..." value={inputValue} inputClass="mainInput" onChange={handleChange} />
+                      <CustomInput type="text" placeholder="Search Here..." value={inputValue} inputclassName="mainInput" onChange={handleChange} />
                     </div>
                   </div>
                 </div>

@@ -56,7 +56,7 @@ export const StudentForum = () => {
         setInputValue(e.target.value);
     }
 
-    const filterData = data.filter(item =>
+    const filterData = data?.filter(item =>
         item?.name.toLowerCase().includes(inputValue.toLowerCase())
     );
 
@@ -387,8 +387,8 @@ export const StudentForum = () => {
 
                                 <div className="input_with_icon">
                                     <FontAwesomeIcon icon={faMessage} className="input_icon"/>
-                                    <div class="w-100">
-                                        <input type="text" class="write_something_input_here form-control" id="" placeholder="Write Something Here..."/>
+                                    <div className="w-100">
+                                        <input type="text" className="write_something_input_here form-control" id="" placeholder="Write Something Here..."/>
                                     </div>
                                 </div>
 

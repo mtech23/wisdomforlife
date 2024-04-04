@@ -147,8 +147,8 @@ export const AddCategory = () => {
                                                     id='name'
                                                     type='text'
                                                     placeholder='Enter Title'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
+                                                    labelclassName='mainLabel'
+                                                    inputclassName='mainInput'
                                                     name="name"
                                                     value={formData.name}
                                                     onChange={handleChange}
@@ -156,7 +156,7 @@ export const AddCategory = () => {
                                             </div>
                                             <div className="col-md-6 mb-4">
                                                 <SelectBox
-                                                    selectClass="mainInput"
+                                                    selectclassName="mainInput"
                                                     name="book_type_id"
                                                     label="Select Type"
                                                     required
@@ -175,8 +175,8 @@ export const AddCategory = () => {
                                                     required
                                                     id='file'
                                                     type='file'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
+                                                    labelclassName='mainLabel'
+                                                    inputclassName='mainInput'
                                                     name="image"
                                                     // value={formData.image}
                                                     onChange={filehandleChange}

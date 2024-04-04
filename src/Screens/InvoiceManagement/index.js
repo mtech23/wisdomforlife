@@ -62,7 +62,7 @@ export const InvoiceManagement = () => {
         setInputValue(e.target.value);
     }
 
-    const filterData = data.filter(item =>
+    const filterData = data?.filter(item =>
         item?.name.toLowerCase().includes(inputValue.toLowerCase())
     );
 
@@ -116,7 +116,7 @@ export const InvoiceManagement = () => {
                     <p className="invoice-title  text-center  =">Invoice</p>
                     <div className=" mx-auto  justify-content-center  col-md-10">
 
-                        <table class="table">
+                        <table className="table">
                             <thead>
                                 <tr>
                                     <th className=" table-sl  text-white" scope="col">

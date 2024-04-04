@@ -149,8 +149,8 @@ export const EditCategory = () => {
                                                     id='name'
                                                     type='text'
                                                     placeholder='Enter Book Title'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
+                                                    labelclassName='mainLabel'
+                                                    inputclassName='mainInput'
                                                     name="name"
                                                     value={formData.name}
                                                     onChange={handleChange}
@@ -158,7 +158,7 @@ export const EditCategory = () => {
                                             </div>
                                             <div className="col-md-6 mb-4">
                                                 <SelectBox
-                                                    selectClass="mainInput"
+                                                    selectclassName="mainInput"
                                                     name="book_type_id"
                                                     label="Select Type"
                                                     required
@@ -177,8 +177,8 @@ export const EditCategory = () => {
                                                     required
                                                     id='file'
                                                     type='file'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
+                                                    labelclassName='mainLabel'
+                                                    inputclassName='mainInput'
                                                     name="image"
                                                     // value={formData.image}
                                                     onChange={filehandleChange}

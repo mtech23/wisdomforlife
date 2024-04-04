@@ -25,12 +25,11 @@
     text-decoration: none;
     color: #fff;
     display: block;
-    padding: 0.8rem 1rem;
+    padding: 0.6rem 1rem;
     background: #fff0;
     position: relative;
     transition: 0.3s linear;
 }
-
 
 .sidebar-li {
     margin: 20px 0;

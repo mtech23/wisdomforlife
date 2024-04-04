@@ -19,6 +19,7 @@ import CustomButton from "../../Components/CustomButton";
 import CustomInput from "../../Components/CustomInput";
 
 export const Dashboard = () => {
+
   const [data, setData] = useState('');
   const [lead, setLead] = useState('');
   const [recived, setReceived] = useState('');
@@ -27,6 +28,9 @@ export const Dashboard = () => {
   const { apiData: leadsAmountMonthlyData, loading: leadLoading } = useApi('admin/leads-amount-monthly');
   const { apiData: leadsAmountReceivedData, loading: receivedLoading } = useApi('admin/leads-amount-received');
   const { apiData: leadsAmountReceivedMonthlyData, loading: AmountLoading } = useApi('admin/leads-amount-received-monthly');
+
+        let login = localStorage.getItem('login');
+console.log("login " , login)
 
 
   useEffect(() => {
@@ -107,13 +111,13 @@ export const Dashboard = () => {
                               <span><img src={man} className="profileimg" /></span>
                               {/* <span><p className="upload">  Upload a photo</p></span> */}
                             
-                              <div class="form-group uploadBtn">
+                              <div className="form-group uploadBtn">
                               <CustomInput
                                 label="Upload a Photo"
                                 id="photo"
                                 type='file'
-                                labelClass="form-control-file uploadButton text-center"
-                                inputClass="uploadInput d-none"
+                                labelclassName="form-control-file uploadButton text-center"
+                                inputclassName="uploadInput d-none"
                                 />
 
                                 <span className="upload_restriction">Min 300 x 300px .JPG oR .PNG</span>
@@ -136,8 +140,8 @@ export const Dashboard = () => {
                                 id='userEmail'
                                 type='email'
                                 placeholder='Enter Your Email Address'
-                                labelClass='mainLabel'
-                                inputClass='mainInput'
+                                labelclassName='mainLabel'
+                                inputclassName='mainInput'
 
                               />
                             </div>
@@ -148,8 +152,8 @@ export const Dashboard = () => {
                                 id='number'
                                 type='number'
                                 placeholder='Enter Phone'
-                                labelClass='mainLabel text-white'
-                                inputClass='mainInput customNumber'
+                                labelclassName='mainLabel text-white'
+                                inputclassName='mainInput customNumber'
 
                               />
                             </div>

@@ -28,7 +28,7 @@ export const AuthLayout = (props) => {
                                     {props?.children}
                                     {props?.backOption &&
                                         <div className="text-center mt-4">
-                                            <Link to={'/login'} className='grayColor text-decoration-none fw-bold'><FontAwesomeIcon icon={faLeftLong} className='primaryColor me-2' />Back To <span class="text-theme-primary"> Login</span> </Link>
+                                            <Link to={'/login'} className='grayColor text-decoration-none fw-bold'><FontAwesomeIcon icon={faLeftLong} className='primaryColor me-2' />Back To <span className="text-theme-primary"> Login</span> </Link>
                                         </div>
                                     }
                                 </div>

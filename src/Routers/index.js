@@ -80,7 +80,7 @@ export default function AdminRouter() {
 
         <Route path="/dashboard" element={<ProtectedRoutes Components={Dashboard} />} />
         <Route path="/course-management" element={<CourseManagemet />} />
-        <Route path="/enroll-now" element={<EnrollNow />} />
+        <Route path="/course-management/enroll-now/:id" element={<EnrollNow />} />
 
 
 
@@ -89,8 +89,9 @@ export default function AdminRouter() {
         <Route path="/events-and-news" element={<EventsAndNews />} />
 
         <Route path="/events-and-news/detail" element={<EventsAndNewsdetail />} />
-        <Route path="/profile-management" element={<ProfileManagement />}/>
-        <Route path="/calendar-management" element={<CalendarManagement />} />
+
+        <Route path="/profile-management" element={<ProtectedRoutes Components={ProfileManagement} />} />
+          <Route path="/calendar-management" element={<CalendarManagement />} />
 
         {/* <Route path="/role-management" element={<ProtectedRoutes Components={Roles} />} /> */}
 
@@ -136,21 +137,7 @@ export default function AdminRouter() {
 
 
         <Route path="/cart-management" element={<ProtectedRoutes Components={CartManagement} />} />
-        {/* <Route path="/user-detail/:id" element={<ProtectedRoutes Components={UserDetail} />} />
-        <Route path="/add-user/" element={<ProtectedRoutes Components={AddUser} />} />
-        <Route path="/edit-user/:id" element={<ProtectedRoutes Components={EditUser} />} /> */}
-
-
-        {/* <Route path="/unit-listing" element={<ProtectedRoutes Components={UnitListing} />} /> */}
-        {/* <Route path="/brand-listing" element={<ProtectedRoutes Components={BrandListing} />} /> */}
-        {/* <Route path="/department-management/depart-details/:id" element={<ProtectedRoutes Components={DepartDetails} />} /> */}
-
-        {/* <Route path="/target-listing" element={<ProtectedRoutes Components={UnitTarget} />} />
-        <Route path="/target-listing/target-detail/:id" element={<ProtectedRoutes Components={TargetDetails} />} /> */}
-        {/* <Route path="/profile" element={<ProtectedRoutes Components={Profile} />} /> */}
-        {/* <Route path="/profile/edit-profile" element={<ProtectedRoutes Components={EditProfile} />} /> */}
-        {/* <Route path="/profile/change-password" element={<ChangePassword />} /> */}
-        {/* <Route path="/board-management " element={<BoardManagement />} /> */}
+    
 
         <Route path="/board-management" element={<ProtectedRoutes Components={BoardManagement} />} />
         <Route path="/invoice-management" element={<ProtectedRoutes Components={InvoiceManagement} />} />

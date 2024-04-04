@@ -143,7 +143,7 @@ export const BookShareList = () => {
                   <div className="col-md-6 mb-2">
                     <div className="addUser">
                       {/* <CustomButton text="Add New Book" variant='primaryButton' onClick={hanldeRoute} /> */}
-                      <CustomInput type="text" placeholder="Search Here..." value={inputValue} inputClass="mainInput" onChange={handleChange} />
+                      <CustomInput type="text" placeholder="Search Here..." value={inputValue} inputclassName="mainInput" onChange={handleChange} />
                     </div>
                   </div>
                 </div>

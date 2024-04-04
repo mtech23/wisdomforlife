@@ -56,7 +56,7 @@ export const BoardManagement = () => {
         setInputValue(e.target.value);
     }
 
-    const filterData = data.filter(item =>
+    const filterData = data?.filter(item =>
         item?.name.toLowerCase().includes(inputValue.toLowerCase())
     );
 
@@ -130,7 +130,7 @@ export const BoardManagement = () => {
                                         </div>
 
                                         <div className="course_card_body">
-                                            <div class="course_ratings">
+                                            <div className="course_ratings">
                                                 <div className="course_rating_detail border-0 p-0">
                                                     <span className="course_rating_icon"><FontAwesomeIcon icon={faPlay} /></span>
                                                     <span className="course_rating_information">20 videos</span>
@@ -182,7 +182,7 @@ export const BoardManagement = () => {
                                         </div>
 
                                         <div className="course_card_body">
-                                            <div class="course_ratings">
+                                            <div className="course_ratings">
                                                 <div className="course_rating_detail border-0 p-0">
                                                     <span className="course_rating_icon"><FontAwesomeIcon icon={faPlay} /></span>
                                                     <span className="course_rating_information">20 videos</span>
@@ -234,7 +234,7 @@ export const BoardManagement = () => {
                                         </div>
 
                                         <div className="course_card_body">
-                                            <div class="course_ratings">
+                                            <div className="course_ratings">
                                                 <div className="course_rating_detail border-0 p-0">
                                                     <span className="course_rating_icon"><FontAwesomeIcon icon={faPlay} /></span>
                                                     <span className="course_rating_information">20 videos</span>
@@ -300,7 +300,7 @@ export const BoardManagement = () => {
                                         </div>
 
                                         <div className="course_card_body">
-                                            <div class="course_ratings">
+                                            <div className="course_ratings">
                                                 <div className="course_rating_detail border-0 p-0">
                                                     <span className="course_rating_icon"><FontAwesomeIcon icon={faPlay} /></span>
                                                     <span className="course_rating_information">20 videos</span>
@@ -352,7 +352,7 @@ export const BoardManagement = () => {
                                         </div>
 
                                         <div className="course_card_body">
-                                            <div class="course_ratings">
+                                            <div className="course_ratings">
                                                 <div className="course_rating_detail border-0 p-0">
                                                     <span className="course_rating_icon"><FontAwesomeIcon icon={faPlay} /></span>
                                                     <span className="course_rating_information">20 videos</span>
@@ -404,7 +404,7 @@ export const BoardManagement = () => {
                                         </div>
 
                                         <div className="course_card_body">
-                                            <div class="course_ratings">
+                                            <div className="course_ratings">
                                                 <div className="course_rating_detail border-0 p-0">
                                                     <span className="course_rating_icon"><FontAwesomeIcon icon={faPlay} /></span>
                                                     <span className="course_rating_information">20 videos</span>

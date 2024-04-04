@@ -56,7 +56,7 @@ export const EventsAndNewsdetail = () => {
         setInputValue(e.target.value);
     }
 
-    const filterData = data.filter(item =>
+    const filterData = data?.filter(item =>
         item?.name.toLowerCase().includes(inputValue.toLowerCase())
     );
 

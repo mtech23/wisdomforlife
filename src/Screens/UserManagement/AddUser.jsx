@@ -158,8 +158,8 @@ export const AddUser = () => {
                                                     id='name'
                                                     type='text'
                                                     placeholder='Enter Name'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
+                                                    labelclassName='mainLabel'
+                                                    inputclassName='mainInput'
                                                     name="name"
                                                     value={formData.name}
                                                     onChange={handleChange}
@@ -172,8 +172,8 @@ export const AddUser = () => {
                                                     id='email'
                                                     type='email'
                                                     placeholder='Enter Email'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
+                                                    labelclassName='mainLabel'
+                                                    inputclassName='mainInput'
                                                     name="email"
                                                     value={formData.email}
                                                     onChange={handleChange}
@@ -186,8 +186,8 @@ export const AddUser = () => {
                                                     id='password'
                                                     type='password'
                                                     placeholder='Enter password'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
+                                                    labelclassName='mainLabel'
+                                                    inputclassName='mainInput'
                                                     name="password"
                                                     value={formData.password}
                                                     onChange={handleChange}
@@ -195,7 +195,7 @@ export const AddUser = () => {
                                             </div>
                                             <div className="col-md-4 mb-4">
                                                 <SelectBox
-                                                    selectClass="mainInput"
+                                                    selectclassName="mainInput"
                                                     name="user_role"
                                                     label="User Role"
                                                     required
@@ -207,7 +207,7 @@ export const AddUser = () => {
                                             </div>
                                             <div className="col-md-4 mb-4">
                                                 <SelectBox
-                                                    selectClass="mainInput"
+                                                    selectclassName="mainInput"
                                                     name="unit_id"
                                                     label="Unit"
                                                     required

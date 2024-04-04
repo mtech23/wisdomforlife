@@ -32,8 +32,8 @@ const ForgetPassword3 = () => {
         <>
             <AuthLayout authTitle='Password Recovery' authPara='Enter a new password.' backOption={true}>
                 <form>
-                    <CustomInput label='New Password' required id='pass' type='password' placeholder='Enter New Password' labelClass='mainLabel' inputClass='mainInput' />
-                    <CustomInput label='Confirm Password' required id='cPass' type='password' placeholder='Confirm Password' labelClass='mainLabel' inputClass='mainInput' />
+                    <CustomInput label='New Password' required id='pass' type='password' placeholder='Enter New Password' labelclassName='mainLabel' inputclassName='mainInput' />
+                    <CustomInput label='Confirm Password' required id='cPass' type='password' placeholder='Confirm Password' labelclassName='mainLabel' inputclassName='mainInput' />
 
                     <div className="mt-4 text-center">
                         <CustomButton type='button' variant='primaryButton' text='Update' onClick={handleClick} />

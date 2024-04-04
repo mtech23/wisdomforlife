@@ -332,10 +332,10 @@ export const TargetDetails = () => {
                 <CustomModal show={editModal} close={() => { setEditModal(false) }} heading="Edit Target" >
 
                     <SelectBox
-                        selectClass="mainInput"
+                        selectclassName="mainInput"
                         name="unit_id"
                         label="Select Unit"
-                        labelClass='mainLabel'
+                        labelclassName='mainLabel'
                         required
                         value={formData?.unit_id}
                         option={unitValue}
@@ -351,8 +351,8 @@ export const TargetDetails = () => {
                         placeholder="Set Target"
                         required
                         name="target"
-                        labelClass='mainLabel'
-                        inputClass='mainInput'
+                        labelclassName='mainLabel'
+                        inputclassName='mainInput'
                         value={formData?.target}
                         onChange={(event) => {
                             setFormData({ ...formData, target: event.target.value });
@@ -362,9 +362,9 @@ export const TargetDetails = () => {
 
                     />
                     <SelectBox
-                        selectClass="mainInput"
+                        selectclassName="mainInput"
                         name="month"
-                        labelClass='mainLabel'
+                        labelclassName='mainLabel'
                         label="Select Month"
                         required
                         value={formData?.month}

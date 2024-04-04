@@ -94,7 +94,7 @@ export const UnitListing = () => {
     setInputValue(e.target.value);
   }
 
-  const filterData = data.filter(item =>
+  const filterData = data?.filter(item =>
     item.name.toLowerCase().includes(inputValue.toLowerCase())
   );
 
@@ -317,7 +317,7 @@ export const UnitListing = () => {
                       <CustomButton text="Add Unit" variant='primaryButton' onClick={() => {
                         setUser(true)
                       }} />
-                      <CustomInput type="text" placeholder="Search Here..." value={inputValue} inputClass="mainInput" onChange={handleChange} />
+                      <CustomInput type="text" placeholder="Search Here..." value={inputValue} inputclassName="mainInput" onChange={handleChange} />
                     </div>
                   </div>
                 </div>
@@ -380,8 +380,8 @@ export const UnitListing = () => {
               placeholder="Add Unit"
               required
               name="name"
-              labelClass='mainLabel'
-              inputClass='mainInput'
+              labelclassName='mainLabel'
+              inputclassName='mainInput'
               value={formData.name}
               onChange={(event) => {
                 setFormData({ ...formData, name: event.target.value });
@@ -390,8 +390,8 @@ export const UnitListing = () => {
 
 
             />
-            <div class="inputWrapper">
-              <label class="mainLabel">Add brands<span>*</span></label>
+            <div className="inputWrapper">
+              <label className="mainLabel">Add brands<span>*</span></label>
               <Select
                 value={formData.brands}
                 isMulti
@@ -411,8 +411,8 @@ export const UnitListing = () => {
               placeholder="Edit Unit"
               required
               name="name"
-              labelClass='mainLabel'
-              inputClass='mainInput'
+              labelclassName='mainLabel'
+              inputclassName='mainInput'
               value={formData.name}
               onChange={(event) => {
                 setFormData({ ...formData, name: event.target.value });
@@ -421,8 +421,8 @@ export const UnitListing = () => {
 
             />
 
-            <div class="inputWrapper">
-              <label class="mainLabel">Edit brands<span>*</span></label>
+            <div className="inputWrapper">
+              <label className="mainLabel">Edit brands<span>*</span></label>
               <Select
                 value={formData.brands}
                 isMulti

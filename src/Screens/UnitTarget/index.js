@@ -146,7 +146,7 @@ export const UnitTarget = () => {
   //   setInputValue(e.target.value);
   // }
 
-  const filterData = data.filter(item =>
+  const filterData = data?.filter(item =>
     item.name.toLowerCase().includes(inputValue.toLowerCase())
   );
 
@@ -320,7 +320,7 @@ export const UnitTarget = () => {
                       <CustomButton text="Add Unit Target" variant='primaryButton' onClick={() => {
                         setUser(true)
                       }} />
-                      <CustomInput type="text" placeholder="Search Here..." value={inputValue} inputClass="mainInput" onChange={handleChange} />
+                      <CustomInput type="text" placeholder="Search Here..." value={inputValue} inputclassName="mainInput" onChange={handleChange} />
                     </div>
                   </div>
                 </div>
@@ -379,10 +379,10 @@ export const UnitTarget = () => {
         <CustomModal show={addUser} close={() => { setUser(false) }} heading="Set Target" >
 
           <SelectBox
-            selectClass="mainInput"
+            selectclassName="mainInput"
             name="unit_id"
             label="Select Unit"
-            labelClass='mainLabel'
+            labelclassName='mainLabel'
             required
             value={formData.unit_id}
             option={unitValue}
@@ -395,8 +395,8 @@ export const UnitTarget = () => {
             placeholder="Set Target"
             required
             name="target"
-            labelClass='mainLabel'
-            inputClass='mainInput'
+            labelclassName='mainLabel'
+            inputclassName='mainInput'
             value={formData.target}
             onChange={(event) => {
               setFormData({ ...formData, target: event.target.value });
@@ -406,9 +406,9 @@ export const UnitTarget = () => {
 
           />
           <SelectBox
-            selectClass="mainInput"
+            selectclassName="mainInput"
             name="month"
-            labelClass='mainLabel'
+            labelclassName='mainLabel'
             label="Select Month"
             required
             value={formData.month}
@@ -417,8 +417,8 @@ export const UnitTarget = () => {
 
           />
 
-          {/* <div class="inputWrapper">
-              <label class="mainLabel">Add brands<span>*</span></label>
+          {/* <div className="inputWrapper">
+              <label className="mainLabel">Add brands<span>*</span></label>
               <Select
                 value={formData.brands}
                 isMulti

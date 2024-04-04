@@ -148,8 +148,8 @@ export const EditBook = () => {
                                                     id='name'
                                                     type='text'
                                                     placeholder='Enter Book Title'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
+                                                    labelclassName='mainLabel'
+                                                    inputclassName='mainInput'
                                                     name="book_name"
                                                     value={formData.book_name}
                                                     onChange={handleChange}
@@ -161,8 +161,8 @@ export const EditBook = () => {
                                                     required
                                                     id='file'
                                                     type='file'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
+                                                    labelclassName='mainLabel'
+                                                    inputclassName='mainInput'
                                                     name="book_cover"
                                                     accept="image/png, image/gif, image/jpeg"
                                                     // value={formData.image}
@@ -175,8 +175,8 @@ export const EditBook = () => {
                                                     required
                                                     id='file'
                                                     type='file'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
+                                                    labelclassName='mainLabel'
+                                                    inputclassName='mainInput'
                                                     name="book_pdf"
                                                     accept="application/pdf"
                                                     // value={formData.image}

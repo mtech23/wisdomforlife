@@ -56,7 +56,7 @@ export const EnrollNow = () => {
         setInputValue(e.target.value);
     }
 
-    const filterData = data.filter(item =>
+    const filterData = data?.filter(item =>
         item?.name.toLowerCase().includes(inputValue.toLowerCase())
     );
 
@@ -64,36 +64,38 @@ export const EnrollNow = () => {
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
 
+const coursedetail = () =>{
+ 
+    const LogoutData = localStorage.getItem('login');
+    document.querySelector('.loaderBox').classList.remove("d-none");
+    fetch(`${process.env.REACT_APP_API_URL}api/user/course-view/${id}`,
+        {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${LogoutData}`
+            },
+        }
+    )
 
+        .then(response =>
+            response.json()
+        )
+        .then((data) => {
+            console.log(data)
+            document.querySelector('.loaderBox').classList.add("d-none");
+            setData(data.users);
+        })
+        .catch((error) => {
+            document.querySelector('.loaderBox').classList.add("d-none");
+            console.log(error)
+        })
+
+
+}
 
     useEffect(() => {
-        document.title = 'Wisdom For Life | User Management';
-        const LogoutData = localStorage.getItem('login');
-        document.querySelector('.loaderBox').classList.remove("d-none");
-        fetch(`${BASE_URL}api/admin/user`,
-            {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${LogoutData}`
-                },
-            }
-        )
-
-            .then(response =>
-                response.json()
-            )
-            .then((data) => {
-                console.log(data)
-                document.querySelector('.loaderBox').classList.add("d-none");
-                setData(data.users);
-            })
-            .catch((error) => {
-                document.querySelector('.loaderBox').classList.add("d-none");
-                console.log(error)
-            })
-
 
     }, []);
 
@@ -106,26 +108,26 @@ export const EnrollNow = () => {
             <div className="container-fluid">
 
 
-                {/* <section class="web">
-                    <div class="container-fluid">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-8">
+                {/* <section className="web">
+                    <div className="container-fluid">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-md-8">
                                     <h2>
                                         Web Development Beginner <br /> To Master || HTML, CSS, PHP
                                     </h2>
 
-                                    <i class="fa fa-user" aria-hidden="true" style="color:#b6803a;"></i><p >By Edward Norton</p>
-                                    <i class="fa-solid fa-globe" style="color:#b6803a; padding-left: 10px;"></i>
+                                    <i className="fa fa-user" aria-hidden="true" style="color:#b6803a;"></i><p >By Edward Norton</p>
+                                    <i className="fa-solid fa-globe" style="color:#b6803a; padding-left: 10px;"></i>
                                     <p >Business</p>
-                                    <span class="fa fa-star checked" style="color: #F8B81F; padding-left: 10px;" ></span>
-                                    <span class="fa fa-star checked" style="color: #F8B81F;"  ></span>
-                                    <span class="fa fa-star checked" style="color: #F8B81F;" ></span>
-                                    <span class="fa fa-star checked" style="color: #F8B81F;"></span>
-                                    <span class="fa fa-star checked" style="color: #F8B81F; "></span><p >(3 Reviews)</p>
+                                    <span className="fa fa-star checked" style="color: #F8B81F; padding-left: 10px;" ></span>
+                                    <span className="fa fa-star checked" style="color: #F8B81F;"  ></span>
+                                    <span className="fa fa-star checked" style="color: #F8B81F;" ></span>
+                                    <span className="fa fa-star checked" style="color: #F8B81F;"></span>
+                                    <span className="fa fa-star checked" style="color: #F8B81F; "></span><p >(3 Reviews)</p>
                                 </div>
-                                <div class="col-md-4">
-                                    <img class="img-fluid"/ src="img/div.edublink-course-details-card-preview.png" />
+                                <div className="col-md-4">
+                                    <img className="img-fluid"/ src="img/div.edublink-course-details-card-preview.png" />
                                 </div>
 
 
@@ -134,11 +136,11 @@ export const EnrollNow = () => {
                         </div>
                     </div>
                 </section>
-                <section class="overview">
-                    <div class="container-fluid">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-8">
+                <section className="overview">
+                    <div className="container-fluid">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-md-8">
                                     <button style="color:#b6803a;">
                                         OverView
                                     </button>
@@ -180,87 +182,87 @@ export const EnrollNow = () => {
 
                                 </div>
 
-                                <div class="col-md-4 ">
-                                    <div class="box">
+                                <div className="col-md-4 ">
+                                    <div className="box">
                                         <h3 style="padding:30px;">Course Includes:</h3>
-                                        <div class="row" style="padding-left:20px;">
-                                            <div class="col-md-6">
-                                                <i class="fa-solid fa-money-bill-1-wave"></i><p style=" padding-left:15px; display:inline;" class="coursepara">Price:</p>
+                                        <div className="row" style="padding-left:20px;">
+                                            <div className="col-md-6">
+                                                <i className="fa-solid fa-money-bill-1-wave"></i><p style=" padding-left:15px; display:inline;" className="coursepara">Price:</p>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p class="coursepara1">$30</p>
-                                            </div>
-                                            <hr />
-                                        </div>
-                                        <div class="row" style="padding-left:20px;">
-                                            <div class="col-md-6">
-                                                <i class="fa fa-user" aria-hidden="true"></i><p style=" padding-left:15px; display:inline;" class="coursepara">Instructor:</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p class="coursepara2">Edward Norton</p>
+                                            <div className="col-md-6">
+                                                <p className="coursepara1">$30</p>
                                             </div>
                                             <hr />
                                         </div>
-                                        <div class="row" style="padding-left:20px;">
-                                            <div class="col-md-6">
-                                                <i class="fa-solid fa-clock"></i><p style=" padding-left:15px; display:inline;" class="coursepara">Duration:</p>
+                                        <div className="row" style="padding-left:20px;">
+                                            <div className="col-md-6">
+                                                <i className="fa fa-user" aria-hidden="true"></i><p style=" padding-left:15px; display:inline;" className="coursepara">Instructor:</p>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p class="coursepara2">15 weeks</p>
-                                            </div>
-                                            <hr />
-                                        </div>
-                                        <div class="row" style="padding-left:20px;">
-                                            <div class="col-md-6">
-                                                <i class="fa-solid fa-gift"></i><p style=" padding-left:15px; display:inline;" class="coursepara">Lessons:</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p class="coursepara2">11</p>
+                                            <div className="col-md-6">
+                                                <p className="coursepara2">Edward Norton</p>
                                             </div>
                                             <hr />
                                         </div>
-                                        <div class="row" style="padding-left:20px;">
-                                            <div class="col-md-6">
-                                                <i class="fa-solid fa-user-nurse"></i><p style=" padding-left:15px; display:inline;" class="coursepara">Students:</p>
+                                        <div className="row" style="padding-left:20px;">
+                                            <div className="col-md-6">
+                                                <i className="fa-solid fa-clock"></i><p style=" padding-left:15px; display:inline;" className="coursepara">Duration:</p>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p class="coursepara2">229</p>
-                                            </div>
-                                            <hr />
-                                        </div>
-                                        <div class="row" style="padding-left:20px;">
-                                            <div class="col-md-6">
-                                                <i class="fa-solid fa-globe" ></i><p style=" padding-left:15px; display:inline;" class="coursepara">Language:</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p class="coursepara2">English</p>
+                                            <div className="col-md-6">
+                                                <p className="coursepara2">15 weeks</p>
                                             </div>
                                             <hr />
                                         </div>
-                                        <div class="row" style="padding-left:20px;">
-                                            <div class="col-md-6">
-                                                <i class="fa-solid fa-certificate"></i><p style=" padding-left:15px; display:inline;" class="coursepara">Certifications:</p>
+                                        <div className="row" style="padding-left:20px;">
+                                            <div className="col-md-6">
+                                                <i className="fa-solid fa-gift"></i><p style=" padding-left:15px; display:inline;" className="coursepara">Lessons:</p>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p class="coursepara2">Yes</p>
+                                            <div className="col-md-6">
+                                                <p className="coursepara2">11</p>
+                                            </div>
+                                            <hr />
+                                        </div>
+                                        <div className="row" style="padding-left:20px;">
+                                            <div className="col-md-6">
+                                                <i className="fa-solid fa-user-nurse"></i><p style=" padding-left:15px; display:inline;" className="coursepara">Students:</p>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <p className="coursepara2">229</p>
+                                            </div>
+                                            <hr />
+                                        </div>
+                                        <div className="row" style="padding-left:20px;">
+                                            <div className="col-md-6">
+                                                <i className="fa-solid fa-globe" ></i><p style=" padding-left:15px; display:inline;" className="coursepara">Language:</p>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <p className="coursepara2">English</p>
+                                            </div>
+                                            <hr />
+                                        </div>
+                                        <div className="row" style="padding-left:20px;">
+                                            <div className="col-md-6">
+                                                <i className="fa-solid fa-certificate"></i><p style=" padding-left:15px; display:inline;" className="coursepara">Certifications:</p>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <p className="coursepara2">Yes</p>
                                             </div>
                                         </div>
-                                        <div class="row justify-content-center" style="padding: 20px;">
+                                        <div className="row justify-content-center" style="padding: 20px;">
 
-                                            <button class="btn"> Enroll Now</button>
+                                            <button className="btn"> Enroll Now</button>
 
 
                                         </div>
-                                        <div class="row justify-content-center" style="padding: 20px;">
+                                        <div className="row justify-content-center" style="padding: 20px;">
 
-                                            <button class="btn1"> Add to Cart</button>
+                                            <button className="btn1"> Add to Cart</button>
 
                                         </div>
                                         <div style="padding: 20px;">
                                             <h4>Share On:</h4>
-                                            <i class="fa-brands fa-facebook socials" ></i>
-                                            <i class="fa-brands fa-x-twitter socials"></i>
-                                            <i class="fa-brands fa-linkedin-in socials" ></i>
+                                            <i className="fa-brands fa-facebook socials" ></i>
+                                            <i className="fa-brands fa-x-twitter socials"></i>
+                                            <i className="fa-brands fa-linkedin-in socials" ></i>
                                         </div>
                                     </div>
 
@@ -273,35 +275,35 @@ export const EnrollNow = () => {
 
 
 
-                <section class="web">
-                    <div class="container-fluid">
+                <section className="web">
+                    <div className="container-fluid">
 
-                        <div class="row mx-auto ">
-                            <div class=" col-md-7">
+                        <div className="row mx-auto ">
+                            <div className=" col-md-7">
                                 <h2 className="enroll-title  ">
                                     Web Development Beginner <br /> To Master || HTML, CSS, PHP
                                 </h2>
                                 <div className="enrollist d-flex  gap-5 text-black       text-center  mx-auto  ">
-                                    <span><i class="fa fa-user icon" aria-hidden="true" ></i><p >By Edward Norton</p>
+                                    <span><i className="fa fa-user icon" aria-hidden="true" ></i><p >By Edward Norton</p>
 
                                     </span>
                                     <span>
-                                        <i class="fa-solid fa-globe icon" ></i><p >Business</p>
+                                        <i className="fa-solid fa-globe icon" ></i><p >Business</p>
                                     </span>
 
                                     <span className=" d-flex  mb-0 ">
-                                        <span class="fa fa-star checked star " >
-                                            <span class="fa fa-star checked star" ></span>
-                                            <span class="fa fa-star checked star" ></span>
-                                            <span class="fa fa-star checked star"></span>
-                                            <span class="fa fa-star checked star" ></span><p >(3 Reviews)</p>
+                                        <span className="fa fa-star checked star " >
+                                            <span className="fa fa-star checked star" ></span>
+                                            <span className="fa fa-star checked star" ></span>
+                                            <span className="fa fa-star checked star"></span>
+                                            <span className="fa fa-star checked star" ></span><p >(3 Reviews)</p>
                                         </span>
 
                                     </span>
 
                                 </div></div>
-                            <div class="col-md-4">
-                                <img class="img-fluid" src={detailvideo} />
+                            <div className="col-md-4">
+                                <img className="img-fluid" src={detailvideo} />
                             </div>
 
 
@@ -310,14 +312,14 @@ export const EnrollNow = () => {
 
                     </div>
                 </section>
-                <section class="overview ">
-                    <div class="container-fluid">
-                        <div class="container">
-                            <div class="row">
+                <section className="overview ">
+                    <div className="container-fluid">
+                        <div className="container">
+                            <div className="row">
 
-                                <div class="col-md-7 ">
+                                <div className="col-md-7 ">
 
-                                    <button class="view">
+                                    <button className="view">
                                         OverView
                                     </button>
 
@@ -359,97 +361,98 @@ export const EnrollNow = () => {
 
                                 </div>
 
-                                <div class="col-md-4 ">
-                                    <div class="box">
+                                <div className="col-md-4 ">
+                                    <div className="box">
                                         <h3 >Course Includes:</h3>
-                                        <div class="row p-4">
-                                            <div class="col-md-6">
-                                                <i class="fa-solid fa-money-bill-1-wave"></i><p class="coursepara">Price:</p>
+                                        <div className="row p-4">
+                                            <div className="col-md-6">
+                                                <i className="fa-solid fa-money-bill-1-wave"></i><p className="coursepara">Price:</p>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p class="coursepara1">$30</p>
-                                            </div>
-                                            <hr />
-                                        </div>
-                                        <div class="row p-4">
-                                            <div class="col-md-6">
-                                                <i class="fa fa-user" aria-hidden="true"></i><p class="coursepara">Instructor:</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p class="coursepara2">Edward Norton</p>
+                                            <div className="col-md-6">
+                                                <p className="coursepara1">$30</p>
                                             </div>
                                             <hr />
                                         </div>
-                                        <div class="row p-4">
-                                            <div class="col-md-6">
-                                                <i class="fa-solid fa-clock"></i><p class="coursepara">Duration:</p>
+                                        <div className="row p-4">
+                                            <div className="col-md-6">
+                                                <i className="fa fa-user" aria-hidden="true"></i><p className="coursepara">Instructor:</p>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p class="coursepara2">15 weeks</p>
-                                            </div>
-                                            <hr />
-                                        </div>
-                                        <div class="row p-4">
-                                            <div class="col-md-6">
-                                                <i class="fa-solid fa-gift"></i><p class="coursepara">Lessons:</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p class="coursepara2">11</p>
+                                            <div className="col-md-6">
+                                                <p className="coursepara2">Edward Norton</p>
                                             </div>
                                             <hr />
                                         </div>
-                                        <div class="row p-4">
-                                            <div class="col-md-6">
-                                                <i class="fa-solid fa-user-nurse"></i><p class="coursepara">Students:</p>
+                                        <div className="row p-4">
+                                            <div className="col-md-6">
+                                                <i className="fa-solid fa-clock"></i><p className="coursepara">Duration:</p>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p class="coursepara2">229</p>
-                                            </div>
-                                            <hr />
-                                        </div>
-                                        <div class="row p-4">
-                                            <div class="col-md-6">
-                                                <i class="fa-solid fa-globe" ></i><p class="coursepara">Language:</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p class="coursepara2">English</p>
+                                            <div className="col-md-6">
+                                                <p className="coursepara2">15 weeks</p>
                                             </div>
                                             <hr />
                                         </div>
-                                        <div class="row p-4">
-                                            <div class="col-md-6">
-                                                <i class="fa-solid fa-certificate"></i><p class="coursepara">Certifications:</p>
+                                        <div className="row p-4">
+                                            <div className="col-md-6">
+                                                <i className="fa-solid fa-gift"></i><p className="coursepara">Lessons:</p>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p class="coursepara2">Yes</p>
+                                            <div className="col-md-6">
+                                                <p className="coursepara2">11</p>
+                                            </div>
+                                            <hr />
+                                        </div>
+                                        <div className="row p-4">
+                                            <div className="col-md-6">
+                                                <i className="fa-solid fa-user-nurse"></i><p className="coursepara">Students:</p>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <p className="coursepara2">229</p>
+                                            </div>
+                                            <hr />
+                                        </div>
+                                        <div className="row p-4">
+                                            <div className="col-md-6">
+                                                <i className="fa-solid fa-globe" ></i><p className="coursepara">Language:</p>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <p className="coursepara2">English</p>
+                                            </div>
+                                            <hr />
+                                        </div>
+                                        <div className="row p-4">
+                                            <div className="col-md-6">
+                                                <i className="fa-solid fa-certificate"></i><p className="coursepara">Certifications:</p>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <p className="coursepara2">Yes</p>
                                             </div>
                                         </div>
-                                        <div class="enroll" >
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <button class="btn"> Enroll Now</button>
+                                        <div className="enroll" >
+                                            <div className="row">
+                                                <div className="col-md-12">
+                                                    <button className="btn"> Enroll Now</button>
 
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="enroll" >
-                                            <div class="row" >
-                                                <div class="col-md-12 ">
-                                                    <button class="btn1"> Add to Cart</button>
+                                        <div className="enroll" >
+                                            <div className="row" >
+                                                <div className="col-md-12 ">
+                                                    <button className="btn1"> Add to Cart</button>
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="row p-3">
-                                            <div class="col-md-12">
+                                        {/* <div className="row p-3">
+                                            <div className="col-md-12">
 
                                                 <h4>Share On:</h4>
-                                                <i class="fa-brands fa-facebook socials" ></i>
-                                                <i class="fa-brands fa-x-twitter socials"></i>
-                                                <i class="fa-brands fa-linkedin-in socials" ></i>
+                                                <i className="fa-brands fa-facebook"></i>
+ 
+                                                <i className="fa-brands fa-x-twitter socials"></i>
+                                                <i className="fa-brands fa-linkedin-in socials" ></i>
 
                                             </div>
-                                        </div>
+                                        </div> */}
 
                                     </div>
 
@@ -461,103 +464,103 @@ export const EnrollNow = () => {
                 </section>
 
                 {/* <section>
-                    <div class="container-fluid">
-                        <div class="conatiner">
-                            <div class="row">
+                    <div className="container-fluid">
+                        <div className="conatiner">
+                            <div className="row">
 
-                                <div class="col-md-8">
-                                    <div class="cart">
+                                <div className="col-md-8">
+                                    <div className="cart">
                                         <h3> My Cart </h3>
-                                        <table class="table">
+                                        <table className="table">
                                             <tr>
-                                                <td><img src="image/Rectangle 85.png" alt="" class="img-fluid" /></td>
+                                                <td><img src="image/Rectangle 85.png" alt="" className="img-fluid" /></td>
                                                 <td ><h5>Web Development Beginner - Master <br />| HTML, CSS.</h5>
                                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br /> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
                                                     <button>Remove</button>
                                                 </td>
-                                                <td><p class="dollar">$99</p></td>
+                                                <td><p className="dollar">$99</p></td>
                                             </tr>
                                             <tr>
-                                                <td ><img src="image/Rectangle 89.png" alt="" class="img-fluid" /></td>
+                                                <td ><img src="image/Rectangle 89.png" alt="" className="img-fluid" /></td>
                                                 <td ><h5 >Web Development Beginner - Master <br />| HTML, CSS.</h5>
                                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br /> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
                                                     <button>Remove</button>
                                                 </td>
-                                                <td><p class="dollar" >$99</p></td>
+                                                <td><p className="dollar" >$99</p></td>
                                             </tr>
                                             <tr>
-                                                <td ><img src="image/Rectangle 91.png" alt="" class="img-fluid" /></td>
+                                                <td ><img src="image/Rectangle 91.png" alt="" className="img-fluid" /></td>
                                                 <td ><h5 >Web Development Beginner - Master <br />| HTML, CSS.</h5>
                                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br /> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
                                                     <button>Remove</button>
                                                 </td>
-                                                <td><p class="dollar" >$99</p></td>
+                                                <td><p className="dollar" >$99</p></td>
                                             </tr>
                                             <tr>
-                                                <div class="lastrow">
-                                                    <td ><img src="image/Rectangle 178.png" alt="" class="img-fluid" /></td>
+                                                <div className="lastrow">
+                                                    <td ><img src="image/Rectangle 178.png" alt="" className="img-fluid" /></td>
                                                     <td ><h5>Web Development Beginner - Master <br />| HTML, CSS.</h5>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br /> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
                                                         <button>Remove</button>
                                                     </td>
-                                                    <td><p class="dollar" >$99</p></td>
+                                                    <td><p className="dollar" >$99</p></td>
                                                 </div>
                                             </tr>
                                         </table>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="cart">
+                                <div className="col-md-4">
+                                    <div className="cart">
                                         <h3>Cart Summary</h3>
-                                        <div class="row" >
-                                            <div class="col-md-6">
-                                                <p class="summary">Subtotal (4 Items)</p>
+                                        <div className="row" >
+                                            <div className="col-md-6">
+                                                <p className="summary">Subtotal (4 Items)</p>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p class="sum">$480</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p class="summary">Discount</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p class="sum">$35.2</p>
+                                            <div className="col-md-6">
+                                                <p className="sum">$480</p>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p class="summary">Tax</p>
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <p className="summary">Discount</p>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p class="sum">$0.00</p>
+                                            <div className="col-md-6">
+                                                <p className="sum">$35.2</p>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p class="summary">Total</p>
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <p className="summary">Tax</p>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p class="sum">$445</p>
+                                            <div className="col-md-6">
+                                                <p className="sum">$0.00</p>
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <p className="summary">Total</p>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <p className="sum">$445</p>
                                             </div>
                                         </div>
                                         <hr/>
 
-                                            <div class="row mx-auto" >
-                                                <div class="col-md-12">
-                                                    <div class="btn">
-                                                        <button class="btn">Checkout</button>
+                                            <div className="row mx-auto" >
+                                                <div className="col-md-12">
+                                                    <div className="btn">
+                                                        <button className="btn">Checkout</button>
                                                     </div>
                                                 </div>
                                             </div>
 
                                     </div>
 
-                                    <div class="cart">
-                                        <div class="row ">
-                                            <div class="col-md-12">
+                                    <div className="cart">
+                                        <div className="row ">
+                                            <div className="col-md-12">
                                                 <h3>Have A Coupon?</h3>
-                                                <div class="dot" >
+                                                <div className="dot" >
                                                     <input type="text" id="fname" name="fname" placeholder="Coupon Code"/>
                                                         <button >Apply</button>
                                                 </div>

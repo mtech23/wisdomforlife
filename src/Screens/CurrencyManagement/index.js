@@ -60,8 +60,8 @@ export const CurrencyManagement = () => {
                 type="number"
                 placeholder="1 Mana"
                 name="name"
-                labelClass='mainLabel'
-                inputClass='mainInput'
+                labelclassName='mainLabel'
+                inputclassName='mainInput'
                 value={mana}
                 onChange={(event) => {
                   setMana(event.target.value);
@@ -78,8 +78,8 @@ export const CurrencyManagement = () => {
                 type="number"
                 placeholder="$1"
                 name="name"
-                labelClass='mainLabel'
-                inputClass='mainInput'
+                labelclassName='mainLabel'
+                inputclassName='mainInput'
                 value={usd}
               />
             </div>

@@ -54,7 +54,7 @@ export const BrandListing = () => {
     setInputValue(e.target.value);
   }
 
-  const filterData = data.filter(item =>
+  const filterData = data?.filter(item =>
     item.name.toLowerCase().includes(inputValue.toLowerCase())
   );
 
@@ -247,7 +247,7 @@ export const BrandListing = () => {
                       <CustomButton text="Add Brand" variant='primaryButton' onClick={() => {
                         setUser(true)
                       }} />
-                      <CustomInput type="text" placeholder="Search Here..." value={inputValue} inputClass="mainInput" onChange={handleChange} />
+                      <CustomInput type="text" placeholder="Search Here..." value={inputValue} inputclassName="mainInput" onChange={handleChange} />
                     </div>
                   </div>
                 </div>
@@ -303,8 +303,8 @@ export const BrandListing = () => {
               placeholder="Add Brand"
               required
               name="name"
-              labelClass='mainLabel'
-              inputClass='mainInput'
+              labelclassName='mainLabel'
+              inputclassName='mainInput'
               value={formData.name}
               onChange={(event) => {
                 setFormData({ ...formData, name: event.target.value });
@@ -322,8 +322,8 @@ export const BrandListing = () => {
               placeholder="Edit Brand"
               required
               name="name"
-              labelClass='mainLabel'
-              inputClass='mainInput'
+              labelclassName='mainLabel'
+              inputclassName='mainInput'
               value={formData.name}
               onChange={(event) => {
                 setFormData({ ...formData, name: event.target.value });
@@ -333,7 +333,7 @@ export const BrandListing = () => {
             />
 
             <SelectBox
-              selectClass="mainInput"
+              selectclassName="mainInput"
               name="Status"
               label="Status"
               value={formData.status}
