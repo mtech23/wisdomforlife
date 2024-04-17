@@ -1,3 +1,23 @@
+.nav-item button[aria-selected="true"] {
+    /* background-color: #000 !important; */
+    color: #fff !important;
+    font-weight: 600;
+    border-radius: 13px;
+    padding: 10px 0px;
+    background: linear-gradient(91deg, #d2a263 1.57%, #9e6318 102.36%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 .course_main_content {
     background-image: url("../../Assets/images/course-top-img-01.png");
     background-size: 100%;
@@ -58,14 +78,7 @@ padding: 10px 0px;
     padding: 10px 0px;
 }
 
-.nav-item button[aria-selected="true"] {
-    /* background-color: #000 !important; */
-    color: #fff !important;
-    font-weight: 600;
-    border-radius: 13px;
-    padding: 10px 0px;
-    background: linear-gradient(91deg, #d2a263 1.57%, #9e6318 102.36%);
-}
+ 
 
 .nav-tabs .nav-link:hover,
 .nav-tabs .nav-link:focus {
@@ -95,9 +108,17 @@ padding: 10px 0px;
     margin: -108px 14px 0px 14px;
 }
 
+.quiz_opction{
+    font-size: 23px!important;
+}
 
-
-
+.quiz_submit{
+    background-color: #9E6318 !important;
+    color: white !important;
+    margin-left: 31px !important;
+    text-align: center !important;
+    margin: auto !important;
+}
 
 .course_rating_detail {
     padding: 0px 30px;
@@ -520,8 +541,18 @@ padding: 10px 0px;
     letter-spacing: 0em;
     text-align: left;
     color: #181818;
-    
-    
+    }
+
+
+
+    .overview button {
+        background-color: #fff !important;
+        border: solid 0px !important;
+        padding-left: 25px !important;
+        border-bottom: 38px !important;
+        color: gray !important;
+        font-size: 16px !important;
+        font-family: 'Poppins, sans-serif';
     }
     .socials{
       
@@ -545,4 +576,20 @@ padding: 10px 0px;
 
 
 
- 
+    .nav-item button[aria-selected="true"] {
+        /* background-color: #000 !important; */
+        color: #fff !important;
+        font-weight: 600!important;
+        border-radius: 13px!important;
+        padding: 5px 23px!important;
+        background: linear-gradient(91deg, #d2a263 1.57%, #9e6318 102.36%)!important;
+        font-size: 16px!important;
+    }
+    
+    .nav-item button {
+        /* background-color: #000 !important; */
+        color: #7e7e7e !important;
+        font-weight: 600!important;
+        /* border-radius: 13px; */
+        padding: 5px 23px!important;
+    }

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { courseBannerImage } from "../../Assets/images";
 import { eventsImg01, eventsImg02, eventsImg03, eventsImg04, eventsImg05, eventsImg06 } from "../../Assets/images";
-
+import { useParams } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import eventsnews from '../../Assets/images/events-and-news-img.png'
 import { DashboardLayout } from "../../Components/Layout/DashboardLayout";
@@ -24,16 +24,22 @@ import { faMagnifyingGlass, faUserAlt, faPlay, faStar, faTable, faCalendarDays }
 export const EventsAndNewsdetail = () => {
 
     const [data, setData] = useState([]);
+    const [detail, setDetail] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [showModal2, setShowModal2] = useState(false);
     const [showModal3, setShowModal3] = useState(false);
     const [showModal4, setShowModal4] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(8);
+
+    
     const [inputValue, setInputValue] = useState('');
 
     const navigate = useNavigate();
 
+const base_url = `${process.env.REACT_APP_API_URL}`
+
+    console.log("detail" ,detail)
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
@@ -56,21 +62,19 @@ export const EventsAndNewsdetail = () => {
         setInputValue(e.target.value);
     }
 
-    const filterData = data?.filter(item =>
-        item?.name.toLowerCase().includes(inputValue.toLowerCase())
-    );
+    // const filterData = data?.filter(item =>
+    //     item?.name.toLowerCase().includes(inputValue.toLowerCase())
+    // );
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
-
-
-
-    useEffect(() => {
-        document.title = 'Wisdom For Life | User Management';
+    // const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
+    const { id } = useParams();
+    const Eventdetail = () => {
+ 
         const LogoutData = localStorage.getItem('login');
         document.querySelector('.loaderBox').classList.remove("d-none");
-        fetch(`${BASE_URL}api/admin/user`,
+        fetch(`${process.env.REACT_APP_API_URL}api/user/event-view/${id}`,
             {
                 method: 'GET',
                 headers: {
@@ -80,24 +84,89 @@ export const EventsAndNewsdetail = () => {
                 },
             }
         )
-
+    
             .then(response =>
                 response.json()
             )
             .then((data) => {
                 console.log(data)
                 document.querySelector('.loaderBox').classList.add("d-none");
-                setData(data.users);
+                setDetail(data?.data);
+             
             })
             .catch((error) => {
                 document.querySelector('.loaderBox').classList.add("d-none");
                 console.log(error)
             })
+    
+    
+    }
 
 
-    }, []);
+    useEffect(() =>{
+        Eventdetail()
+    } , [])
+    // useEffect(() => {
+    //     document.title = 'Wisdom For Life | User Management';
+    //     const LogoutData = localStorage.getItem('login');
+    //     document.querySelector('.loaderBox').classList.remove("d-none");
+    //     fetch(`${process.env.REACT_APP_API_URL}api/user/event-listing`,
+    //         {
+    //             method: 'GET',
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Content-Type': 'application/json',
+    //                 'Authorization': `Bearer ${LogoutData}`
+    //             },
+    //         }
+    //     )
+
+    //         .then(response =>
+    //             response.json()
+    //         )
+    //         .then((data) => {
+    //             console.log(data)
+    //             document.querySelector('.loaderBox').classList.add("d-none");
+    //             setData(data.users);
+    //         })
+    //         .catch((error) => {
+    //             document.querySelector('.loaderBox').classList.add("d-none");
+    //             console.log(error)
+    //         })
 
 
+    // }, []);
+
+
+    const Eventlist = () => {
+ 
+        const LogoutData = localStorage.getItem("login");
+        document.querySelector(".loaderBox").classList.remove("d-none");
+        fetch(`${process.env.REACT_APP_API_URL}api/user/event-listing`, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${LogoutData}`,
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            document.querySelector(".loaderBox").classList.add("d-none");
+            setData(data.data);
+          })
+          .catch((error) => {
+            document.querySelector(".loaderBox").classList.add("d-none");
+            console.log(error);
+          });
+      };
+      useEffect(() => {
+        Eventlist();
+      }, []);
+
+
+console.log("detail" , detail)
 
 
     return (
@@ -115,19 +184,15 @@ export const EventsAndNewsdetail = () => {
 
 
                         <div className="event_card_img  mb-5   ">
-                            <img src={eventsnews} className="   w-100  " />
+                            <img src={base_url + detail?.image} className="   w-100  " />
                         </div>
 
                         <div className="row">
                             <div className="col-md-8">
                                 <span className="title-event   mb-5   text-dark  flex-nowrap ">
-                                    About The Event
+                                {detail?.name}
                                 </span>
-                                <p className="para-event ">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor inc idid unt ut labore
-                                    et dolore magna aliqua enim ad minim veniam, quis nostrud exerec tation ullamco laboris nis aliquip
-                                    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                    fugiat nulla pariatur enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia
-                                    consequuntur magni dolores.</p>
+                                <p className="para-event ">{detail?.description}</p>
                             </div>
                             <div className="event-info col-md-4  mb-4">
                                 <div>
@@ -138,7 +203,7 @@ export const EventsAndNewsdetail = () => {
                                         <span className="cost">
                                             Cost</span>
                                         <span className="cost-price">
-                                            $59.00
+                                            ${detail?.cost}
                                         </span>
                                     </div>
 
@@ -147,7 +212,7 @@ export const EventsAndNewsdetail = () => {
                                         <span className="cost">
                                         Total Slot:</span>
                                         <span className="cost-price">
-                                            $59.00
+                                            ${detail?.cost}
                                         </span>
                                     </div>
                                 </div>

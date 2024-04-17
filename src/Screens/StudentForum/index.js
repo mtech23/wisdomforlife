@@ -23,6 +23,9 @@ import { faMagnifyingGlass, faUserAlt, faPlay, faStar, faTable, faThumbsUp, faTh
 
 export const StudentForum = () => {
 
+
+    const [detail, setDetail] = useState("");
+    const [formeditData, setFormeditData] = useState({});
     const [data, setData] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [showModal2, setShowModal2] = useState(false);
@@ -56,13 +59,13 @@ export const StudentForum = () => {
         setInputValue(e.target.value);
     }
 
-    const filterData = data?.filter(item =>
-        item?.name.toLowerCase().includes(inputValue.toLowerCase())
-    );
+    // const filterData = data?.filter(item =>
+    //     item?.name.toLowerCase().includes(inputValue.toLowerCase())
+    // );
 
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
+    // const indexOfLastItem = currentPage * itemsPerPage;
+    // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    // const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
 
 
 
@@ -70,7 +73,7 @@ export const StudentForum = () => {
         document.title = 'Wisdom For Life | User Management';
         const LogoutData = localStorage.getItem('login');
         document.querySelector('.loaderBox').classList.remove("d-none");
-        fetch(`${BASE_URL}api/admin/user`,
+        fetch(`${process.env.REACT_APP_API_URL}api/user/post-listing`,
             {
                 method: 'GET',
                 headers: {
@@ -87,7 +90,7 @@ export const StudentForum = () => {
             .then((data) => {
                 console.log(data)
                 document.querySelector('.loaderBox').classList.add("d-none");
-                setData(data.users);
+                setData(data?.data);
             })
             .catch((error) => {
                 document.querySelector('.loaderBox').classList.add("d-none");
@@ -98,8 +101,171 @@ export const StudentForum = () => {
     }, []);
 
 
+    const coursedetail = (id) => {
+        const LogoutData = localStorage.getItem("login");
+        document.querySelector(".loaderBox").classList.remove("d-none");
+        fetch(`${process.env.REACT_APP_API_URL}api/user/note-view/${id}`, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${LogoutData}`,
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                document.querySelector(".loaderBox").classList.add("d-none");
+                setDetail(data?.data);
+                setFormeditData(data?.data);
+            })
+            .catch((error) => {
+                document.querySelector(".loaderBox").classList.add("d-none");
+                console.log(error);
+            });
+    };
+    const [formData, setFormData] = useState('')
 
 
+
+
+
+
+
+
+    const LogoutData = localStorage.getItem('login')
+
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        const formDataMethod = new FormData();
+        for (const key in formData) {
+            formDataMethod.append(key, formData[key]);
+        }
+
+        document.querySelector('.loaderBox').classList.remove("d-none");
+        https://custom3.mystagingserver.site/Steve-Lentini/public/api/user/post-replay/1
+        fetch(`${process.env.REACT_APP_API_URL}/api/user/post-replay/1`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${LogoutData}`
+            },
+            body: formDataMethod
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                document.querySelector('.loaderBox').classList.add("d-none");
+                // data?.status ? setSuccessStatus(data?.msg) : setSuccessStatus(data?.msg)
+                // setStatus(data?.status)
+                // setShowModal(true)
+            })
+            .catch((error) => {
+                document.querySelector('.loaderBox').classList.add("d-none");
+            });
+    };
+    const handlechange = (event) => {
+        const { name, value } = event.target;
+
+
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    const pstunlike = async () => {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/post-like-unlike/1`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${LogoutData}`
+                },
+            });
+
+            const data = await response.json();
+            console.log("data", data)
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            // userData(0);
+        }
+    };
+
+    // https://custom3.mystagingserver.site/Steve-Lentini/public/api/user/post-dislike-undisLike/3
+
+
+
+    const like = async () => {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/post-like-unlike/1`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${LogoutData}`
+                },
+            });
+
+            const data = await response.json();
+            console.log("data", data)
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            // userData(0);
+        }
+    };
+    const replypostlike = async () => {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/post-replay-dislike-undisLike/1`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${LogoutData}`
+                },
+            });
+
+            const data = await response.json();
+            console.log("data", data)
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            // userData(0);
+        }
+    };
+
+
+
+ 
     return (
 
         <DashboardLayout>
@@ -113,15 +279,15 @@ export const StudentForum = () => {
                             <div className="category_btns">
                                 <button className="category_actionBtn">All</button>
                                 <button className="category_actionBtn">Newest</button>
-                                <button className="category_actionBtn">Active</button>
+                                {/* <button className="category_actionBtn">Active</button>
                                 <button className="category_actionBtn">Bountied</button>
-                                <button className="category_actionBtn">More</button>
+                                <button className="category_actionBtn">More</button> */}
                             </div>
 
                             <div className="personal_notes_search">
 
                                 <div className="">
-                                    <input className="search_input" placeholder="Search Notes"/>
+                                    <input className="search_input" placeholder="Search Notes" />
                                 </div>
 
                                 <div className="notes_search_icon">
@@ -142,75 +308,28 @@ export const StudentForum = () => {
 
                             <h6 className="most_useful_users_heading">Most Helpful Users</h6>
 
-                            <div className="helpful_users_information">
-                                <div className="helpful_user_details">
-                                    <div className="helpful_user_img">
-                                        <img src={manImg}/>
+                            {data?.map((item, index) => (
+
+                                <div className="helpful_users_information" onClick={() => coursedetail(item.id)}>
+                                    <div className="helpful_user_details">
+                                        <div className="helpful_user_img">
+                                            <img src={manImg} />
+                                        </div>
+
+                                        <div>
+                                            <h6 className="helpful_user_name">{item?.name}</h6>
+                                            <p className="helpful_user_likes">{item?.post_likes} Likes</p>
+                                        </div>
                                     </div>
 
                                     <div>
-                                        <h6 className="helpful_user_name">Michael Anderson</h6>
-                                        <p className="helpful_user_likes">1000 Likes</p>
+                                        <span className="helpful_user_fancy_number">{index + 1}</span>
                                     </div>
-                                </div>
-
-                                <div>
-                                    <span className="helpful_user_fancy_number">1</span>
-                                </div>
-                            </div>
-
-                            <div className="helpful_users_information">
-                                <div className="helpful_user_details">
-                                    <div className="helpful_user_img">
-                                        <img src={manImg}/>
-                                    </div>
-
-                                    <div>
-                                        <h6 className="helpful_user_name">Michael Anderson</h6>
-                                        <p className="helpful_user_likes">1000 Likes</p>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <span className="helpful_user_fancy_number">2</span>
-                                </div>
-                            </div>
+                                </div>))}
 
 
-                            <div className="helpful_users_information">
-                                <div className="helpful_user_details">
-                                    <div className="helpful_user_img">
-                                        <img src={manImg}/>
-                                    </div>
-
-                                    <div>
-                                        <h6 className="helpful_user_name">Michael Anderson</h6>
-                                        <p className="helpful_user_likes">1000 Likes</p>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <span className="helpful_user_fancy_number">3</span>
-                                </div>
-                            </div>
 
 
-                            <div className="helpful_users_information">
-                                <div className="helpful_user_details">
-                                    <div className="helpful_user_img">
-                                        <img src={manImg}/>
-                                    </div>
-
-                                    <div>
-                                        <h6 className="helpful_user_name">Michael Anderson</h6>
-                                        <p className="helpful_user_likes">1000 Likes</p>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <span className="helpful_user_fancy_number">4</span>
-                                </div>
-                            </div>
 
                         </div>
 
@@ -264,141 +383,106 @@ export const StudentForum = () => {
 
                     <div className="col-sm-12 col-lg-8 col-xl-9">
 
-                        <div className="main_student_forum">
-
-                            <div className="helpful_user_details">
-                                    <div className="helpful_user_img">
-                                        <img src={manImg}/>
-                                    </div>
-
-                                    <div>
-                                        <h6 className="helpful_user_name">Lorem ipsum dolor sit amet</h6>
-                                        <p className="helpful_user_likes mt-1"><span>13-Feb-2024 </span><span className="circle_between"></span><span> Michael Anderson</span></p>
-                                    </div>
-                            </div>
-
-                            <div>
-                                <p className="helpful_user_main_para">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                                </p>
-                            </div>
-
-                            <div className="all_likes_dislikes_reponses">
-                                <div className="like_dislike_main">
-                                    <div className="for_like">
-                                        <button className="main_like_icon"><FontAwesomeIcon icon={faThumbsUp} /></button>
-                                        <span className="like_icon_numbering">+13</span>
-                                    </div>
-
-                                    <div className="for_dislike">
-                                        <button className="main_dislike_icon"><FontAwesomeIcon icon={faThumbsDown} /></button>
-                                        <span className="dislike_icon_numbering">03</span>
-                                    </div>
-                                </div>
-
-                                <div className="mx-auto">
-                                    <Link className="view_answers_text">
-                                        <span>VIEW 56 ANSWERS</span>
-                                    </Link>
-                                </div>
-                            </div>
-
-                        </div>
+                      
 
 
+                        {data?.map((items, index) => (
 
-                        <div className="main_student_forum">
+                            <div className="main_student_forum">
 
-                            <div className="helpful_user_details">
-                                    <div className="helpful_user_img">
-                                        <img src={manImg}/>
-                                    </div>
-
-                                    <div>
-                                        <h6 className="helpful_user_name">Lorem ipsum dolor sit amet</h6>
-                                        <p className="helpful_user_likes mt-1"><span>13-Feb-2024 </span><span className="circle_between"></span><span> Michael Anderson</span></p>
-                                    </div>
-                            </div>
-
-                            <div>
-                                <p className="helpful_user_main_para">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                                </p>
-                            </div>
-
-                            <div className="all_likes_dislikes_reponses">
-                                <div className="like_dislike_main">
-                                    <div className="for_like">
-                                        <button className="main_like_icon"><FontAwesomeIcon icon={faThumbsUp} /></button>
-                                        <span className="like_icon_numbering">+13</span>
-                                    </div>
-
-                                    <div className="for_dislike">
-                                        <button className="main_dislike_icon"><FontAwesomeIcon icon={faThumbsDown} /></button>
-                                        <span className="dislike_icon_numbering">03</span>
-                                    </div>
-                                </div>
-
-                                {/* <div className="mx-auto">
-                                    <Link className="view_answers_text">
-                                        <span>VIEW 56 ANSWERS</span>
-                                    </Link>
-                                </div> */}
-                            </div>
-
-                            <div className="other_user_responses">
-
-                                <div className="other_user_details_response">
                                 <div className="helpful_user_details">
                                     <div className="helpful_user_img">
-                                        <img src={manImg}/>
+                                        <img src={manImg} />
                                     </div>
 
                                     <div>
-                                        {/* <h6 className="helpful_user_name">Lorem ipsum dolor sit amet</h6> */}
-                                        <p className="helpful_user_likes mt-1"><span>Posted 33 Min Ago </span><span className="circle_between"></span><span> Carl Lambardo</span></p>
+                                        <h6 className="helpful_user_name">{items?.name}</h6>
+                                        <p className="helpful_user_likes mt-1"><span>13-Feb-2024 </span><span className="circle_between"></span><span> Michael Anderson</span></p>
                                     </div>
-                                </div>
-
-                                <div className="like_dislike_main">
-                                    <div className="for_like">
-                                        <button className="main_like_icon"><FontAwesomeIcon icon={faThumbsUp} /></button>
-                                        <span className="like_icon_numbering">+13</span>
-                                    </div>
-
-                                    <div className="for_dislike">
-                                        <button className="main_dislike_icon"><FontAwesomeIcon icon={faThumbsDown} /></button>
-                                        <span className="dislike_icon_numbering">03</span>
-                                    </div>
-                                </div>
                                 </div>
 
                                 <div>
-                                <p className="helpful_user_main_para">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                                </p>
-                            </div>
 
 
-                            </div>
 
 
-                            <div className="main_input_field_for_user">
+                                    <p className="helpful_user_main_para">
+                                        {items?.description}
+                                    </p>
+                                </div>
 
-                                <div className="input_with_icon">
-                                    <FontAwesomeIcon icon={faMessage} className="input_icon"/>
-                                    <div className="w-100">
-                                        <input type="text" className="write_something_input_here form-control" id="" placeholder="Write Something Here..."/>
+                                <div className="all_likes_dislikes_reponses">
+                                    <div className="like_dislike_main">
+                                        <div className="for_like">
+                                            <button const pstunlike
+                                                onClick={like} className="main_like_icon"><FontAwesomeIcon icon={faThumbsUp} /></button>
+                                            <span className="like_icon_numbering">+{items?.post_likes}</span>
+                                        </div>
+
+                                        <div className="for_dislike">
+                                            <button onClick={pstunlike} className="main_dislike_icon"><FontAwesomeIcon icon={faThumbsDown} /></button>
+                                            <span className="dislike_icon_numbering">{items?.post_unlikes}</span>
+                                        </div>
                                     </div>
+
+
                                 </div>
 
-                                <div className="message_post_actionBtn">
-                                    <button className="post_actionBtn">POST</button>
+                                {items?.post_replies?.map((response, index) => (
+
+                                    <div className="other_user_responses">
+
+                                        <div className="other_user_details_response">
+                                            <div className="helpful_user_details">
+                                                <div className="helpful_user_img">
+                                                    <img src={manImg} />
+                                                </div>
+
+                                                <div>
+                                                    <h6 className="helpful_user_name">{response?.name}</h6>
+                                                    <p className="helpful_user_likes mt-1"><span>Posted 33 Min Ago </span><span className="circle_between"></span><span> {response?.title}</span></p>
+                                                </div>
+                                            </div>
+
+                                            <div className="like_dislike_main">
+                                                <div className="for_like">
+                                                    <button onClick={replypostlike} className="main_like_icon"><FontAwesomeIcon icon={faThumbsUp} /></button>
+                                                    <span className="like_icon_numbering">+{response?.post_replay_likes}</span>
+                                                </div>
+
+                                                <div className="for_dislike">
+                                                    <button onClick={replypostlike} className="main_dislike_icon"><FontAwesomeIcon icon={faThumbsDown} /></button>
+                                                    <span className="dislike_icon_numbering">{response?.post_replay_unlikes}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <p className="helpful_user_main_para">
+                                                {response?.description}
+                                            </p>
+                                        </div>
+
+
+                                    </div>))}
+
+
+                                <div className="main_input_field_for_user">
+
+                                    <div className="input_with_icon">
+                                        <FontAwesomeIcon icon={faMessage} className="input_icon" />
+                                        <div className="w-100">
+                                            <input type="text" className="write_something_input_here form-control" id="" name="replies" onChange={handlechange} placeholder="Write Something Here..." />
+                                        </div>
+                                    </div>
+
+                                    <div className="message_post_actionBtn">
+                                        <button onClick={handleSubmit} className="post_actionBtn">POST</button>
+                                    </div>
+
                                 </div>
 
-                            </div>
-
-                        </div>
+                            </div>))}
 
                     </div>
 

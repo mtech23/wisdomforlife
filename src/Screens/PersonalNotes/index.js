@@ -40,20 +40,23 @@ export const PersonalNotes = () => {
   const [addUser, setUser] = useState(false);
   const [status, setStatus] = useState();
   const [formData, setFormData] = useState({});
+
+  const [detail, setDetail] = useState("");
+  const [formeditData, setFormeditData] = useState({});
   const [EditUser, seteditUser] = useState(false);
   const [data, setData] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [ detailnote , setdetailnote] = useState(false);
+  const [detailnote, setdetailnote] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
   const [showModal3, setShowModal3] = useState(false);
   const [showModal4, setShowModal4] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const [inputValue, setInputValue] = useState("");
+  const [editid, seteditid] = useState("");
 
   const navigate = useNavigate();
 
-  console.log("data", data);
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -82,6 +85,14 @@ export const PersonalNotes = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleeditChange = (event) => {
+    const { name, value } = event.target;
+    setFormeditData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
@@ -117,7 +128,8 @@ export const PersonalNotes = () => {
   };
 
   const deletenote = (id) => {
-    // document.title = "Wisdom For Life | User Management";
+    console.log("ids", id);
+
     const LogoutData = localStorage.getItem("login");
 
     document.querySelector(".loaderBox")?.classList.remove("d-none");
@@ -132,10 +144,12 @@ export const PersonalNotes = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setData(data?.data);
+        // setData(data?.data);
         // setEditData(data?.data)
         document.querySelector(".loaderBox")?.classList.add("d-none");
-        setData(data?.data);
+        // setData(data?.data);
+        notlist();
+        notDeteil();
       })
       .catch((error) => {
         document.querySelector(".loaderBox")?.classList.add("d-none");
@@ -173,8 +187,6 @@ export const PersonalNotes = () => {
     notDeteil();
   }, []);
 
-
-
   useEffect(() => {
     notlist();
   }, []);
@@ -183,26 +195,29 @@ export const PersonalNotes = () => {
     event.preventDefault();
 
     const formDataMethod = new FormData();
-    for (const key in formData) {
-      formDataMethod.append(key, formData[key]);
+    for (const key in formeditData) {
+      formDataMethod.append(key, formeditData[key]);
     }
 
     document.querySelector(".loaderBox").classList.remove("d-none");
-    fetch(`${process.env.REACT_APP_API_URL}api/user/note-add-update`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        Authorization: `Bearer ${LogoutData}`,
-      },
-      body: formDataMethod,
-    })
+    fetch(
+      `${process.env.REACT_APP_API_URL}api/user/note-add-update/${detail?.id}`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${LogoutData}`,
+        },
+        body: formDataMethod,
+      }
+    )
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         document.querySelector(".loaderBox").classList.add("d-none");
-        // notelist()
-        setUser(false);
+        notlist();
+        seteditUser(false);
       })
       .catch((error) => {
         document.querySelector(".loaderBox").classList.add("d-none");
@@ -232,7 +247,7 @@ export const PersonalNotes = () => {
       })
       .then((data) => {
         document.querySelector(".loaderBox").classList.add("d-none");
-        // notelist()
+        notlist();
         setUser(false);
       })
       .catch((error) => {
@@ -241,7 +256,30 @@ export const PersonalNotes = () => {
       });
   };
 
-  console.log("datas", data);
+  const coursedetail = (id) => {
+    const LogoutData = localStorage.getItem("login");
+    document.querySelector(".loaderBox").classList.remove("d-none");
+    fetch(`${process.env.REACT_APP_API_URL}api/user/note-view/${id}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${LogoutData}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        document.querySelector(".loaderBox").classList.add("d-none");
+        setDetail(data?.data);
+        setFormeditData(data?.data);
+      })
+      .catch((error) => {
+        document.querySelector(".loaderBox").classList.add("d-none");
+        console.log(error);
+      });
+  };
+
+ 
 
   return (
     <DashboardLayout>
@@ -275,7 +313,10 @@ export const PersonalNotes = () => {
 
               <div className="all_personal_notes ">
                 {data?.map((itm, id) => (
-                  <div className="user_personal_note mb-3 ">
+                  <div
+                    className="user_personal_note mb-3 "
+                    onClick={() => coursedetail(itm.id)}
+                  >
                     <h6 className="personal_note_title">{itm?.title}</h6>
 
                     <p className="personal_note_content">{itm?.description}</p>
@@ -302,13 +343,16 @@ export const PersonalNotes = () => {
                 <div className="personalnote_top_actionBtn">
                   <button
                     className="personalnote_edit_btn"
-                    onClick={() => seteditUser(true)}
+                    onClick={() => {
+                      seteditUser(true);
+                      seteditid(detail?.id);
+                    }}
                   >
                     <FontAwesomeIcon icon={faPenToSquare} />
                   </button>
                   <button
                     className="personalnote_trash_btn"
-                    onClick={() => deletenote(detailnote?.id)}
+                    onClick={() => deletenote(detail?.id)}
                   >
                     <FontAwesomeIcon icon={faTrash} />
                   </button>
@@ -319,13 +363,11 @@ export const PersonalNotes = () => {
                 <div className="col-sm-12 col-lg-10 col-xl-8 mx-auto">
                   <div className="current_personal_note">
                     <h2 className="current_personalnote_title text-center">
-                {detailnote?.title}
+                      {detail?.title}
                     </h2>
 
-                   
-
                     <p className="current_personalnote_para">
-                  {detailnote?.description}
+                      {detail?.description}
                     </p>
                   </div>
                 </div>
@@ -387,8 +429,8 @@ export const PersonalNotes = () => {
             name="title"
             labelclass="mainLabel"
             inputclass="mainInput color-black"
-            value={formData?.title}
-            onChange={handleChange}
+            value={formeditData?.title}
+            onChange={handleeditChange}
           />
           <label className="mainLabel">
             Add Description<span></span>
@@ -400,8 +442,8 @@ export const PersonalNotes = () => {
             required
             name="description"
             labelclassName="mainLabel"
-            value={formData?.description}
-            onChange={handleChange}
+            value={formeditData?.description}
+            onChange={handleeditChange}
           />
 
           <CustomButton

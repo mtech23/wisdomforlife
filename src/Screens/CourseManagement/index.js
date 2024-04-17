@@ -35,6 +35,7 @@ import {
 
 export const CourseManagemet = () => {
   const [data, setData] = useState([]);
+
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
   const [showModal3, setShowModal3] = useState(false);
@@ -42,9 +43,10 @@ export const CourseManagemet = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const [inputValue, setInputValue] = useState("");
+  const [catigorieslists, setCatigorieslists] = useState([]);
+
 
   const navigate = useNavigate();
-
 
   const base_url = `${process.env.REACT_APP_API_URL}`;
   const handlePageChange = (pageNumber) => {
@@ -76,11 +78,69 @@ export const CourseManagemet = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   // const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
 
-  const courselist = () => {
-    document.title = "Wisdom For Life | User Management";
+
+
+
+
+
+
+
+
+
+  // const catigorylist = () => {
+
+  //   const LogoutData = localStorage.getItem("login");
+  //   document.querySelector(".loaderBox").classList.remove("d-none");
+  //   fetch(`${process.env.REACT_APP_API_URL}api/user/category-listing`, {
+  //     method: "GET",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${LogoutData}`,
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+
+  //       setCatigorieslists(data?.data);
+  //       document.querySelector(".loaderBox").classList.add("d-none");
+
+  //     })
+  //     .catch((error) => {
+  //       document.querySelector(".loaderBox").classList.add("d-none");
+  //       console.log(error);
+  //     });
+  // };
+
+
+
+  // useEffect(() => { 
+  //   const LogoutData = localStorage.getItem("login");
+  //   document.querySelector(".loaderBox").classList.remove("d-none");
+  //   fetch(`${process.env.REACT_APP_API_URL}api/user/category-listing`, {
+  //     method: "GET",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${LogoutData}`,
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       document.querySelector(".loaderBox").classList.add("d-none");
+  //       setCatigorieslists(data?.data);
+  //     })
+  //     .catch((error) => {
+  //       document.querySelector(".loaderBox").classList.add("d-none");
+  //       console.log(error);
+  //     });
+  // }, []);
+
+  const Catigorylist = () => {
     const LogoutData = localStorage.getItem("login");
     document.querySelector(".loaderBox").classList.remove("d-none");
-    fetch(`${process.env.REACT_APP_API_URL}api/user/course-listing`, {
+    fetch(`${process.env.REACT_APP_API_URL}api/user/category-listing`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -92,7 +152,7 @@ export const CourseManagemet = () => {
       .then((data) => {
         console.log(data);
         document.querySelector(".loaderBox").classList.add("d-none");
-        setData(data.data);
+        setCatigorieslists(data?.data);
       })
       .catch((error) => {
         document.querySelector(".loaderBox").classList.add("d-none");
@@ -100,9 +160,268 @@ export const CourseManagemet = () => {
       });
   };
   useEffect(() => {
-    courselist();
+    Catigorylist();
   }, []);
 
+
+
+
+  // const courselist = (id) => {
+  //   const logoutData = localStorage.getItem("login");
+  //   document.querySelector(".loaderBox").classList.remove("d-none");
+
+  //   let url = `${process.env.REACT_APP_API_URL}api/user/course-listing/`;
+  //   if (id) {
+  //     url += id;
+  //   }
+
+  //   fetch(url, {
+  //     method: "GET",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${logoutData}`,
+  //     },
+  //   })
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     document.querySelector(".loaderBox").classList.add("d-none");
+  //     setData(data?.data);
+  //   })
+  //   .catch((error) => {
+  //     document.querySelector(".loaderBox").classList.add("d-none");
+  //     console.log(error);
+  //   });
+  // };
+
+
+
+
+  // const courselist = (id) => {
+  //   const logoutData = localStorage.getItem("login");
+     
+
+  //   let url = `${process.env.REACT_APP_API_URL}api/user/course-listing/`;
+  //   if (id) {
+  //     url += id;
+  //   }
+
+  //   fetch(url, {
+  //     method: "GET",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${logoutData}`,
+  //     },
+  //   })
+  //   .then((response) => response.json())
+  //   .then((data) => {
+    
+  //     setData(data?.data);
+
+
+  //     console.log(data?.data);
+  //   })
+  //   .catch((error) => {
+       
+  //     console.log(error);
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   courselist();
+  // }, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  // const fetchCourseList = (id) => {
+  //   const logoutData = localStorage.getItem("login");
+  //   setIsLoading(true);
+
+  //   let url = `${process.env.REACT_APP_API_URL}api/user/course-listing/`;
+  //   if (id) {
+  //     url += id;
+  //   }
+
+  //   fetch(url, {
+  //     method: "GET",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${logoutData}`,
+  //     },
+  //   })
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     setIsLoading(false);
+  //     setData(data?.data);
+  //   })
+  //   .catch((error) => {
+  //     setIsLoading(false);
+  //     console.log(error);
+  //   });
+  // };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  // const fetchCourseList = (id) => {
+  //   const LogoutData = localStorage.getItem("login");
+  //   document.querySelector(".loaderBox").classList.remove("d-none");
+  //   fetch(`${process.env.REACT_APP_API_URL}api/user/note-view/${id}`, {
+  //     method: "GET",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${LogoutData}`,
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       document.querySelector(".loaderBox").classList.add("d-none");
+  //     setData(data?.data);
+  //     })
+  //     .catch((error) => {
+  //       document.querySelector(".loaderBox").classList.add("d-none");
+  //       console.log(error);
+  //     });
+  // };
+
+  // useEffect(() => {
+ 
+  //   fetchCourseList();
+  // }, []);
+
+
+
+
+
+
+
+
+
+  const fetchCourseList = (id) => {
+    const LogoutData = localStorage.getItem("login");
+    document.querySelector(".loaderBox").classList.remove("d-none");
+    let apiUrl = `${process.env.REACT_APP_API_URL}api/user/course-listing`;
+    if (id) {
+      apiUrl += `/${id}`;
+    }
+    fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: LogoutData ? `Bearer ${LogoutData}` : '', // Handle when LogoutData is not available
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        document.querySelector(".loaderBox").classList.add("d-none");
+        setData(data?.data);
+      })
+      .catch((error) => {
+        document.querySelector(".loaderBox").classList.add("d-none");
+        console.log(error);
+      });
+  };
+  
+  useEffect(() => {
+    fetchCourseList(); // Call fetchCourseList without an ID
+  }, []);
+
+
+ 
+  
+  useEffect(() => {
+    fetchCourseList(); // Call fetchCourseList without an ID
+  }, []);
+
+  const handleCategoryClick = (id) => {
+    fetchCourseList(id);
+  };
+
+
+
+  // const courselist = (id) => {
+  //   // document.title = "Wisdom For Life | Course ";
+ 
+  //   const LogoutData = localStorage.getItem("login");
+  //   document.querySelector(".loaderBox").classList.remove("d-none");
+  //   fetch(`${process.env.REACT_APP_API_URL}api/user/course-listing/${id}`, {
+  //     method: "GET",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${LogoutData}`,
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+ 
+  //       document.querySelector(".loaderBox").classList.add("d-none");
+  //       setData(data?.data);
+  //     })
+  //     .catch((error) => {
+  //       document.querySelector(".loaderBox").classList.add("d-none");
+  //       console.log(error);
+  //     });
+  // };
+ 
+  // useEffect(() => {
+
+  //   courselist();
+  // }, []);
+
+
+
+
+  console.log("catigorieslists", data)
   return (
     <DashboardLayout>
       <div className="container-fluid">
@@ -138,111 +457,97 @@ export const CourseManagemet = () => {
             </div>
 
             <div>
-              <Tabs
-                defaultActiveKey="Trending"
-                id="justify-tab-example"
-                className="mb-3 mt-4"
-                justify
-              >
-                <Tab eventKey="Trending" title="Trending">
-                  {/* <Link to="/"><FontAwesomeIcon icon={faUserAlt}></FontAwesomeIcon></Link> */}
-                  <div className="row">
 
-                      {data?.map((item, index) => (
-                                            <div className="col-sm-10 col-lg-6 col-xl-4 mb-5  ">
-                        <div className="course_card">
-                          <div className="course_card_img">
-                            <img src={base_url + item?.image} className="w-100" />
-                          </div>
 
-                          <div className="course_card_body">
-                            <div className="course_ratings">
-                              <div className="course_rating_detail border-0 p-0">
-                                <span className="course_rating_icon">
-                                  <FontAwesomeIcon icon={faPlay} />
-                                </span>
-                                <span className="course_rating_information">
-                                  20 videos
-                                </span>
-                              </div>
 
-                              <div className="course_rating_detail">
-                                <span className="course_rating_icon">
-                                  <FontAwesomeIcon icon={faStar} />
-                                </span>
-                                <span className="course_rating_information">
-                                  1.1K Reviews
-                                </span>
-                              </div>
+ 
+              <div>
+                <ul role="tablist" class="mb-3 mt-4 nav nav-tabs nav-justified">
 
-                              <div className="course_rating_detail border-0 p-0">
-                                <span className="course_rating_icon">
-                                  <FontAwesomeIcon icon={faTable} />
-                                </span>
-                                <span className="course_rating_information">
-                                  8 Tests
-                                </span>
-                              </div>
-                            </div>
+                  {catigorieslists?.map((items, index) => (
 
-                            <div>
-                              <h4 className="course_card_title">
-                                {/* web development <br /> beginner - master | HTML,
-                                CSS. */}
-                             {item?.course_name}
-                             
-                              </h4>
+                    <li class="nav-item" role="presentation">
+                      <button onClick={() => handleCategoryClick(items.id)} class="nav-link  " id="justify-tab-example-tab-Trending" role="tab" type="button">{items?.name}</button>
+                    </li>
+                  ))}
+                </ul>
 
-                              <span className="students_enrolled_details">
-                                {item?.total_students} Students Enrolled.
+
+
+
+                <div className="row">
+                  {data?.map((item, index) => (
+                    <div className="col-sm-10 col-lg-6 col-xl-4 mb-5  ">
+                      <div className="course_card">
+                        <div className="course_card_img">
+                          <img
+                            src={base_url + item?.image}
+                            className="w-100"
+                          />
+                        </div>
+
+                        <div className="course_card_body">
+                          <div className="course_ratings">
+                            <div className="course_rating_detail border-0 p-0">
+                              <span className="course_rating_icon">
+                                <FontAwesomeIcon icon={faPlay} />
+                              </span>
+                              <span className="course_rating_information">
+                                20 videos
                               </span>
                             </div>
 
-                            <div className="course_card_body_footer">
-                              <div>
-                                <Link to={`enroll-now/${item?.id}`}>
-                                  <button className="course_enroll_btn">
-                                    Enroll
-                                  </button>
-                                </Link>
-                              </div>
- 
-                              <div className="course_card_price">
-                                <span>${item?.course_price}</span>
-                              </div>
+                            <div className="course_rating_detail">
+                              <span className="course_rating_icon">
+                                <FontAwesomeIcon icon={faStar} />
+                              </span>
+                              <span className="course_rating_information">
+                                {item?.total_reviews} Reviews
+                              </span>
+                            </div>
+
+                            <div className="course_rating_detail border-0 p-0">
+                              <span className="course_rating_icon">
+                                <FontAwesomeIcon icon={faTable} />
+                              </span>
+                              <span className="course_rating_information">
+                                8 Tests
+                              </span>
+                            </div>
+                          </div>
+
+                          <div>
+                            <h4 className="course_card_title">
+                              {/* web development <br /> beginner - master | HTML,
+                                CSS. */}
+                              {item?.course_name}
+                            </h4>
+
+                            <span className="students_enrolled_details">
+                              {item?.total_students} Students Enrolled.
+                            </span>
+                          </div>
+
+                          <div className="course_card_body_footer">
+                            <div>
+                              <Link to={`enroll-now/${item?.id}`}>
+                                <button className="course_enroll_btn">
+                                  Enroll
+                                </button>
+                              </Link>
+                            </div>
+
+                            <div className="course_card_price">
+                              <span>${item?.course_price}</span>
                             </div>
                           </div>
                         </div>
-                        </div>
-                      ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-                  </div>
-                </Tab>
-
-                <Tab eventKey="IT & Software" title="IT & Software">
-                  Tab content for Profile
-                </Tab>
-
-                <Tab eventKey="Design" title="Design">
-                  Tab content for Loooonger Tab
-                </Tab>
-
-                <Tab eventKey="Marketing" title="Marketing">
-                  Tab content for Contact
-                </Tab>
-
-                <Tab eventKey="Science" title="Science">
-                  Tab content for Contact
-                </Tab>
-
-                <Tab eventKey="Language" title="Language">
-                  Tab content for Contact
-                </Tab>
-
-                <Tab eventKey="Law" title="Law">
-                  Tab content for Contact
-                </Tab>
-              </Tabs>
 
               {/* <div>
                                 <div>

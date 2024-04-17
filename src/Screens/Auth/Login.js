@@ -122,8 +122,8 @@ const AdminLogin = () => {
                         id='userEmail'
                         type='email'
                         placeholder='Enter Your Email Address'
-                        labelclassName='mainLabel'
-                        inputclassName='mainInput'
+                        labelclass='mainLabel'
+                        inputclass='mainInput'
                         onChange={(event) => {
                             setFormData({ ...formData, email: event.target.value });
                             console.log(event.target.value);
@@ -135,8 +135,8 @@ const AdminLogin = () => {
                         id='pass'
                         type='password'
                         placeholder='Enter Password'
-                        labelclassName='mainLabel'
-                        inputclassName='mainInput'
+                        labelclass='mainLabel'
+                        inputclass='mainInput'
                         onChange={(event) => {
                             setFormData({ ...formData, password: event.target.value });
                             console.log(event.target.value);

@@ -1,22 +1,28 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { courseBannerImage } from "../../Assets/images";
-import { courseImg01, courseImg02, courseImg03, courseImg04, courseImg05, courseImg06 } from "../../Assets/images";
+import { courseImg01, courseImg02, courseImg03, courseImg04, courseImg05, courseImg06, manImg } from "../../Assets/images";
 
 import { Dropdown } from "react-bootstrap";
 import detailvideo from '../../Assets/images/coursedetailvideo.png'
 import { DashboardLayout } from "../../Components/Layout/DashboardLayout";
+import Star from "../../Assets/images/Star 1.png";
+import Ellipse from "../../Assets/images/Ellipse 1.png";
 import CustomTable from "../../Components/CustomTable";
 import CustomModal from "../../Components/CustomModal";
 
+
+import { useParams } from 'react-router-dom'
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 import CustomPagination from "../../Components/CustomPagination"
 import CustomInput from "../../Components/CustomInput";
 import CustomButton from "../../Components/CustomButton";
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
+// import Tab from 'react-bootstrap/Tab';
+// import Tabs from 'react-bootstrap/Tabs';
 
 
-import "./style.css";
+import "./enroll.css";
 import { BASE_URL } from "../../Api/apiConfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faUserAlt, faPlay, faStar, faTable } from "@fortawesome/free-solid-svg-icons";
@@ -33,6 +39,27 @@ export const EnrollNow = () => {
     const [inputValue, setInputValue] = useState('');
 
     const navigate = useNavigate();
+
+
+
+
+    const categories = [
+        { id: 1, name: 'Category 1' },
+        { id: 2, name: 'Category 2' },
+        { id: 3, name: 'Category 3' },
+    ];
+
+    const courseLists = {
+        1: [{ id: 1, name: 'Course 1A' }, { id: 2, name: 'Course 1B' }],
+        2: [{ id: 3, name: 'Course 2A' }, { id: 4, name: 'Course 2B' }],
+        3: [{ id: 5, name: 'Course 3A' }, { id: 6, name: 'Course 3B' }],
+    };
+
+    const [activeCategory, setActiveCategory] = useState(null);
+
+    const handleCategoryClick = (id) => {
+        setActiveCategory(id);
+    };
 
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -56,50 +83,81 @@ export const EnrollNow = () => {
         setInputValue(e.target.value);
     }
 
-    const filterData = data?.filter(item =>
-        item?.name.toLowerCase().includes(inputValue.toLowerCase())
-    );
+    // const filterData = data?.filter(item =>
+    //     item?.name.toLowerCase().includes(inputValue.toLowerCase())
+    // );
 
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
+    // const indexOfLastItem = currentPage * itemsPerPage;
+    // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    // const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
 
-const coursedetail = () =>{
- 
-    const LogoutData = localStorage.getItem('login');
-    document.querySelector('.loaderBox').classList.remove("d-none");
-    fetch(`${process.env.REACT_APP_API_URL}api/user/course-view/${id}`,
-        {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${LogoutData}`
-            },
+
+
+
+
+
+
+
+    const [items, setItems] = useState([]);
+    const [selectedItem, setSelectedItem] = useState(null);
+    const [detail, setDetail] = useState({});
+
+    console.log("detail", detail)
+    const handleItemClick = async (itemId) => {
+        setSelectedItem(itemId);
+        // Fetch detail note data based on the selected item ID
+        try {
+            const response = await fetch(`API_URL_TO_FETCH_DETAIL_NOTE/${itemId}`);
+            const data = await response.json();
+
+        } catch (error) {
+            console.error('Error fetching detail note:', error);
         }
-    )
+    };
 
-        .then(response =>
-            response.json()
+
+
+
+
+    const coursedetail = () => {
+
+        const LogoutData = localStorage.getItem('login');
+        document.querySelector('.loaderBox').classList.remove("d-none");
+        fetch(`${process.env.REACT_APP_API_URL}api/user/course-view/${id}`,
+            {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${LogoutData}`
+                },
+            }
         )
-        .then((data) => {
-            console.log(data)
-            document.querySelector('.loaderBox').classList.add("d-none");
-            setData(data.users);
-        })
-        .catch((error) => {
-            document.querySelector('.loaderBox').classList.add("d-none");
-            console.log(error)
-        })
+
+            .then(response =>
+                response.json()
+            )
+            .then((data) => {
+                console.log(data)
+                document.querySelector('.loaderBox').classList.add("d-none");
+                setDetail(data?.data);
+            })
+            .catch((error) => {
+                document.querySelector('.loaderBox').classList.add("d-none");
+                console.log(error)
+            })
 
 
-}
+    }
+
 
     useEffect(() => {
+        coursedetail()
+    }, [])
 
-    }, []);
 
-
+    const { id } = useParams();
+    // console.log("detail?.course_quiz_questions_data" , detail?.course_quiz_questions_data?.Array.isArray[1])
 
 
     return (
@@ -273,8 +331,6 @@ const coursedetail = () =>{
                     </div>
                 </section> */}
 
-
-
                 <section className="web">
                     <div className="container-fluid">
 
@@ -319,7 +375,147 @@ const coursedetail = () =>{
 
                                 <div className="col-md-7 ">
 
-                                    <button className="view">
+                                    <Tabs
+                                        defaultActiveKey="profile"
+                                        // id="uncontrolled-tab-example"
+                                        className="mb-3"
+                                    >
+                                        <Tab eventKey="OverView" title="OverView">
+                                            <h3>
+                                                Course Description
+                                            </h3>
+                                            <p>
+                                                {detail?.course_description} </p>
+
+
+                                            <h3>
+                                                What You’ll Learn?
+                                            </h3>
+                                            <ul>
+                                                <li>
+                                                    Neque sodales ut etiam sit amet nisl purus non tellus orci ac auctor
+                                                </li>
+                                                <li>Tristique nulla aliquet enim tortor at auctor urna. Sit amet aliquam id diam maer</li>
+                                                <li>Nam libero justo laoreet sit amet. Lacus sed viverra tellus in hac</li>
+                                                <li>Tempus imperdiet nulla malesuada pellentesque elit eget gravida cum sociis</li>
+                                            </ul>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                                labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
+                                            </p>
+                                        </Tab>
+                                        <Tab eventKey="Curriculum" title="Curriculum">
+                                            Curriculum
+                                        </Tab>
+                                        <Tab eventKey="Instructor" title="Instructor" >
+                                            <h3>
+                                                {detail?.instructor_detail?.name}
+                                            </h3>
+                                            <p>
+                                                {detail?.instructor_detail?.profile_description} </p>
+
+
+
+                                        </Tab>
+                                        <Tab eventKey="Reviews" title="Reviews" >
+                                            <div class="rate">
+                                                <div class="container-fluid">
+                                                    <div class="conatiner">
+                                                        <div class="ratebg">
+                                                            <div class="row justify-content-center">
+                                                                {/* <div class="col-sm-12 col-lg-3 my-auto ">
+                                  <div class="star">
+                                    <h2>4.5</h2>
+                                    <img class="img-fluid" src={Star} />
+                                  </div>
+                                  <button>653 reviews</button> <br />
+                                  <button class="rev">Add Review</button>
+                                </div>
+
+                                <div class="col-12 col-sm-12 col-lg-2 my-auto ">
+                                  <div class="num">
+                                    <p>5 </p>
+                                    <i class="fa-solid fa-star numstar"></i>
+                                    <div class="line"></div>
+                                  </div>
+                                  <div class="num">
+                                    <p>4 </p>
+                                    <i class="fa-solid fa-star numstar"></i>
+                                    <div class="line1"></div>
+                                  </div>
+                                  <div class="num">
+                                    <p>3 </p>
+                                    <i class="fa-solid fa-star numstar"></i>
+                                    <div class="line2"></div>
+                                  </div>
+                                  <div class="num">
+                                    <p>2 </p>
+                                    <i class="fa-solid fa-star numstar"></i>
+                                    <div class="line3"></div>
+                                  </div>
+                                  <div class="num">
+                                    <p>1 </p>
+                                    <i class="fa-solid fa-star numstar"></i>
+                                    <div class="line4"></div>
+                                  </div>
+                                </div> */}
+                                                                <div class="col-12 col-sm-12 col-lg-12  mt-4">
+                                                                    {detail?.course_review?.map((items, index) => (
+
+                                                                        <div className=" ">
+
+                                                                            <div className="helpful_user_details">
+                                                                                <div className="helpful_user_img">
+                                                                                    <img src={manImg} />
+                                                                                </div>
+
+                                                                                <div>
+                                                                                    <h6 className="helpful_user_name">Lorem ipsum dolor sit amet</h6>
+                                                                                    <p className="helpful_user_likes mt-1"><span>{items?.created_at} </span><span className="circle_between"></span><span> {items?.rating} Raiting</span></p>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div>
+                                                                                <p className="helpful_user_main_para">
+                                                                                    {items?.review}
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>))}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Tab>
+
+
+
+                                {        <Tab eventKey="quiz" title="Attem Quiz" >
+
+                                            <ul>
+                                                <h3>Attempt Quiz</h3>
+                                                {detail?.course_quiz_questions_data?.map((item, index) => (
+
+                                                    <li className="    gap-3  ">
+                                                        <span className="d-flex">
+                                                            <h3> {index + 1}  {item?.question}</h3>
+                                                        </span>
+                                                        <p>
+
+                                                            {item?.options?.map((data) => (
+                                                                <p className="quiz_opction"> <input type="radio" name={`question_${index}`} /> {data?.text} </p>
+                                                            ))} </p></li>
+                                                ))}
+                                            </ul>
+                                            <button className="quiz_submit">Submit</button>
+
+
+
+                                        </Tab>}
+                                    </Tabs>
+
+
+                                    {/* <button className="view">
                                         OverView
                                     </button>
 
@@ -332,32 +528,8 @@ const coursedetail = () =>{
                                     <button>
                                         Reviews
                                     </button>
-                                    <hr />
-                                    <h3>
-                                        Course Description
-                                    </h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectur adipisicing elit, sed do eiusmod tempor inc idid unt ut labore et dolore magna
-                                        aliqua enim ad minim veniam, quis nostrud exerec tation ullamco laboris nis aliquip commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                        fugiat nulla pariatur enim ipsam.
-                                        <p>Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim idest laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                                            accusantiumdoloremque laudantium totam rem aperiam. </p>
+                                    <hr /> */}
 
-                                    </p>
-                                    <h3>
-                                        What You’ll Learn?
-                                    </h3>
-                                    <ul>
-                                        <li>
-                                            Neque sodales ut etiam sit amet nisl purus non tellus orci ac auctor
-                                        </li>
-                                        <li>Tristique nulla aliquet enim tortor at auctor urna. Sit amet aliquam id diam maer</li>
-                                        <li>Nam libero justo laoreet sit amet. Lacus sed viverra tellus in hac</li>
-                                        <li>Tempus imperdiet nulla malesuada pellentesque elit eget gravida cum sociis</li>
-                                    </ul>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                        labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra
-                                    </p>
 
                                 </div>
 
@@ -369,7 +541,7 @@ const coursedetail = () =>{
                                                 <i className="fa-solid fa-money-bill-1-wave"></i><p className="coursepara">Price:</p>
                                             </div>
                                             <div className="col-md-6">
-                                                <p className="coursepara1">$30</p>
+                                                <p className="coursepara1">${detail?.course_price}</p>
                                             </div>
                                             <hr />
                                         </div>
@@ -378,7 +550,7 @@ const coursedetail = () =>{
                                                 <i className="fa fa-user" aria-hidden="true"></i><p className="coursepara">Instructor:</p>
                                             </div>
                                             <div className="col-md-6">
-                                                <p className="coursepara2">Edward Norton</p>
+                                                <p className="coursepara2">{detail?.instructor_detail?.name}</p>
                                             </div>
                                             <hr />
                                         </div>
@@ -387,7 +559,7 @@ const coursedetail = () =>{
                                                 <i className="fa-solid fa-clock"></i><p className="coursepara">Duration:</p>
                                             </div>
                                             <div className="col-md-6">
-                                                <p className="coursepara2">15 weeks</p>
+                                                <p className="coursepara2">{detail?.course_duration}</p>
                                             </div>
                                             <hr />
                                         </div>
@@ -396,7 +568,7 @@ const coursedetail = () =>{
                                                 <i className="fa-solid fa-gift"></i><p className="coursepara">Lessons:</p>
                                             </div>
                                             <div className="col-md-6">
-                                                <p className="coursepara2">11</p>
+                                                <p className="coursepara2">{detail?.instructor_detail?.total_lessons || 0}</p>
                                             </div>
                                             <hr />
                                         </div>

@@ -81,14 +81,17 @@ export default function AdminRouter() {
         <Route path="/dashboard" element={<ProtectedRoutes Components={Dashboard} />} />
         <Route path="/course-management" element={<CourseManagemet />} />
         <Route path="/course-management/enroll-now/:id" element={<EnrollNow />} />
+        <Route path="/board-management/enroll-now/:id" element={<EnrollNow />} />
 
 
+
+ 
 
         <Route path="/student-forum" element={<StudentForum />} />
         <Route path="/personal-notes" element={<PersonalNotes />} />
         <Route path="/events-and-news" element={<EventsAndNews />} />
-
-        <Route path="/events-and-news/detail" element={<EventsAndNewsdetail />} />
+        <Route path="/events-and-news/detail/:id" element={<EventsAndNewsdetail />} />
+ 
 
         <Route path="/profile-management" element={<ProtectedRoutes Components={ProfileManagement} />} />
           <Route path="/calendar-management" element={<CalendarManagement />} />
