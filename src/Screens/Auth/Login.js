@@ -53,7 +53,9 @@ const AdminLogin = () => {
             if (response.ok) {
                
                 const responseData = await response.json();
-                localStorage.setItem('login', responseData.data.token);
+                localStorage.setItem('login', responseData?.data.token);
+                localStorage.setItem('username', responseData?.data?.name);
+                localStorage.setItem('userimage', responseData?.data?.image);
                 console.log('Login Response:', responseData);
                 document.querySelector('.loaderBox').classList.add("d-none");
                 navigate('/dashboard')

@@ -35,6 +35,11 @@ export const StudentForum = () => {
     const [itemsPerPage, setItemsPerPage] = useState(8);
     const [inputValue, setInputValue] = useState('');
 
+    const [getanswerid , setGetanswerid] = useState([])
+
+    const userimage = localStorage.getItem("userimage")
+    const username = localStorage.getItem("username")
+    console.log(username , userimage)
     const navigate = useNavigate();
 
     const handlePageChange = (pageNumber) => {
@@ -55,9 +60,9 @@ export const StudentForum = () => {
         setShowModal4(true)
     }
 
-    const handleChange = (e) => {
-        setInputValue(e.target.value);
-    }
+    // const handleChange = (e) => {
+    //     setInputValue(e.target.value);
+    // }
 
     // const filterData = data?.filter(item =>
     //     item?.name.toLowerCase().includes(inputValue.toLowerCase())
@@ -66,38 +71,43 @@ export const StudentForum = () => {
     // const indexOfLastItem = currentPage * itemsPerPage;
     // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     // const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
+    const base_url = `${process.env.REACT_APP_API_URL}`
 
+
+const commentslist = () =>{
+ 
+    document.title = 'Wisdom For Life | User Management';
+    const LogoutData = localStorage.getItem('login');
+    document.querySelector('.loaderBox').classList.remove("d-none");
+    fetch(`${process.env.REACT_APP_API_URL}api/user/post-listing`,
+        {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${LogoutData}`
+            },
+        }
+    )
+
+        .then(response =>
+            response.json()
+        )
+        .then((data) => {
+            console.log(data)
+            document.querySelector('.loaderBox').classList.add("d-none");
+            setData(data?.data);
+        })
+        .catch((error) => {
+            document.querySelector('.loaderBox').classList.add("d-none");
+            console.log(error)
+        })
+
+}
 
 
     useEffect(() => {
-        document.title = 'Wisdom For Life | User Management';
-        const LogoutData = localStorage.getItem('login');
-        document.querySelector('.loaderBox').classList.remove("d-none");
-        fetch(`${process.env.REACT_APP_API_URL}api/user/post-listing`,
-            {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${LogoutData}`
-                },
-            }
-        )
-
-            .then(response =>
-                response.json()
-            )
-            .then((data) => {
-                console.log(data)
-                document.querySelector('.loaderBox').classList.add("d-none");
-                setData(data?.data);
-            })
-            .catch((error) => {
-                document.querySelector('.loaderBox').classList.add("d-none");
-                console.log(error)
-            })
-
-
+        commentslist()
     }, []);
 
 
@@ -144,8 +154,8 @@ export const StudentForum = () => {
         }
 
         document.querySelector('.loaderBox').classList.remove("d-none");
-        https://custom3.mystagingserver.site/Steve-Lentini/public/api/user/post-replay/1
-        fetch(`${process.env.REACT_APP_API_URL}/api/user/post-replay/1`, {
+        // https://custom3.mystagingserver.site/Steve-Lentini/public/api/user/post-replay/1
+        fetch(`${process.env.REACT_APP_API_URL}api/user/post-add-update`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -156,6 +166,55 @@ export const StudentForum = () => {
             .then((response) => response.json())
             .then((data) => {
                 document.querySelector('.loaderBox').classList.add("d-none");
+                // data?.status ? setSuccessStatus(data?.msg) : setSuccessStatus(data?.msg)
+                // setStatus(data?.status)
+                // setShowModal(true)
+            })
+            .catch((error) => {
+                document.querySelector('.loaderBox').classList.add("d-none");
+            });
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    const handlereplySubmit = (id) => {
+        // event.preventDefault();
+
+        const formDataMethod = new FormData();
+        for (const key in formData) {
+            formDataMethod.append(key, formData[key]);
+        }
+
+        document.querySelector('.loaderBox').classList.remove("d-none");
+ 
+        fetch(`${process.env.REACT_APP_API_URL}api/user/post-replay/${id}`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${LogoutData}`
+            },
+            body: formDataMethod
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                // return  data.json();
+                document.querySelector('.loaderBox').classList.add("d-none");
+                commentslist()
                 // data?.status ? setSuccessStatus(data?.msg) : setSuccessStatus(data?.msg)
                 // setStatus(data?.status)
                 // setShowModal(true)
@@ -176,36 +235,11 @@ export const StudentForum = () => {
 
 
 
+ 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    const pstunlike = async () => {
+    const pstunlike = async (id) => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/post-like-unlike/1`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/post-dislike-undisLike/${id}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -215,7 +249,9 @@ export const StudentForum = () => {
             });
 
             const data = await response.json();
-            console.log("data", data)
+            document.querySelector('.loaderBox').classList.add("d-none");
+            commentslist()
+      
         } catch (error) {
             console.error('Error fetching data:', error);
             // userData(0);
@@ -226,9 +262,9 @@ export const StudentForum = () => {
 
 
 
-    const like = async () => {
+    const like = async (id) => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/post-like-unlike/1`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/post-like-unlike/${id}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -238,15 +274,16 @@ export const StudentForum = () => {
             });
 
             const data = await response.json();
-            console.log("data", data)
-        } catch (error) {
+            document.querySelector('.loaderBox').classList.add("d-none");
+            commentslist()
+          } catch (error) {
             console.error('Error fetching data:', error);
             // userData(0);
         }
     };
-    const replypostlike = async () => {
+    const replypostlike = async (id) => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/post-replay-dislike-undisLike/1`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/post-replay-like-unlike/${id}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -256,15 +293,38 @@ export const StudentForum = () => {
             });
 
             const data = await response.json();
-            console.log("data", data)
+            document.querySelector('.loaderBox').classList.add("d-none");
+            commentslist()
+ 
+
         } catch (error) {
             console.error('Error fetching data:', error);
             // userData(0);
         }
     };
+     
 
+    const replypostdislike = async (id) => {
+        try {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}api/user/post-replay-dislike-undisLike    /${id}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${LogoutData}`
+                },
+            });
 
+            const data = await response.json();
+            document.querySelector('.loaderBox').classList.add("d-none");
+            commentslist()
+ 
 
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            // userData(0);
+        }
+    };
  
     return (
 
@@ -386,6 +446,77 @@ export const StudentForum = () => {
                       
 
 
+
+ 
+
+<div className="main_student_forum">
+
+    <div className="helpful_user_details mb-5 ">
+        <div className="helpful_user_img">
+            <img src={ base_url + userimage} />
+        </div>
+
+        <div>
+            <h6 className="helpful_user_name">{username}</h6>
+            <p className="helpful_user_likes mt-1"><span>13-Feb-2024 </span><span className="circle_between"></span><span> Michael Anderson</span></p>
+        </div>
+    </div>
+
+ 
+
+   
+
+     
+
+    <div className="main_input_field_for_user">
+
+        <div className="input_with_icon">
+            <FontAwesomeIcon icon={faMessage} className="input_icon" />
+            <div className="w-100">
+                <input type="text" className="write_something_input_here form-control" id="" name="description" onChange={handlechange} placeholder="Write Something Here..." />
+            </div>
+        </div>
+
+        <div className="message_post_actionBtn">
+            <button onClick={handleSubmit} className="post_actionBtn">POST</button>
+        </div>
+
+    </div>
+
+</div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         {data?.map((items, index) => (
 
                             <div className="main_student_forum">
@@ -415,12 +546,12 @@ export const StudentForum = () => {
                                     <div className="like_dislike_main">
                                         <div className="for_like">
                                             <button const pstunlike
-                                                onClick={like} className="main_like_icon"><FontAwesomeIcon icon={faThumbsUp} /></button>
+                                                onClick={()=>like(items?.id)} className="main_like_icon"><FontAwesomeIcon icon={faThumbsUp} /></button>
                                             <span className="like_icon_numbering">+{items?.post_likes}</span>
                                         </div>
 
                                         <div className="for_dislike">
-                                            <button onClick={pstunlike} className="main_dislike_icon"><FontAwesomeIcon icon={faThumbsDown} /></button>
+                                            <button onClick={() => pstunlike(items?.id)} className="main_dislike_icon"><FontAwesomeIcon icon={faThumbsDown} /></button>
                                             <span className="dislike_icon_numbering">{items?.post_unlikes}</span>
                                         </div>
                                     </div>
@@ -446,12 +577,12 @@ export const StudentForum = () => {
 
                                             <div className="like_dislike_main">
                                                 <div className="for_like">
-                                                    <button onClick={replypostlike} className="main_like_icon"><FontAwesomeIcon icon={faThumbsUp} /></button>
+                                                    <button onClick={() => replypostlike(response?.id)} className="main_like_icon"><FontAwesomeIcon icon={faThumbsUp} /></button>
                                                     <span className="like_icon_numbering">+{response?.post_replay_likes}</span>
                                                 </div>
 
                                                 <div className="for_dislike">
-                                                    <button onClick={replypostlike} className="main_dislike_icon"><FontAwesomeIcon icon={faThumbsDown} /></button>
+                                                    <button onClick={() => replypostdislike(response?.id)} className="main_dislike_icon"><FontAwesomeIcon icon={faThumbsDown} /></button>
                                                     <span className="dislike_icon_numbering">{response?.post_replay_unlikes}</span>
                                                 </div>
                                             </div>
@@ -472,12 +603,12 @@ export const StudentForum = () => {
                                     <div className="input_with_icon">
                                         <FontAwesomeIcon icon={faMessage} className="input_icon" />
                                         <div className="w-100">
-                                            <input type="text" className="write_something_input_here form-control" id="" name="replies" onChange={handlechange} placeholder="Write Something Here..." />
+                                            <input type="text" className="write_something_input_here form-control" id="" name="description" onChange={handlechange} placeholder="Write Something Here..." />
                                         </div>
                                     </div>
 
                                     <div className="message_post_actionBtn">
-                                        <button onClick={handleSubmit} className="post_actionBtn">POST</button>
+                                        <button onClick={() => handlereplySubmit(items?.id)} className="post_actionBtn">POST</button>
                                     </div>
 
                                 </div>

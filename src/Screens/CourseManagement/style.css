@@ -169,6 +169,18 @@ padding: 10px 0px;
 
 /* media queries */
 
+
+ 
+.quiz_submit{
+    background-color: #9e6318 !important;
+    color: white !important;
+    padding: 6px 22px;
+    border: 2px solid red!important;
+     
+    /* padding: 10px; */
+    border-radius: 5px!important;
+}
+
 @media(max-width:1024px) {
 
     .course_main_content {
@@ -177,6 +189,8 @@ padding: 10px 0px;
         padding-bottom: 0px;
     }
 
+
+    
     .course_main_title {
         font-size: 36px;
     }

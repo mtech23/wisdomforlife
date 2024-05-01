@@ -32,6 +32,26 @@
      font-weight: 500;
  }
 
+ .schedualevent{
+    color: aqua;
+ }
+
+
+ .loginbook {
+     padding: 0px 0.1rem;
+     font-weight: 600;
+ }
+ 
+
+ .booknow {
+     margin: auto;
+     width: 100%;
+     background-color: #ca944a;
+     border: red;
+     padding: 6px;
+     color: white;
+ }
+
  .event_para {
      color: #000;
      text-align: justify;
@@ -122,29 +142,29 @@
 
  }
 
- 
-
-span.event-para {
-    color: black;
-    font-size:large ;
-    font-weight: 600;
-    /* padding: 20px; */
-}
-
-.event-info.col-md-4 {
-    background-color: azure;
-    padding: 22px 35px;
-}
 
 
-span.cost {
-    font-family: math;
-    color: black;
-    font-size: 20px;
-}
+ span.event-para {
+     color: black;
+     font-size: large;
+     font-weight: 600;
+     /* padding: 20px; */
+ }
+
+ .event-info.col-md-4 {
+     background-color: azure;
+     padding: 22px 35px;
+ }
 
 
-span.cost-price {
-    color: black;
-    font-weight: 600;
-}
+ span.cost {
+     font-family: math;
+     color: black;
+     font-size: 20px;
+ }
+
+
+ span.cost-price {
+     color: black;
+     font-weight: 600;
+ }

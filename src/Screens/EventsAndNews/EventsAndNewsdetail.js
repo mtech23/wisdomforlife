@@ -19,7 +19,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import "./style.css";
 import { BASE_URL } from "../../Api/apiConfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faUserAlt, faPlay, faStar, faTable, faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faUserAlt, faPlay, faStar, faTable, faCalendarDays, faLocation, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 export const EventsAndNewsdetail = () => {
 
@@ -32,14 +32,14 @@ export const EventsAndNewsdetail = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(8);
 
-    
+
     const [inputValue, setInputValue] = useState('');
 
     const navigate = useNavigate();
 
-const base_url = `${process.env.REACT_APP_API_URL}`
+    const base_url = `${process.env.REACT_APP_API_URL}`
 
-    console.log("detail" ,detail)
+    console.log("detail", detail)
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
@@ -71,7 +71,7 @@ const base_url = `${process.env.REACT_APP_API_URL}`
     // const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
     const { id } = useParams();
     const Eventdetail = () => {
- 
+
         const LogoutData = localStorage.getItem('login');
         document.querySelector('.loaderBox').classList.remove("d-none");
         fetch(`${process.env.REACT_APP_API_URL}api/user/event-view/${id}`,
@@ -84,7 +84,7 @@ const base_url = `${process.env.REACT_APP_API_URL}`
                 },
             }
         )
-    
+
             .then(response =>
                 response.json()
             )
@@ -92,20 +92,20 @@ const base_url = `${process.env.REACT_APP_API_URL}`
                 console.log(data)
                 document.querySelector('.loaderBox').classList.add("d-none");
                 setDetail(data?.data);
-             
+
             })
             .catch((error) => {
                 document.querySelector('.loaderBox').classList.add("d-none");
                 console.log(error)
             })
-    
-    
+
+
     }
 
 
-    useEffect(() =>{
+    useEffect(() => {
         Eventdetail()
-    } , [])
+    }, [])
     // useEffect(() => {
     //     document.title = 'Wisdom For Life | User Management';
     //     const LogoutData = localStorage.getItem('login');
@@ -139,34 +139,34 @@ const base_url = `${process.env.REACT_APP_API_URL}`
 
 
     const Eventlist = () => {
- 
+
         const LogoutData = localStorage.getItem("login");
         document.querySelector(".loaderBox").classList.remove("d-none");
         fetch(`${process.env.REACT_APP_API_URL}api/user/event-listing`, {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${LogoutData}`,
-          },
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${LogoutData}`,
+            },
         })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
-            document.querySelector(".loaderBox").classList.add("d-none");
-            setData(data.data);
-          })
-          .catch((error) => {
-            document.querySelector(".loaderBox").classList.add("d-none");
-            console.log(error);
-          });
-      };
-      useEffect(() => {
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                document.querySelector(".loaderBox").classList.add("d-none");
+                setData(data.data);
+            })
+            .catch((error) => {
+                document.querySelector(".loaderBox").classList.add("d-none");
+                console.log(error);
+            });
+    };
+    useEffect(() => {
         Eventlist();
-      }, []);
+    }, []);
 
 
-console.log("detail" , detail)
+    console.log("detail", detail)
 
 
     return (
@@ -190,10 +190,32 @@ console.log("detail" , detail)
                         <div className="row">
                             <div className="col-md-8">
                                 <span className="title-event   mb-5   text-dark  flex-nowrap ">
-                                {detail?.name}
+                                    {detail?.name}
                                 </span>
                                 <p className="para-event ">{detail?.description}</p>
                             </div>
+
+
+                            <div className="col-md-8">
+                                <span className="title-event   mb-5   text-dark  flex-nowrap ">
+                                    Event Location
+                                </span>
+                                <p className="para-event  ">{detail?.description}</p>
+                                <p className="   gap-4 ">
+                                    <span className="  ">
+                                        <FontAwesomeIcon icon={faLocation} />  Usa
+
+                                    </span>
+                                    <span className="    me-5 ">
+                                        <FontAwesomeIcon icon={faPhone} />  Usa
+
+                                    </span>
+                                </p>
+
+                            </div>
+
+
+
                             <div className="event-info col-md-4  mb-4">
                                 <div>
                                     <span className="event-para  mx-auto">
@@ -210,13 +232,51 @@ console.log("detail" , detail)
 
                                     <div className=" d-flex justify-content-between   mx-auto">
                                         <span className="cost">
-                                        Total Slot:</span>
+                                            Total Slot:</span>
                                         <span className="cost-price">
                                             ${detail?.cost}
                                         </span>
                                     </div>
+
+
+
+                                    <div className=" d-flex justify-content-between   mx-auto">
+                                        <span className="cost">
+                                            Book Slot:</span>
+                                        <span className="cost-price">
+                                            ${detail?.cost}
+                                        </span>
+                                    </div>
+
+
+
+
+
+                                    <div className=" d-flex justify-content-between   mx-auto">
+                                        <button className="booknow">Book Now </button>
+                                    </div>
+
+                                    <div className=" d-flex justify-content-between   mx-auto">
+                                        <p className=" d-flex mt-2 ">You must  <p className="loginbook bold">login</p>    before Register</p>
+                                    </div>
                                 </div>
 
+
+
+
+                                <div className=" d-flex justify-content-between   mx-auto">
+                                    <span className="schedualevent">
+                                        21<br /> days</span>
+                                    <span className=" ">
+                                        21<br /> days</span>
+                                    <span className=" ">
+                                        21<br /> days</span>
+                                    <span className=" ">
+                                        21<br /> days</span>
+                                    {/* <span className="cost-price">
+                                            ${detail?.cost}
+                                        </span> */}
+                                </div>
 
 
 

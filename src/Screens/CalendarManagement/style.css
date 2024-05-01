@@ -27,8 +27,20 @@
     margin-bottom: inherit;
 }
 
-
- 
+.rbc-btn-group > button:first-child:not(:last-child) {
+    /* border-top-right-radius: 0; */
+    /* border-bottom-right-radius: 0; */
+    display: none;
+}
+/* .rbc-btn-group > button:last-child:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    display: none;
+} */
+/* .rbc-btn-group > button:not(:first-child):not(:last-child) {
+    border-radius: 0;
+    display: none;
+} */
 
 .css-csro95-Calendar {
     padding-right: 10px;
