@@ -187,11 +187,11 @@ const profilelist = () =>{
           <div className="col-md-3">
             <div className="profile_left_part">
               <div className="text-center">
-                <img src={base_url +  data?.image} className="img-fluid" />
+                <img src={base_url +  data?.image} className="img-fluid user_profile_image" />
               </div>
 
               <div className="user_profile_details">
-                <h6 className="user_profile_name">{data?.name}</h6>
+                <h6 className="user_profile_name ">{data?.name}</h6>
 
                 <p className="user_profile_para">{data?.profile_description}</p>
               </div>
@@ -217,7 +217,7 @@ const profilelist = () =>{
 
               <div>
                 <Link
-                  className="profile_logout_btn btn"
+                  className="profile_logout_btn "
                   onClick={handleRedirect}
                 >
                   <span>Log Out</span>
@@ -265,7 +265,7 @@ const profilelist = () =>{
                     type="email"
                     placeholder="Your Account Email"
                     labelclassName="mainLabel"
-                    inputclassName="email_input form-control"
+                    inputclassName="email_input emailInputField form-control"
                     name="email"
                     value={editData?.email}
                     onChange={handleChange}

@@ -128,7 +128,7 @@ export const InvoiceManagement = () => {
                     <td className="  p-3  bg-white ">
                       {item?.item_description?.slice(0 , 14)}
                     </td>
-                    <td className="  p-3  ">${item?.price}</td>
+                    <td className="p-3">${item?.price}</td>
                     <td className=" bg-white ">{item?.qty}</td>
                     <td>${item?.total}</td>
                   </tr>

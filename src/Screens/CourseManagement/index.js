@@ -462,7 +462,7 @@ export const CourseManagemet = () => {
 
  
               <div>
-                <ul role="tablist" class="mb-3 mt-4 nav nav-tabs nav-justified">
+                <ul role="tablist" class="mb-3 mt-4 nav nav-tabs nav-justified align-items-center">
 
                   {catigorieslists?.map((items, index) => (
 
@@ -470,12 +470,21 @@ export const CourseManagemet = () => {
                       <button onClick={() => handleCategoryClick(items.id)} class="nav-link  " id="justify-tab-example-tab-Trending" role="tab" type="button">{items?.name}</button>
                     </li>
                   ))}
+
+                  <li>
+                  <div className="personal_notes_search">
+                      <div className="">
+                          <input className="search_input" placeholder="Search Notes" />
+                      </div>
+                      <div className="notes_search_icon">
+                          <FontAwesomeIcon icon={faMagnifyingGlass} />
+                      </div>
+                      </div>
+                  </li>
                 </ul>
 
-
-
-
-                <div className="row">
+<div className=" contw">
+<div className="row">
                   {data?.map((item, index) => (
                     <div className="col-sm-10 col-lg-6 col-xl-4 mb-5  ">
                       <div className="course_card">
@@ -546,6 +555,10 @@ export const CourseManagemet = () => {
                     </div>
                   ))}
                 </div>
+
+</div>
+             
+               
               </div>
 
 

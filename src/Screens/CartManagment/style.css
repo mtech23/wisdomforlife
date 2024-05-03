@@ -128,24 +128,21 @@ letter-spacing: 0.02em !important;
 text-align: right!important ;
 
 }
-.btn{
+.btns{
     justify-content: center;
     display:flex ;
 }
 
- .btn button {
+.cart button.btnss {
     width: 277px;
 height: 39px;
-
-
 background-color: #C18A40 ;
 justify-content:center ;
 font-size: 15px ;
 font-weight: 500 ;
 line-height: 23px ;
 letter-spacing: 0.02em ;
-
-
+text-align: center;
 
 }
 .cart input{
@@ -170,12 +167,11 @@ color: #787878;
     width: inherit;
 }
 .cart .dot button {
-    width: 174px ;
-    height: 42px;
+    width: 40%;
+    /* height: 42px; */
     justify-content: center ;
     text-align: center ;
     background-color: #C18A40 ;
-
     margin: 4px 0px;
 }
 
@@ -256,5 +252,28 @@ p.cart-para {
         padding: 11px;
         margin: 0px;
         margin-top: 20px !important;
+    }
+}
+@media  (max-width: 1024px) {
+    .cart button {
+        font-size: 10px;
+        padding: 10px 26px;
+        width: max-content;
+    }
+    .cart h3 {
+        font-size: 18px;
+
+    }
+    .cart button.btnss {
+        width: max-content; 
+        height: 100%;
+        font-size: 12px;
+    }
+    .summary {
+        font-size: 13px !important;
+    }
+    .sum {
+        font-size: 13px !important;
+
     }
 }

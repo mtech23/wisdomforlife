@@ -359,8 +359,8 @@ const handleSubmit = (event) => {
                   <hr />
                   <div className="row mx-auto">
                     <div className="col-md-12">
-                      <div className="btn">
-                        <button className="btn" onClick={handleSubmit}> Checkout </button>{" "}
+                      <div className="btns">
+                        <button className="btnss" onClick={handleSubmit}> Checkout </button>{" "}
                       </div>{" "}
                     </div>{" "}
                   </div>

@@ -79,10 +79,12 @@
      position: relative;
      transform: translateX(14px);
      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+     width: 75% !important;
  }
 
  .event_card_img img {
      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+     width: 80% !important;
  }
 
  .event_card_body:hover {

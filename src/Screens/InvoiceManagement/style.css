@@ -25,8 +25,8 @@
     gap: 83px;
 }
 .table-subtotal  {
-    color:#363B45;
-    font-size: large;
+    color:#363B45 !important;
+    font-size: 15px;
     font-weight: 600;
 }
 
