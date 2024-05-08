@@ -28,7 +28,7 @@ export const Sidebar = (props) => {
     <div className={`sidebar ${props.sideClass}`} id="sidebar">
       <Link to={"/dashboard"} className="siteLogo text-center text-decoration-none">
         {/* <h1>Brad <span>Taylor</span></h1> */}
-        <img src={logo} className="mw-100" />
+        <img src={logo} className="mw-100 logo_height_" />
       </Link>
       <ul className="list-unstyled">
         <li className="sidebar-li">

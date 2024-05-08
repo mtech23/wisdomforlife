@@ -86,4 +86,19 @@
     .sidebar.collapsed .sideLink {
         display: none;
     }
+    /* .sidebar {
+        width: 129px;
+        height: 100%;
+    }
+    .logo_height_{
+       height: 60px;;
+    }
+    .sideLink {
+        font-size: 9px;
+    }
+    
+    .sideIcon {
+        font-size: 10px;
+
+    } */
 }

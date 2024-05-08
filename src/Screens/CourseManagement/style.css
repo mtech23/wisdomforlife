@@ -210,7 +210,7 @@ padding: 10px 0px;
 
     
     .course_main_title {
-        font-size: 36px;
+        font-size: 27px;
     }
 
     .course_main_para {
@@ -219,11 +219,11 @@ padding: 10px 0px;
     }
 
     .course_num {
-        font-size: 20px;
+        font-size: 17px;
     }
 
     .course_num_title {
-        font-size: 15px;
+        font-size: 12px;
     }
 
     .course_rating_detail {
@@ -264,6 +264,9 @@ padding: 10px 0px;
 
     .course_num_title {
         font-size: 12px;
+    }
+    .course_main_content {
+        background-image: linear-gradient(0deg, #3c6bd7, #3c6bd7), url("../../Assets/images/course-top-img-01.png");
     }
 }
 

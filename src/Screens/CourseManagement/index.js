@@ -483,10 +483,10 @@ export const CourseManagemet = () => {
                   </li>
                 </ul>
 
-<div className=" contw">
+<div className="contw">
 <div className="row">
                   {data?.map((item, index) => (
-                    <div className="col-sm-10 col-lg-6 col-xl-4 mb-5  ">
+                    <div className="col-sm-10 col-lg-6 col-xl-4 col-md-6 mb-5  ">
                       <div className="course_card">
                         <div className="course_card_img">
                           <img
