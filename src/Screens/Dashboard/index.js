@@ -56,37 +56,38 @@ console.log("login " , login)
             <div className="col-12">
               <div className="dashCard">
                 <div className="row">
-                  <div className="col-lg-9">
+                  <div className="col-lg-8">
                     <div className="contentCard">
                       <div className="headerCard">
-                        <h1 className="text-dark">Welcome Back Steve,</h1>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                        <p>lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+                        <h1 className=" welecome_text">Welcome Back Steve,</h1>
+                        <p className="welecome_para">Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                        lorem Ipsum has been the industry's standard dummy text ever since the 1500s,  </p>
+                        {/* <p>lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p> */}
                       </div>
                       <div className="mainBodyCard">
                         <div className="row">
-                          <div className="col-lg-12">
-                            <h3 className="text-dark">Day 1</h3>
-                            <p>Here are your first day tasks!</p>
+                          <div className="col-lg-12 ">
+                            <h3 className="text-dark day_task_text">Day 1</h3>
+                            <p className="welecome_para" >Here are your first day tasks!</p>
                           </div>
-                          <div className="col-xl-4 mb-4 col-lg-6">
+                          <div className="col-xl-4 col-md-6 mb-4 col-lg-6">
                             <div className="taskCard text-center shadow p-3 rounded-3">
-                              <h4 className="text-dark">Task Name</h4>
-                              <p>Lorem Ipsum is simply dummy text of the printing and typesetting </p>
+                              <h4 className="">Task Name</h4>
+                              <p className="">Lorem Ipsum is simply dummy text of the printing and typesetting </p>
                               <CustomButton text="Details" variant="primaryButton"></CustomButton>
                             </div>
                           </div>
-                          <div className="col-xl-4 mb-4 col-lg-6">
+                          <div className="col-xl-4 col-md-6 mb-4 col-lg-6">
                             <div className="taskCard text-center shadow p-3 rounded-3">
-                              <h4 className="text-dark">Task Name</h4>
-                              <p>Lorem Ipsum is simply dummy text of the printing and typesetting </p>
+                              <h4 className="">Task Name</h4>
+                              <p className="">Lorem Ipsum is simply dummy text of the printing and typesetting </p>
                               <CustomButton text="Details" variant="primaryButton"></CustomButton>
                             </div>
                           </div>
-                          <div className="col-xl-4 mb-4 col-lg-6">
+                          <div className="col-xl-4  col-md-6 mb-4 col-lg-6">
                             <div className="taskCard text-center shadow p-3 rounded-3">
-                              <h4 className="text-dark">Task Name</h4>
-                              <p>Lorem Ipsum is simply dummy text of the printing and typesetting </p>
+                              <h4 className="">Task Name</h4>
+                              <p className="">Lorem Ipsum is simply dummy text of the printing and typesetting </p>
                               <CustomButton text="Details" variant="primaryButton"></CustomButton>
                             </div>
                           </div>
@@ -106,14 +107,15 @@ console.log("login " , login)
                         </div> */}
                         <div className="col-xl-6">
                           <span className="Profiles">     Profile Picture</span>
-                          <div className="Profile d-flex align-items-baseline mt-3">
+                          <div className="Profile profile_section_div mt-3">
 
                               <span><img src={man} className="profileimg" /></span>
                               {/* <span><p className="upload">  Upload a photo</p></span> */}
                             
-                              <div className="form-group uploadBtn">
+                              <div className="uploadBtn">
                               <CustomInput
                                 label="Upload a Photo"
+                                // placeholder="Upload a Photo"
                                 id="photo"
                                 type='file'
                                 labelclassName="form-control-file uploadButton text-center"
@@ -135,25 +137,29 @@ console.log("login " , login)
                           <div>
                             <div>
                               <CustomInput
-                                label='Email Address'
+                                label='Work Email'
                                 required
                                 id='userEmail'
                                 type='email'
                                 placeholder='Enter Your Email Address'
                                 labelclassName='mainLabel'
                                 inputclassName='mainInput'
+                                inputclass="custom_email_input"
+                                labelclass="custom_email_label"
 
                               />
                             </div>
                             <div>
                               <CustomInput
-                                label='Phone No'
+                                label='Work Phone'
                                 required
                                 id='number'
                                 type='number'
                                 placeholder='Enter Phone'
                                 labelclassName='mainLabel text-white'
                                 inputclassName='mainInput customNumber'
+                                inputclass="custom_email_input"
+                                labelclass="custom_email_label"
 
                               />
                             </div>
@@ -167,7 +173,7 @@ console.log("login " , login)
 
                       <div className="row mt-4">
 
-                        <div className="col-xl-4 mb-4 col-lg-6">
+                        <div className="col-xl-4 col-md-6 mb-4 col-lg-6">
 
                         <div className="card1">
                           <p className="intro">Introduction To Company</p>
@@ -175,7 +181,7 @@ console.log("login " , login)
                         </div> 
                         </div>
 
-                        <div className="col-xl-4 mb-4 col-lg-6">
+                        <div className="col-xl-4 col-md-6  mb-4 col-lg-6">
 
                         <div className="card2">
                           <p className="intro">Introduction To Company</p>
@@ -184,7 +190,7 @@ console.log("login " , login)
 
                         </div>
 
-                        <div className="col-xl-4 mb-4 col-lg-6">
+                        <div className="col-xl-4 col-md-6 mb-4 col-lg-6">
 
                         <div className="card3">
                           <p className="intro">Introduction To Company</p>
@@ -199,10 +205,10 @@ console.log("login " , login)
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-3">
+                  <div className="col-lg-4">
                     <div className="progressCard">
                       <div className="shadow p-3 rounded-2 mb-5">
-                        <h3 className="text-dark">Your Progress</h3>
+                        <h3 className="text-dark progress_text">Your Progress</h3>
 
                             <div className="progressbar_main">
                                 <div className="progress_front my-3">
@@ -225,7 +231,7 @@ console.log("login " , login)
                         </ul>
                       </div>
                       <div className="shadow p-3 rounded-2">
-                        <h3 className="text-dark">Your Progress</h3>
+                        <h3 className="text-dark progress_text">Your Progress</h3>
 
                         <ul className="second_list">
                           <li><span className="numbering">10</span><span className="sample_text">Lorem Ipsum is simply</span></li>

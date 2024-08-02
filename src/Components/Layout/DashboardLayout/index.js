@@ -39,6 +39,7 @@ export const DashboardLayout = (props) => {
 
       <div className="container-fluid">
         <div className="row">
+          {/* <div className="col-3 col-md-3 p-0"> */}
           <div className="col-12 p-0">
             <Sidebar sideclassName={sideBarClass} />
             <div className={`dashboardBody ${bodyClass}`}>
