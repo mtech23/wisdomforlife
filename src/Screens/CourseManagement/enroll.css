@@ -433,17 +433,6 @@ padding: 10px 0px;
     padding: 5px 23px;
 }
 
-/* .web h2::before{
-        background: url(../../Assets/images/div.shape-image.png);
-        background-repeat: no-repeat;
-        background-position: left;
-        background-size: contain;
-        position: absolute;
-        top: 25px;
-        right: 1826px;
-        width: 100vw;
-        height: 100vh;
-    } */
     .web p{
         padding-left: 12px;
         display: inline;
