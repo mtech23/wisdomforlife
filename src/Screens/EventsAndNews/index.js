@@ -75,10 +75,9 @@ export const EventsAndNews = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
 
+  const base_url = `${process.env.REACT_APP_API_URL}`;
 
-  const base_url = `${process.env.REACT_APP_API_URL}`
-
-console.log("base_url ", base_url)
+  console.log("base_url ", base_url);
   useEffect(() => {
     document.title = "Wisdom For Life | User Management";
     const LogoutData = localStorage.getItem("login");
@@ -130,44 +129,46 @@ console.log("base_url ", base_url)
 
   return (
     <DashboardLayout>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-12 mb-4">
-            <h2 className="upcoming_events_heading">upcoming events</h2>
-          </div>
+      <section className="news_and_event_page">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-12 mb-4">
+              <h2 className="upcoming_events_heading">upcoming events</h2>
+            </div>
 
-          {data?.map((item) => (
-            <div className="col-sm-10 col-lg-6 col-xl-4 mx-auto mb-5">
-              <div className="main_events_card">
-                <div className="event_card_img">
-                  <img src={base_url + item?.image} className="w-100" />
-                </div>
-
-                <div className="event_card_body">
-                  <div className="event_card_date">
-                    <span>
-                      <FontAwesomeIcon icon={faCalendarDays} />
-                    </span>
-                    <span className="ps-3">{item?.event_date}</span>
+            {data?.map((item) => (
+              <div className="col-xl-4 col-md-6 mb-5">
+                <div className="main_events_card">
+                  <div className="event_card_img">
+                    <img src={base_url + item?.image} className="w-100" />
                   </div>
 
-                  <div>
-                    <h6 className="event_title">{item?.name}</h6>
+                  <div className="event_card_body">
+                    <div className="event_card_date">
+                      <span>
+                        <FontAwesomeIcon icon={faCalendarDays} />
+                      </span>
+                      <span className="ps-3">{item?.event_date}</span>
+                    </div>
 
-                    <p className="event_para">{item?.short_description}</p>
-                  </div>
+                    <div>
+                      <h6 className="event_title">{item?.name}</h6>
 
-                  <div>
-                    <Link to={`/events-and-news/detail/${item.id}`} >
-                      <span className="event_readmore_btn">Read More</span>
-                    </Link>
+                      <p className="event_para">{item?.short_description}</p>
+                    </div>
+
+                    <div>
+                      <Link to={`/events-and-news/detail/${item.id}`}>
+                        <span className="event_readmore_btn">Read More</span>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
     </DashboardLayout>
   );
 };

@@ -1,196 +1,195 @@
-
-.personal_notes_search{
-    display: flex;
-    align-items: baseline;
-    background-color: #fff;
-    padding: 4px 7px;
-    border-radius: 5px;
-    justify-content: space-between;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+.personal_notes_search {
+  display: flex;
+  align-items: baseline;
+  background-color: #fff;
+  padding: 4px 7px;
+  border-radius: 5px;
+  justify-content: space-between;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-.mainInput{
-color: black;
+.mainInput {
+  color: black;
 }
-.search_input{
-    border: none;
-    background-color: transparent;
-    width: 100%;
-}
-
-.search_input:focus{
-    outline: none;
+.search_input {
+  border: none;
+  background-color: transparent;
+  width: 100%;
 }
 
-.search_input::placeholder{
-    font-size: 14px;
+.search_input:focus {
+  outline: none;
 }
 
-.notes_search_icon{
-    background-color: #575757;
-    color: #fff;
-    font-size: 16px;
-    height: 32px;
-    width: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
+.search_input::placeholder {
+  font-size: 14px;
 }
 
-.mynotes_heading{
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    padding: 12px;
+.notes_search_icon {
+  background-color: #575757;
+  color: #fff;
+  font-size: 16px;
+  height: 32px;
+  width: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
 }
 
-.mynotes_heading h4{
-    color: #000;
-    text-transform: capitalize;
-    font-family: 'Poppins' !important;
-    font-size: 22px;
+.mynotes_heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 12px;
 }
 
-.mynotes_plus_icon{
-    background-color: transparent;
-    border: none;
+.mynotes_heading h4 {
+  color: #000;
+  text-transform: capitalize;
+  font-family: "Poppins" !important;
+  font-size: 22px;
 }
 
-.user_personal_note{
-    background-color: #F2F9FF;
-    padding: 18px;
-    border-radius: 10px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 11px 29px 0px;
+.mynotes_plus_icon {
+  background-color: transparent;
+  border: none;
 }
 
-.personal_note_title{
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    color: #000;
+.user_personal_note {
+  background-color: #f2f9ff;
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 11px 29px 0px;
 }
 
-.personal_note_content{
-    font-size: 14px;
-    font-weight: 300;
-    color: #000;
-    display: -webkit-box;
-    -webkit-line-clamp: 6;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    border-top: 2px solid #ccc;
-    padding-top: 14px;
+.personal_note_title {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: #000;
 }
 
-.user_note_date{
-    margin: 0;
-    text-align: right;
-    font-size: 13px;
-    font-weight: 500;
-    color: #000;
+.personal_note_content {
+  font-size: 14px;
+  font-weight: 300;
+  color: #000;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  border-top: 2px solid #ccc;
+  padding-top: 14px;
 }
 
-.personalnote_user_onright{
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 18px;
-    align-items: center;
-    border-bottom: 1px solid #c2c2c2;
+.user_note_date {
+  margin: 0;
+  text-align: right;
+  font-size: 13px;
+  font-weight: 500;
+  color: #000;
 }
 
-.personalnote_title_onright{
-    color: #000;
+.personalnote_user_onright {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 18px;
+  align-items: center;
+  border-bottom: 1px solid #c2c2c2;
 }
 
-.user_personalnote_date_onright{
-    font-size: 14px;
-    color: #919191;
-    font-weight: 500;
+.personalnote_title_onright {
+  color: #000;
 }
 
-
-.personalnote_edit_btn{
-    font-size: 24px;
-    color: #9789ff;
-    border: none;
-    background-color: transparent;
-}
-
-.personalnote_trash_btn{
-    padding-left: 12px;
-    font-size: 24px;
-    color: #ff6464;
-    border: none;
-    background-color: transparent;
-}
-
-.current_personal_note{
-	padding-top: 20px;
-}
-
-.current_personalnote_title{
-	color: #000;
-    font-family: 'Poppins' !important;
-    font-size: 28px;
-    line-height: 38px;
-    text-decoration: underline;
-    padding-bottom: 10px;
-}
-
-.current_personalnote_para{
-    font-size: 14px;
-    color: #424242;
-    font-weight: 400;
-    text-align: justify;
-    line-height: 25px;
-}
-
-.personal_note_onright{
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 20px;
-}
-
-
-@media(max-width: 1024px){
-
-    .current_personalnote_title {
-        font-size: 22px;
-    }
-
-    .personalnote_top_actionBtn{
-	    display: flex;
-    align-items: baseline;
-}
-
-
-.personalnote_trash_btn {
-    padding-left: 6px;
-    font-size: 18px;
+.user_personalnote_date_onright {
+  font-size: 14px;
+  color: #919191;
+  font-weight: 500;
 }
 
 .personalnote_edit_btn {
+  font-size: 24px;
+  color: #9789ff;
+  border: none;
+  background-color: transparent;
+}
+
+.personalnote_trash_btn {
+  padding-left: 12px;
+  font-size: 24px;
+  color: #ff6464;
+  border: none;
+  background-color: transparent;
+}
+
+.current_personal_note {
+  padding-top: 20px;
+}
+
+.current_personalnote_title {
+  color: #000;
+  font-family: "Poppins" !important;
+  font-size: 28px;
+  line-height: 38px;
+  text-decoration: underline;
+  padding-bottom: 10px;
+}
+
+.current_personalnote_para {
+  font-size: 14px;
+  color: #424242;
+  font-weight: 400;
+  text-align: justify;
+  line-height: 25px;
+}
+
+.personal_note_onright {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+@media (max-width: 1440px) {
+  .user_note_date {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .current_personalnote_title {
+    font-size: 22px;
+  }
+
+  .personalnote_top_actionBtn {
+    display: flex;
+    align-items: baseline;
+  }
+
+  .personalnote_trash_btn {
+    padding-left: 6px;
     font-size: 18px;
+  }
+
+  .personalnote_edit_btn {
+    font-size: 18px;
+  }
 }
 
+@media (max-width: 375px) {
+  .current_personalnote_title {
+    font-size: 18px;
+    line-height: 26px;
+  }
 }
 
-@media(max-width: 375px){
-    .current_personalnote_title {
-        font-size: 18px;
-        line-height: 26px;
-    }
-}
+@media (max-width: 320px) {
+  .current_personalnote_title {
+    font-size: 16px;
+  }
 
-@media(max-width: 320px){
-    
-    .current_personalnote_title {
-        font-size: 16px;
-    }
-    
-    .current_personalnote_para {
-        font-size: 12px;
-    }
+  .current_personalnote_para {
+    font-size: 12px;
+  }
 }

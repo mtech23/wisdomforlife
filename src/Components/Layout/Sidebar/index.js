@@ -95,14 +95,7 @@ export const Sidebar = (props) => {
             <span className="sideLinkText">Calendar</span>
           </Link>
         </li>
-        <li className="sidebar-li">
-          <Link className={`sideLink ${location.pathname.includes('/profile-management') ? 'active' : ''}`} to="/profile-management">
-            <span className="sideIcon">
-              <FontAwesomeIcon icon={faTasks} />
-            </span>
-            <span className="sideLinkText">Profile Management</span>
-          </Link>
-        </li>
+
 
         <li className="sidebar-li">
           <Link className={`sideLink ${location.pathname.includes('/board-management') ? 'active' : ''}`} to="/board-management">
@@ -135,7 +128,19 @@ export const Sidebar = (props) => {
           </Link>
         </li>
 
- {/* /invoice-management */}
+
+
+
+
+        <li className="sidebar-li">
+          <Link className={`sideLink ${location.pathname.includes('/profile-management') ? 'active' : ''}`} to="/profile-management">
+            <span className="sideIcon">
+              <FontAwesomeIcon icon={faTasks} />
+            </span>
+            <span className="sideLinkText">Profile Management</span>
+          </Link>
+        </li>
+        {/* /invoice-management */}
       </ul>
     </div>
   );

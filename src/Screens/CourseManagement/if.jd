@@ -766,3 +766,213 @@
   <p>{items?.name}</p>
   </div>
 ))}
+
+
+
+
+
+
+
+
+      {/* {!quizresponsestatus == true ? (<h3>Attempt Quiz</h3>
+
+                                                {detail?.course_quiz_questions_data.length > 0 && (
+                                                    <div key={currentQuestionIndex}>
+                                                        <div className=" ">
+                                                            <div className="questionclass mb-2  d-flex g-3  gap-2">
+
+                                                                <span className="d-flex">
+                                                                    Question {currentQuestionIndex + 1}:{" "}
+                                                                </span>
+
+                                                                <span className="questionclass">
+
+
+                                                                    {detail?.course_quiz_questions_data[currentQuestionIndex]?.question}
+                                                                </span>
+
+                                                            </div>
+                                                            <div>
+                                                                {detail?.course_quiz_questions_data[currentQuestionIndex]?.options?.map(
+                                                                    (data, optionIndex) => (
+                                                                        <p key={optionIndex} className="quiz_option">
+                                                                            <input
+                                                                                type="radio"
+                                                                                name={`question_${currentQuestionIndex}`}
+                                                                                value={data.id}
+                                                                                onChange={() =>
+                                                                                    handleOptionChange(
+                                                                                        detail?.course_quiz_questions_data[currentQuestionIndex]?.id,
+                                                                                        data.id
+                                                                                    )
+                                                                                }
+                                                                            />{" "}
+                                                                            {data?.text}
+                                                                        </p>
+                                                                    )
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                        {isOptionSelected && (
+                                                            currentQuestionIndex < detail?.course_quiz_questions_data.length - 1 ? (
+                                                                <button onClick={handleNextQuestion} id="quizsubmit">
+                                                                    Next
+                                                                </button>
+                                                            ) : (
+                                                                <button onClick={handleSubmitquiz} id="quizsubmit">
+                                                                    Submit
+                                                                </button>
+                                                            )
+                                                        )}
+
+
+                                                    </div>
+                                                )})
+
+                                                : (                                                {quizresponse && (
+                                                    <div className="quiz-result">
+                                                        <h4>{quizresponse?.msg}</h4>
+                                                        {quizresponse && (
+                                                            <div>
+                                                                <p>Correct Answers: {quizresponse.quiz_right_questions}</p>
+                                                                <p>Wrong Answers: {quizresponse.wrong_right_questions}</p>
+                                                                <p>Score Ratio: {quizresponse.ratio}</p>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                )})}
+                                                 */}
+
+
+
+
+
+
+
+
+     {/* {detail?.course_status === "Paid" ? (
+                                            <Tab eventKey="quiz" title="Attempt Quiz">
+                                                <h3>Attempt Quiz</h3>
+
+                                                {detail?.course_quiz_questions_data?.map(
+                                                    (item, index) => (
+                                                        <p className="gap-3" key={index}>
+                                                            <span className="d-flex">
+                                                                <h3>
+                                                                    {index + 1} {item?.question}
+                                                                </h3>
+                                                            </span>
+                                                            <p>
+                                                                {item?.options?.map((data, optionIndex) => (
+                                                                    <p key={optionIndex} className="quiz_option">
+                                                                        <input
+                                                                            type="radio"
+                                                                            name={`question_${index}`}
+                                                                            value={data.id}
+                                                                            onChange={(e) =>
+                                                                                handleOptionChange(item.id, data.id)
+                                                                            }
+                                                                        />{" "}
+                                                                        {data?.text}
+                                                                    </p>
+                                                                ))}
+                                                            </p>
+                                                        </p>
+                                                    )
+                                                )}
+
+                                                <button
+                                                    onClick={() => handleSubmitquiz(detail?.id)}
+                                                    id="quizsubmit"
+                                                >
+                                                    Submit
+                                                </button>
+                                            </Tab>
+                                        ) : (
+                                            ""
+                                        )} */}
+
+
+
+
+
+
+
+
+
+
+                                        {/* {detail?.course_status === "Paid" && (
+                                            <Tab eventKey="quiz" title="Attempt Quiz">
+                                                <h3>Attempt Quiz</h3>
+
+                                                {detail?.course_quiz_questions_data.length > 0 && (
+                                                    <div key={currentQuestionIndex}>
+                                                        <p className="gap-3">
+                                                            <span className="d-flex">
+                                                                <h3>
+                                                                    {currentQuestionIndex + 1}{" "}
+                                                                    {detail?.course_quiz_questions_data[currentQuestionIndex]?.question}
+                                                                </h3>
+                                                            </span>
+                                                            <p>
+                                                                {detail?.course_quiz_questions_data[currentQuestionIndex]?.options?.map(
+                                                                    (data, optionIndex) => (
+                                                                        <p key={optionIndex} className="quiz_option">
+                                                                            <input
+                                                                                type="radio"
+                                                                                name={`question_${currentQuestionIndex}`}
+                                                                                value={data.id}
+                                                                                onChange={() =>
+                                                                                    handleOptionChange(
+                                                                                        detail?.course_quiz_questions_data[currentQuestionIndex]?.id,
+                                                                                        data.id
+                                                                                    )
+                                                                                }
+                                                                            />{" "}
+                                                                            {data?.text}
+                                                                        </p>
+                                                                    )
+                                                                )}
+                                                            </p>
+                                                        </p>
+                                                        {currentQuestionIndex < detail?.course_quiz_questions_data.length - 1 ? (
+                                                            <button onClick={handleNextQuestion} id="quizsubmit">
+                                                                Next
+                                                            </button>
+                                                        ) : (
+                                                            <button    onClick={handleSubmitquiz}   id="quizsubmit">
+                                                                Submit
+                                                            </button>
+                                                        )}
+                                                    </div>
+                                                )}
+                                            </Tab>
+                                        )} */}
+
+
+
+
+    // const handleOptionChange = (questionId, optionId) => {
+    //     setSelectedOptions((prev) => ({
+    //         ...prev,
+    //         [questionId]: optionId,
+    //     }));
+    // };
+
+    // const handleNextQuestion = () => {
+    //     if (currentQuestionIndex < detail?.course_quiz_questions_data.length - 1) {
+    //         setCurrentQuestionIndex(currentQuestionIndex + 1);
+    //     }
+    // };
+
+    // const handleSubmitQuiz = () => {
+    //     // Implement the submit quiz functionality here
+    //     console.log("Quiz submitted", selectedOptions);
+    // };
+
+
+    
+    //   const handleOptionChange = (questionId, selectedOptionId) => {
+    //     console.log("Selected Question ID:", questionId);
+    //     console.log("Selected Option ID:", selectedOptionId);
+    //   };

@@ -28,7 +28,6 @@ export const CourseManagemet = () => {
   const [inputValue, setInputValue] = useState("");
   const [catigorieslists, setCatigorieslists] = useState([]);
 
-
   const navigate = useNavigate();
 
   const base_url = `${process.env.REACT_APP_API_URL}`;
@@ -53,9 +52,16 @@ export const CourseManagemet = () => {
     setInputValue(e.target.value);
   };
 
+  const filterData = data?.filter((item) =>
+    item?.course_name?.toLowerCase().includes(inputValue.toLowerCase())
+  );
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filterData?.slice(indexOfFirstItem, indexOfLastItem);
+
+
+
 
 
   const Catigorylist = () => {
@@ -107,7 +113,7 @@ export const CourseManagemet = () => {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: LogoutData ? `Bearer ${LogoutData}` : '', // Handle when LogoutData is not available
+        Authorization: LogoutData ? `Bearer ${LogoutData}` : "", // Handle when LogoutData is not available
       },
     })
       .then((response) => response.json())
@@ -121,15 +127,16 @@ export const CourseManagemet = () => {
       });
   };
 
+
   useEffect(() => {
-    fetchCourseList(); // Call fetchCourseList without an ID
+    fetchCourseList();
   }, []);
 
 
 
 
   useEffect(() => {
-    fetchCourseList(); // Call fetchCourseList without an ID
+    fetchCourseList();
   }, []);
 
   const handleCategoryClick = (id) => {
@@ -140,7 +147,8 @@ export const CourseManagemet = () => {
 
 
 
-  console.log("catigorieslists", data)
+
+
   return (
     <DashboardLayout>
       <div className="container-fluid">
@@ -181,18 +189,21 @@ export const CourseManagemet = () => {
 
 
               <div>
-                <ul role="tablist" class="mb-3 mt-4 nav nav-tabs nav-justified align-items-center">
-
+                <ul
+                  role="tablist"
+                  class="mb-3 mt-4 nav nav-tabs nav-justified align-items-center courses_tabs"
+                >
                   {catigorieslists?.map((items, index) => (
-                    <p class="nav-item" role="presentation">
+
+                    <li class="nav-item" role="presentation">
                       <button onClick={() => handleCategoryClick(items.id)} class="nav-link  " id="justify-tab-example-tab-Trending" role="tab" type="button">{items?.name}</button>
-                    </p>
+                    </li>
                   ))}
 
                   <li>
                     <div className="personal_notes_search">
                       <div className="">
-                        <input className="search_input" placeholder="Search Notes" />
+                        <input onChange={handleChange} className="search_input" placeholder="Search Notes" />
                       </div>
                       <div className="notes_search_icon">
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
@@ -203,7 +214,7 @@ export const CourseManagemet = () => {
 
                 <div className="contw">
                   <div className="row">
-                    {data?.map((item, index) => (
+                    {currentItems?.map((item, index) => (
                       <div className="col-sm-10 col-lg-6 col-xl-4 col-md-6 mb-5  ">
                         <div className="course_card">
                           <div className="course_card_img">
@@ -244,12 +255,12 @@ export const CourseManagemet = () => {
                             </div>
 
                             <div>
-                              <h4 className="course_card_title">
-                                {/* web development <br /> beginner - master | HTML,
-                                CSS. */}
-                                {item?.course_name}
-                              </h4>
 
+                              <h4 className="course_card_title">
+                                {item?.course_name?.substring(0, 15)}
+                                <br />
+                                {item?.course_name?.substring(15)}
+                              </h4>
                               <span className="students_enrolled_details">
                                 {item?.total_students} Students Enrolled.
                               </span>
@@ -280,15 +291,6 @@ export const CourseManagemet = () => {
               </div>
 
 
-              {/* <div>
-                                <div>
-                                    <input placeholder="Search Courses"/>
-                                </div>
-
-                                <div>
-                                    <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
-                                </div>
-                            </div> */}
             </div>
           </div>
         </div>
