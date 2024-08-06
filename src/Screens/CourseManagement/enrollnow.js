@@ -104,16 +104,45 @@ export const EnrollNow = () => {
     const handleChange = (e) => {
         setInputValue(e.target.value);
     }
- 
+
 
 
 
 
     const [items, setItems] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
+
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+    const [quizindex, setquizIndex] = useState(10)
+    const [answers, setAnswers] = useState({});
+
     const [detail, setDetail] = useState({});
 
-    console.log("detail", detail)
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (detail && detail.course_quiz_questions_data) {
+            setLoading(false);
+        }
+    }, [detail]);
+
+    const handleOptionChange = (questionId, optionId) => {
+        setAnswers({
+            ...answers,
+            [questionId]: optionId
+        });
+    };
+
+
+    // console.log("detail?.course_quiz_questions_data  , ", detail?.course_quiz_questions_data[quizindex])
+    // const currentQuestion = detail.course_quiz_questions_data[10];
+
+     // const handlenextquestion = () => {
+    //     if (quizindex < detail.course_quiz_questions_data.length - 1) {
+    //         setquizIndex(quizindex + 1)
+    //     }
+    // }
     const handleItemClick = async (itemId) => {
         setSelectedItem(itemId);
         // Fetch detail note data based on the selected item ID
@@ -167,7 +196,7 @@ export const EnrollNow = () => {
 
 
     const { id } = useParams();
-   
+
 
 
 
@@ -193,7 +222,7 @@ export const EnrollNow = () => {
 
         document.querySelector('.loaderBox').classList.remove("d-none");
 
-    
+
         fetch(`${process.env.REACT_APP_API_URL}api/user/course-quiz-sumbit/${id}`, {
             method: 'POST',
             headers: {
@@ -203,10 +232,10 @@ export const EnrollNow = () => {
             body: formDataMethod
         })
             .then((response) => {
-                  response.json();
- 
-                if(response?.data.status === true) {
-console.log("response")
+                response.json();
+
+                if (response?.data.status === true) {
+                    console.log("response")
                     quiznotify()
 
                 }
@@ -221,11 +250,11 @@ console.log("response")
                 console.log(error);
             });
     };
- 
-    const handleOptionChange = (questionId, selectedOptionId) => {
-        console.log("Selected Question ID:", questionId);
-        console.log("Selected Option ID:", selectedOptionId);
-    };
+
+    // const handleOptionChange = (questionId, selectedOptionId) => {
+    //     console.log("Selected Question ID:", questionId);
+    //     console.log("Selected Option ID:", selectedOptionId);
+    // };
     return (
 
         <DashboardLayout>
@@ -352,9 +381,10 @@ console.log("response")
                                                 <h3>Attempt Quiz</h3>
 
 
+                                                {/* <h3>{quizindex + 1}. {currentQuestion.question}</h3> */}
 
-                                                {detail?.course_quiz_questions_data?.map((item, index) => (
-                                                    <li className="gap-3" key={index}>
+                                                {detail.course_quiz_questions_data?.question?.map((item, index) => (
+                                                    <p className="gap-3" key={index}>
                                                         <span className="d-flex">
                                                             <h3>{index + 1} {item?.question}</h3>
                                                         </span>
@@ -369,7 +399,7 @@ console.log("response")
                                                                 </p>
                                                             ))}
                                                         </p>
-                                                    </li>
+                                                    </p>
                                                 ))}
 
                                                 <button onClick={() => handleSubmitquiz(detail?.id)} id="quizsubmit">Submit</button>
@@ -477,7 +507,7 @@ console.log("response")
 
                                             </div>
                                         </div>
-                                        
+
 
                                     </div>
 
@@ -487,7 +517,7 @@ console.log("response")
                         </div>
                     </div>
                 </section>
- 
+
             </div>
             <ToastContainer />
         </DashboardLayout >
@@ -495,4 +525,3 @@ console.log("response")
     );
 };
 
- 
