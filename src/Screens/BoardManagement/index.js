@@ -114,7 +114,7 @@ export const BoardManagement = () => {
               <div>
                 <div className="row  mb-5 ">
                   {data?.map((item) => (
-                    <div className="col-sm-10 col-lg-6 col-xl-3 mx-auto">
+                    <div className="col-md-6 col-xl-3">
                       <div className="course_card">
                         <div className="course_card_img">
                           <img src={base_url + item?.image} className="w-100" />
@@ -178,7 +178,7 @@ export const BoardManagement = () => {
                     </div>
                   ))}
 
-                  <div className="col-sm-10 col-lg-6 col-xl-3 mx-auto">
+                  <div className="col-md-6 col-xl-3">
                     <div className="course_card">
                       <div className="course_card_img">
                         <img src={courseImg02} className="w-100" />
@@ -241,7 +241,7 @@ export const BoardManagement = () => {
                     </div>
                   </div>
 
-                  <div className="col-sm-10 col-lg-6 col-xl-3 mx-auto">
+                  <div className="col-md-6 col-xl-3">
                     <div className="course_card">
                       <div className="course_card_img">
                         <img src={courseImg03} className="w-100" />
@@ -312,7 +312,7 @@ export const BoardManagement = () => {
 
                 <div className="row">
                   {data?.map((item) => (
-                    <div className="col-sm-10 col-lg-6 col-xl-3 mx-auto">
+                    <div className="col-md-6 col-xl-3">
                       <div className="course_card">
                         <div className="course_card_img">
                           <img src={base_url + item?.image} className="w-100" />
@@ -376,7 +376,7 @@ export const BoardManagement = () => {
                     </div>
                   ))}
 
-                  <div className="col-sm-10 col-lg-6 col-xl-3 mx-auto">
+                  <div className="col-md-6 col-xl-3">
                     <div className="course_card">
                       <div className="course_card_img">
                         <img src={courseImg02} className="w-100" />
@@ -439,7 +439,7 @@ export const BoardManagement = () => {
                     </div>
                   </div>
 
-                  <div className="col-sm-10 col-lg-6 col-xl-3 mx-auto">
+                  <div className="col-md-6 col-xl-3">
                     <div className="course_card">
                       <div className="course_card_img">
                         <img src={courseImg03} className="w-100" />

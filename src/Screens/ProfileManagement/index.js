@@ -39,7 +39,7 @@ import {
 
 export const ProfileManagement = () => {
   const [data, setData] = useState([]);
-  const [editData , setEditData] = useState([]);
+  const [editData, setEditData] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
 
@@ -51,7 +51,7 @@ export const ProfileManagement = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const [inputValue, setInputValue] = useState("");
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -73,40 +73,39 @@ export const ProfileManagement = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setEditData((prevData) => ({
-        ...prevData,
-        [name]: value,
-    })); };
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
+  const profilelist = () => {
+    document.title = "Wisdom For Life | User Management";
+    const LogoutData = localStorage.getItem("login");
 
+    document.querySelector(".loaderBox")?.classList.remove("d-none");
 
-const profilelist = () =>{
-  document.title = "Wisdom For Life | User Management";
-  const LogoutData = localStorage.getItem("login");
-
-  document.querySelector(".loaderBox")?.classList.remove("d-none");
-
-  fetch(`${process.env.REACT_APP_API_URL}api/user/profile-view`, {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${LogoutData}`,
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      setData(data?.data);
-      setEditData(data?.data)
-      document.querySelector(".loaderBox")?.classList.add("d-none");
-      setData(data?.data);
+    fetch(`${process.env.REACT_APP_API_URL}api/user/profile-view`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${LogoutData}`,
+      },
     })
-    .catch((error) => {
-      document.querySelector(".loaderBox")?.classList.add("d-none");
-      console.log(error);
-    });
-}
-    useEffect(() => {
-      profilelist()
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data?.data);
+        setEditData(data?.data);
+        document.querySelector(".loaderBox")?.classList.add("d-none");
+        setData(data?.data);
+      })
+      .catch((error) => {
+        document.querySelector(".loaderBox")?.classList.add("d-none");
+        console.log(error);
+      });
+  };
+  useEffect(() => {
+    profilelist();
   }, []);
 
   const LogoutData = localStorage.getItem("login");
@@ -133,20 +132,16 @@ const profilelist = () =>{
       });
   };
 
-
-
-
-
   const filehandleChange = (event) => {
     const file = event.target.files[0];
-     if (file) {
-        const fileName = file;
-        setEditData((prevData) => ({
-            ...prevData,
-            image: fileName,
-        }));
-    } 
-};
+    if (file) {
+      const fileName = file;
+      setEditData((prevData) => ({
+        ...prevData,
+        image: fileName,
+      }));
+    }
+  };
 
   const handleEdit = (event) => {
     event.preventDefault();
@@ -156,7 +151,6 @@ const profilelist = () =>{
       formDataMethod.append(key, editData[key]);
     }
 
- 
     document.querySelector(".loaderBox").classList.remove("d-none");
     fetch(`${process.env.REACT_APP_API_URL}api/user/profile-edit`, {
       method: "POST",
@@ -171,7 +165,7 @@ const profilelist = () =>{
       })
       .then((data) => {
         document.querySelector(".loaderBox").classList.add("d-none");
-        profilelist()
+        profilelist();
       })
       .catch((error) => {
         document.querySelector(".loaderBox").classList.add("d-none");
@@ -179,15 +173,18 @@ const profilelist = () =>{
       });
   };
   const base_url = `${process.env.REACT_APP_API_URL}`;
- 
+
   return (
     <DashboardLayout>
       <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-3">
+        <div className="row justify-content-center">
+          <div className="col-xl-3 col-lg-4 col-md-10 mb-4">
             <div className="profile_left_part">
               <div className="text-center">
-                <img src={base_url +  data?.image} className="img-fluid user_profile_image" />
+                <img
+                  src={base_url + data?.image}
+                  className="img-fluid user_profile_image"
+                />
               </div>
 
               <div className="user_profile_details">
@@ -216,17 +213,14 @@ const profilelist = () =>{
               </div>
 
               <div>
-                <Link
-                  className="profile_logout_btn "
-                  onClick={handleRedirect}
-                >
+                <Link className="profile_logout_btn " onClick={handleRedirect}>
                   <span>Log Out</span>
                 </Link>
               </div>
             </div>
           </div>
 
-          <div className="col-md-9">
+          <div className="col-xl-9 col-lg-8 col-md-10">
             <div className="profile_right_part">
               <h6 className="profile_edit_heading">EDIT</h6>
 
@@ -301,8 +295,6 @@ const profilelist = () =>{
                 </div>
 
                 <div className="mb-3">
-                 
-
                   <CustomInput
                     // label="Enter Email"
                     required
@@ -398,7 +390,9 @@ const profilelist = () =>{
                   /> */}
 
                 <div>
-                  <button className="profile_save_btn " onClick={handleEdit}>Save</button>
+                  <button className="profile_save_btn " onClick={handleEdit}>
+                    Save
+                  </button>
                 </div>
               </div>
             </div>

@@ -11,14 +11,14 @@ import {
 } from "../../Assets/images";
 import {
   addToCart,
-  incrementvariationQuantity, incrementQuantityCart,
+  incrementvariationQuantity,
+  incrementQuantityCart,
   patient_name,
   patient_file,
   decrementQuantityCart,
   deleteitem,
   removeFromCart,
   updateCartItem,
-    
 } from "../../Components/store/action";
 
 import Rectangle1 from "../../Assets/images/Rectangle1.png";
@@ -60,7 +60,7 @@ export const CartManagement = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const [inputValue, setInputValue] = useState("");
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handlePageChange = (pageNumber) => {
@@ -88,12 +88,7 @@ const dispatch = useDispatch()
     item?.name.toLowerCase().includes(inputValue.toLowerCase())
   );
 
-
-
-
-
-
-   console.log("cartItems" , cartItems)
+  console.log("cartItems", cartItems);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
@@ -123,51 +118,49 @@ const dispatch = useDispatch()
   }, []);
 
   const baseurl = `${process.env.REACT_APP_API_URL}`;
-console.log("baseurl ," , baseurl)
+  console.log("baseurl ,", baseurl);
 
+  const quantity = cartItems.reduce((total, currentItem) => {
+    return total + currentItem.category_id;
+  }, 0);
 
-const quantity = cartItems.reduce((total, currentItem) => {
-  return total + currentItem.category_id;
-}, 0);
+  console.log("quantity:", quantity);
 
-console.log("quantity:", quantity);
- 
-const totalprice = cartItems.reduce((total, currentItem) => {
-  return total + currentItem.course_price;
-}, 0);
+  const totalprice = cartItems.reduce((total, currentItem) => {
+    return total + currentItem.course_price;
+  }, 0);
 
+  const handleSubmit = (event) => {
+    const LogoutData = localStorage.getItem("login");
+    event.preventDefault();
 
-const handleSubmit = (event) => {
-  const LogoutData = localStorage.getItem("login");
-  event.preventDefault();
+    const formDataMethod = new FormData();
+    for (const key in formData) {
+      formDataMethod.append(key, formData[key]);
+    }
 
-  const formDataMethod = new FormData();
-  for (const key in formData) {
-    formDataMethod.append(key, formData[key]);
-  }
-  
-  document.querySelector(".loaderBox").classList.remove("d-none");
-  fetch(`${process.env.REACT_APP_API_URL}api/user/checkout`, {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      Authorization: `Bearer ${LogoutData}`,
-    },
-    body: formDataMethod,
-  })
-    .then((response) => {
-      return response.json();
+    document.querySelector(".loaderBox").classList.remove("d-none");
+    fetch(`${process.env.REACT_APP_API_URL}api/user/checkout`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${LogoutData}`,
+      },
+      body: formDataMethod,
     })
-    .then((data) => {
-      document.querySelector(".loaderBox").classList.add("d-none");
-      // notlist();
-      // setUser(false);
-    })
-    .catch((error) => {
-      document.querySelector(".loaderBox").classList.add("d-none");
-      console.log(error);
-    });
-};
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        document.querySelector(".loaderBox").classList.add("d-none");
+        // notlist();
+        // setUser(false);
+      })
+      .catch((error) => {
+        document.querySelector(".loaderBox").classList.add("d-none");
+        console.log(error);
+      });
+  };
 
   return (
     <DashboardLayout>
@@ -176,10 +169,10 @@ const handleSubmit = (event) => {
           <div className="container">
             <div className="row">
               <div className="col-sm-12 col-lg-8">
-                <div className="cart">
+                <div className="cart my_cart">
                   <h3> My Cart </h3>{" "}
                   <div className="table-responsive">
-                    <table className="table tableh">
+                    <table className="table tableh ">
                       {/* <tr className="  mb-5 ">
                         <td className="firsttd mx-auto ">
                           {" "}
@@ -289,70 +282,75 @@ const handleSubmit = (event) => {
                           <p className="dollar"> $99 </p>
                         </td>
                       </tr> */}
-                      {cartItems.map((items ,  index) =>(
-                        <tr className="  mb-5 ">
-                        <td className="firsttd mx-auto ">
-                          {" "}
-                          <img
-                            src={baseurl + items?.image}
-                            alt=""
-                            className="img-fluid"
-                          />{" "}
-                        </td>{" "}
-                        <td className="secountsttd">
-                          {" "}
-                          <h5>
-                            {" "}
-                           {items?.course_name}{" "}
-                          </h5>{" "}
-                          <p className="cart-para">
-                            {" "}
-                            {items?.course_description.slice(0 , 112)}{" "}
-                          </p>{" "}
-                          <button  onClick={() => dispatch(deleteitem(items.id))}> Remove </button>{" "}
-                        </td>{" "}
-                        <td>
-                          {" "}
-                          <p className="dollar"> ${items?.course_price} </p>
-                        </td>
-                      </tr>
-                      ) )}
+                      {cartItems.map((items, index) => (
+                        <>
+                          <div className="cart_items">
+                            <div className="firsttd mx-auto ">
+                              {" "}
+                              <img
+                                src={baseurl + items?.image}
+                                alt=""
+                                className="img-fluid"
+                              />{" "}
+                            </div>{" "}
+                            <div className="secountsttd">
+                              {" "}
+                              <h5> {items?.course_name} </h5>{" "}
+                              <p className="cart-para">
+                                {" "}
+                                {items?.course_description.slice(0, 112)}{" "}
+                              </p>{" "}
+                              <button
+                                onClick={() => dispatch(deleteitem(items.id))}
+                              >
+                                {" "}
+                                Remove{" "}
+                              </button>{" "}
+                            </div>{" "}
+                            <div>
+                              {" "}
+                              <p className="dollar"> ${items?.course_price} </p>
+                            </div>
+                          </div>
+                          <hr />
+                        </>
+                      ))}
                     </table>{" "}
                   </div>
                 </div>{" "}
               </div>{" "}
-              <div className="col-md-4">
-                <div className="cart">
+              <div className="col-lg-4">
+                <div className="cart mb-4">
                   <h3> Cart Summary </h3>{" "}
                   <div className="row">
-                    <div className="col-md-6">
-                      <p className="summary"> Subtotal  </p>{" "}
+                    <div className="col">
+                      <p className="summary"> Subtotal </p>{" "}
                     </div>{" "}
-                    <div className="col-md-6">
+                    <div className="col">
                       <p className="sum"> ${totalprice} </p>{" "}
                     </div>{" "}
                   </div>{" "}
                   <div className="row">
-                    <div className="col-md-6">
+                    <div className="col">
                       <p className="summary"> Discount </p>{" "}
                     </div>{" "}
-                    <div className="col-md-6">
+                    <div className="col">
                       <p className="sum"> $00 .0 </p>{" "}
                     </div>{" "}
                   </div>{" "}
                   <div className="row">
-                    <div className="col-md-6">
+                    <div className="col">
                       <p className="summary"> Tax </p>{" "}
                     </div>{" "}
-                    <div className="col-md-6">
+                    <div className="col">
                       <p className="sum"> $0 .00 </p>{" "}
                     </div>{" "}
                   </div>{" "}
                   <div className="row">
-                    <div className="col-md-6">
+                    <div className="col">
                       <p className="summary"> Total </p>{" "}
                     </div>{" "}
-                    <div className="col-md-6">
+                    <div className="col">
                       <p className="sum"> ${totalprice} </p>{" "}
                     </div>{" "}
                   </div>{" "}
@@ -360,7 +358,10 @@ const handleSubmit = (event) => {
                   <div className="row mx-auto">
                     <div className="col-md-12">
                       <div className="btns">
-                        <button className="btnss" onClick={handleSubmit}> Checkout </button>{" "}
+                        <button className="btnss" onClick={handleSubmit}>
+                          {" "}
+                          Checkout{" "}
+                        </button>{" "}
                       </div>{" "}
                     </div>{" "}
                   </div>
@@ -385,9 +386,7 @@ const handleSubmit = (event) => {
             </div>{" "}
           </div>{" "}
         </section>
-        <section>
-          
-        </section>{" "}
+        <section></section>{" "}
       </div>
     </DashboardLayout>
   );

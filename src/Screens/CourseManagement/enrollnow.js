@@ -16,6 +16,9 @@ import {
   studentIcon,
   languageIcon,
   certificateIcon,
+  instructorIconSecondary,
+  languageIconSecondary,
+  ratingStarIcon,
 } from "../../Assets/images";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -239,17 +242,32 @@ export const EnrollNow = () => {
                 <h2 className="enroll-title  ">
                   Web Development Beginner <br /> To Master || HTML, CSS, PHP
                 </h2>
-                <div className="enrollist d-flex text-black       text-center  mx-auto  ">
-                  <span>
-                    <i className="fa fa-user icon" aria-hidden="true"></i>
+                <div className="enrollist course_detail_data d-flex text-black       text-center  mx-auto  ">
+                  <div className="text_with_icon">
+                    {/* <i className="fa fa-user icon" aria-hidden="true"></i> */}
+                    <img
+                      src={instructorIconSecondary}
+                      className="text_icon"
+                      alt=""
+                    />
                     <p>By Edward Norton</p>
-                  </span>
-                  <span>
-                    <i className="fa-solid fa-globe icon"></i>
+                  </div>
+                  <div className="text_with_icon">
+                    {/* <i className="fa-solid fa-globe icon"></i> */}
+                    <img
+                      src={languageIconSecondary}
+                      className="text_icon"
+                      alt=""
+                    />
                     <p>Business</p>
-                  </span>
+                  </div>
+                  <div className="text_with_icon">
+                    {/* <i className="fa-solid fa-globe icon"></i> */}
+                    <img src={ratingStarIcon} className="text_icon" alt="" />
+                    <p>(3 Reviews)</p>
+                  </div>
 
-                  <span className=" d-flex  mb-0 ">
+                  {/* <span className=" d-flex  mb-0 ">
                     <span className="fa fa-star checked star ">
                       <span className="fa fa-star checked star"></span>
                       <span className="fa fa-star checked star"></span>
@@ -257,7 +275,7 @@ export const EnrollNow = () => {
                       <span className="fa fa-star checked star"></span>
                       <p>(3 Reviews)</p>
                     </span>
-                  </span>
+                  </span> */}
                 </div>
               </div>
               <div className="col-xl-4 col-md-5">

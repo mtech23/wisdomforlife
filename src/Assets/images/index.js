@@ -51,6 +51,10 @@ import studentIcon from "./student-icon.png";
 import languageIcon from "./language-icon.png";
 import certificateIcon from "./certificate-icon.png";
 
+import instructorIconSecondary from "./instructor-icon-secondary.png";
+import languageIconSecondary from "./language-icon-secondary.png";
+import ratingStarIcon from "./rating-stars.png";
+
 export {
   logo,
   authImage,
@@ -102,4 +106,7 @@ export {
   studentIcon,
   languageIcon,
   certificateIcon,
+  instructorIconSecondary,
+  languageIconSecondary,
+  ratingStarIcon,
 };

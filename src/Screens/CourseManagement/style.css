@@ -1,21 +1,21 @@
 .course_main_content {
   background-image: url("../../Assets/images/course-top-img-01.png");
-  background-size: 100%;
+  /* background-size: 100%; */
+  background-size: 100% 100%;
   background-repeat: no-repeat;
-  /* padding: 80px 0px; */
-  padding-top: 110px;
-  padding-bottom: 30px;
+  padding: 80px 0px 0;
+  border-radius: 20px;
 }
 
 .course_main_title {
-  font-size: 50px;
+  font-size: 40px;
   font-weight: 600;
   color: #fff;
   text-transform: capitalize;
 }
 
 .course_main_para {
-  font-size: 22px;
+  font-size: 16px;
   font-weight: 300;
   color: #f7f7f7;
 }
@@ -27,13 +27,13 @@
 }
 
 .course_num {
-  font-size: 40px;
+  font-size: 26px;
   font-weight: 600;
   color: #fff;
 }
 
 .course_num_title {
-  font-size: 18px;
+  font-size: 13px;
   color: #fff;
 }
 
@@ -117,10 +117,10 @@ padding: 10px 0px;
   gap: 6px;
 }
 
-.contw {
+/* .contw {
   width: 1481px;
   margin: 0 auto !important;
-}
+} */
 /* .course_card_title{
     font-size: 30px;
     font-family: sans-serif !important;
@@ -186,12 +186,39 @@ padding: 10px 0px;
   border-radius: 5px !important;
 }
 
+@media (max-width: 1440px) {
+  .course_main_title {
+    font-size: 33px;
+    margin-bottom: 0;
+  }
+  .course_num {
+    font-size: 18px;
+  }
+  .course_main_para {
+    font-size: 15px;
+  }
+  .course_num_title {
+    font-size: 12px;
+  }
+}
+@media (max-width: 1280px) {
+  .course_main_title {
+    font-size: 30px;
+  }
+}
+@media (max-width: 1199px) {
+  .course_searchBar {
+    width: 100%;
+    order: -1;
+    margin-bottom: 16px;
+  }
+}
 @media (max-width: 1024px) {
-  .course_main_content {
+  /* .course_main_content {
     background-size: 100%;
     padding-top: 21px;
     padding-bottom: 0px;
-  }
+  } */
 
   .course_main_title {
     font-size: 27px;
@@ -200,6 +227,8 @@ padding: 10px 0px;
   .course_main_para {
     font-size: 14px;
     margin-bottom: 7px;
+    color: #fff;
+    opacity: 1;
   }
 
   .course_num {
@@ -215,7 +244,7 @@ padding: 10px 0px;
   }
 
   .course_card_title {
-    font-size: 10px;
+    font-size: 15px;
   }
 
   .course_card {
@@ -228,6 +257,15 @@ padding: 10px 0px;
 
   .course_rating_information {
     font-size: 12px;
+  }
+  .courses_info_details {
+    gap: 25px;
+  }
+  /* .course_main_content {
+    padding: 50px 0px 20px;
+  } */
+  .course_top_banner {
+    background-color: #436fd9b5;
   }
 }
 
@@ -251,11 +289,21 @@ padding: 10px 0px;
     background-image: linear-gradient(0deg, #3c6bd7, #3c6bd7),
       url("../../Assets/images/course-top-img-01.png");
   }
+  .courses_tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .course_searchBar {
+    grid-column: 1 / -1;
+  }
 }
 
+@media (max-width: 767px) {
+}
 @media (max-width: 425px) {
   .course_main_content {
     background-size: 140% 100%;
+    padding: 40px 0px 10px;
   }
 
   .course_rating_detail {
@@ -537,7 +585,22 @@ ul li:before {
   font-family: "Poppins", sans-serif;
   font-weight: 400 !important;
   font-size: 13px !important;
+  padding: 6px 0;
 }
+
+.course_detail_data .text_icon {
+  padding-top: 0 !important;
+}
+.course_detail_data .text_with_icon p {
+  padding-left: 0;
+}
+.course_detail_data .course_detail_data {
+  gap: 7px;
+}
+.course_detail_data .text_with_icon {
+  gap: 4px;
+}
+
 @media only screen and (max-width: 1280px) {
   web::after {
     display: none;
@@ -557,10 +620,10 @@ ul li:before {
   }
 }
 @media only screen and (max-width: 1024px) {
-  .contw {
+  /* .contw {
     width: 694px;
     margin: 0 auto !important;
-  }
+  } */
   .web h2 br {
     display: none;
   }
@@ -573,17 +636,17 @@ ul li:before {
   .course_rating_detail {
     padding: 0px 12px;
   }
-  .contw {
+  /* .contw {
     width: 315px !important;
-  }
+  } */
   .course_main_title {
-    font-size: 14px !important;
+    font-size: 23px !important;
   }
   .course_main_para {
-    font-size: 10px !important;
+    font-size: 12px !important;
   }
   .course_num {
-    font-size: 10px !important;
+    font-size: 16px !important;
   }
   .course_num_title {
     font-size: 10px !important;
@@ -646,5 +709,12 @@ ul li:before {
   }
   .overview h3 {
     font-size: 16px;
+  }
+}
+
+@media (max-width: 425px) {
+  .web h2 {
+    font-size: 20px;
+    line-height: 1.3;
   }
 }

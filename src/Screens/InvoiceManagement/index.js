@@ -103,41 +103,62 @@ export const InvoiceManagement = () => {
 
   return (
     <DashboardLayout>
-      <div className="container-fluid mx-auto ">
+      <div className="container mx-auto ">
         <div className="row">
-          <p className="invoice-title  text-center  =">Invoice</p>
-          <div className=" mx-auto  justify-content-center  col-md-10">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th className=" table-sl  text-white" scope="col">
-                    <span className="   ">SL</span>
-                  </th>
-                  <th className="table-des text-white " scope="col">
-                    Item Description
-                  </th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Qty</th>
-                  <th scope="col">Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data?.map((item , index) => (
-                  <tr>
-                    <th scope="row">{index + 1}</th>
-                    <td className="  p-3  bg-white ">
-                      {item?.item_description?.slice(0 , 14)}
-                    </td>
-                    <td className="p-3">${item?.price}</td>
-                    <td className=" bg-white ">{item?.qty}</td>
-                    <td>${item?.total}</td>
+          <p className="invoice-title  text-center">Invoice</p>
+          <div className=" mx-auto  justify-content-center col-md-12">
+            <div class="invoice_table">
+              <table className="table">
+                <thead>
+                  <tr className="th_cols">
+                    <th
+                      className=" table-sl  text-white table_serial_head"
+                      scope="col"
+                    >
+                      <span className="   ">SL</span>
+                    </th>
+                    <th className="table-des text-white " scope="col">
+                      Item Description
+                    </th>
+                    <th scope="col" className="price_th text-center">
+                      Price
+                    </th>
+                    <th scope="col" className="text-center">
+                      Qty
+                    </th>
+                    <th scope="col" className="text-center">
+                      Total
+                    </th>
                   </tr>
-                ))}
-              
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {data?.map((item, index) => (
+                    <tr>
+                      <td
+                        scope="row"
+                        className="table_serial_body font-weight-bold"
+                      >
+                        {index + 1}
+                      </td>
+                      <td className="  p-3  bg-white ">
+                        {item?.item_description?.slice(0, 14)}
+                      </td>
+                      <td className="p-3 price_body text-center font-weight-bold">
+                        ${item?.price}
+                      </td>
+                      <td className=" bg-white text-center font-weight-bold">
+                        {item?.qty}
+                      </td>
+                      <td className="text-center font-weight-bold">
+                        ${item?.total}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div className="col-md-10 mx-auto ">
+          {/* <div className="col-md-10 mx-auto ">
             <div className="table_end_details">
               <span className="table-subtotal">SubTotol:</span>
               <span className="table-subtotal">$323</span>
@@ -149,6 +170,22 @@ export const InvoiceManagement = () => {
             <div className="table_end_details-last text-white  mx-auto  justify-content-end  align-content-end ">
               <span className="table-subtotal text-white ">Totol:</span>
               <span className="table-subtotal text-white ">$323</span>
+            </div>
+          </div> */}
+          <div className="col-md-12 mx-auto ">
+            <div className="invoice_total">
+              <div className="invoice_total_item">
+                <span>Sub Total</span>
+                <span>$220.00</span>
+              </div>
+              <div className="invoice_total_item">
+                <span>Tax</span>
+                <span>0.00%</span>
+              </div>
+              <div className="invoice_total_item invoice_total_item_last">
+                <span>Total:</span>
+                <span>$220.00</span>
+              </div>
             </div>
           </div>
           <div></div>

@@ -10,7 +10,8 @@ body {
   transition: all 0.35s ease-in-out, left 0.35s ease-in-out,
     margin-right 0.35s ease-in-out, right 0.35s ease-in-out;
   background: #0b1228;
-  z-index: 2;
+  /* z-index: 2; */
+  z-index: 9999;
   /* top: 6rem; */
   padding-bottom: 6rem;
   scrollbar-width: thin;
@@ -27,7 +28,8 @@ body {
   transition: all 0.35s ease-in-out, left 0.35s ease-in-out,
     margin-right 0.35s ease-in-out, right 0.35s ease-in-out;
   background: #0b1228;
-  z-index: 2;
+  /* z-index: 2; */
+  z-index: 9999;
   /* top: 6rem; */
   padding-bottom: 6rem;
   /* scrollbar-width: thin; */

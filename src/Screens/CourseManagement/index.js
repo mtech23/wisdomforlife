@@ -340,7 +340,7 @@ export const CourseManagemet = () => {
   console.log("catigorieslists", data);
   return (
     <DashboardLayout>
-      <div className="container-fluid">
+      <div className="container">
         <div className="row">
           <div className="col-md-12">
             <div className="course_main_content">
@@ -392,7 +392,7 @@ export const CourseManagemet = () => {
                     </li>
                   ))}
 
-                  <li>
+                  <li className="course_searchBar">
                     <div className="personal_notes_search">
                       <div className="">
                         <input
@@ -408,9 +408,9 @@ export const CourseManagemet = () => {
                 </ul>
 
                 <div className="contw">
-                  <div className="row">
+                  <div className="row justify-content-center">
                     {data?.map((item, index) => (
-                      <div className="col-sm-10 col-lg-6 col-xl-4 col-md-6 mb-5  ">
+                      <div className=" col-lg-6 col-xl-4 col-md-6 mb-3  ">
                         <div className="course_card">
                           <div className="course_card_img">
                             <img
