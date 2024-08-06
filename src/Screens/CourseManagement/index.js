@@ -45,7 +45,6 @@ export const CourseManagemet = () => {
   const [inputValue, setInputValue] = useState("");
   const [catigorieslists, setCatigorieslists] = useState([]);
 
-
   const navigate = useNavigate();
 
   const base_url = `${process.env.REACT_APP_API_URL}`;
@@ -78,15 +77,6 @@ export const CourseManagemet = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   // const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
 
-
-
-
-
-
-
-
-
-
   // const catigorylist = () => {
 
   //   const LogoutData = localStorage.getItem("login");
@@ -112,9 +102,7 @@ export const CourseManagemet = () => {
   //     });
   // };
 
-
-
-  // useEffect(() => { 
+  // useEffect(() => {
   //   const LogoutData = localStorage.getItem("login");
   //   document.querySelector(".loaderBox").classList.remove("d-none");
   //   fetch(`${process.env.REACT_APP_API_URL}api/user/category-listing`, {
@@ -163,9 +151,6 @@ export const CourseManagemet = () => {
     Catigorylist();
   }, []);
 
-
-
-
   // const courselist = (id) => {
   //   const logoutData = localStorage.getItem("login");
   //   document.querySelector(".loaderBox").classList.remove("d-none");
@@ -194,12 +179,8 @@ export const CourseManagemet = () => {
   //   });
   // };
 
-
-
-
   // const courselist = (id) => {
   //   const logoutData = localStorage.getItem("login");
-     
 
   //   let url = `${process.env.REACT_APP_API_URL}api/user/course-listing/`;
   //   if (id) {
@@ -216,14 +197,13 @@ export const CourseManagemet = () => {
   //   })
   //   .then((response) => response.json())
   //   .then((data) => {
-    
-  //     setData(data?.data);
 
+  //     setData(data?.data);
 
   //     console.log(data?.data);
   //   })
   //   .catch((error) => {
-       
+
   //     console.log(error);
   //   });
   // };
@@ -231,33 +211,6 @@ export const CourseManagemet = () => {
   // useEffect(() => {
   //   courselist();
   // }, []);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -289,27 +242,6 @@ export const CourseManagemet = () => {
   //   });
   // };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
   // const fetchCourseList = (id) => {
   //   const LogoutData = localStorage.getItem("login");
   //   document.querySelector(".loaderBox").classList.remove("d-none");
@@ -333,17 +265,9 @@ export const CourseManagemet = () => {
   // };
 
   // useEffect(() => {
- 
+
   //   fetchCourseList();
   // }, []);
-
-
-
-
-
-
-
-
 
   const fetchCourseList = (id) => {
     const LogoutData = localStorage.getItem("login");
@@ -357,7 +281,7 @@ export const CourseManagemet = () => {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: LogoutData ? `Bearer ${LogoutData}` : '', // Handle when LogoutData is not available
+        Authorization: LogoutData ? `Bearer ${LogoutData}` : "", // Handle when LogoutData is not available
       },
     })
       .then((response) => response.json())
@@ -370,14 +294,11 @@ export const CourseManagemet = () => {
         console.log(error);
       });
   };
-  
+
   useEffect(() => {
     fetchCourseList(); // Call fetchCourseList without an ID
   }, []);
 
-
- 
-  
   useEffect(() => {
     fetchCourseList(); // Call fetchCourseList without an ID
   }, []);
@@ -386,11 +307,9 @@ export const CourseManagemet = () => {
     fetchCourseList(id);
   };
 
-
-
   // const courselist = (id) => {
   //   // document.title = "Wisdom For Life | Course ";
- 
+
   //   const LogoutData = localStorage.getItem("login");
   //   document.querySelector(".loaderBox").classList.remove("d-none");
   //   fetch(`${process.env.REACT_APP_API_URL}api/user/course-listing/${id}`, {
@@ -403,7 +322,7 @@ export const CourseManagemet = () => {
   //   })
   //     .then((response) => response.json())
   //     .then((data) => {
- 
+
   //       document.querySelector(".loaderBox").classList.add("d-none");
   //       setData(data?.data);
   //     })
@@ -412,16 +331,13 @@ export const CourseManagemet = () => {
   //       console.log(error);
   //     });
   // };
- 
+
   // useEffect(() => {
 
   //   courselist();
   // }, []);
 
-
-
-
-  console.log("catigorieslists", data)
+  console.log("catigorieslists", data);
   return (
     <DashboardLayout>
       <div className="container-fluid">
@@ -457,110 +373,114 @@ export const CourseManagemet = () => {
             </div>
 
             <div>
-
-
-
- 
               <div>
-                <ul role="tablist" class="mb-3 mt-4 nav nav-tabs nav-justified align-items-center">
-
+                <ul
+                  role="tablist"
+                  class="mb-3 mt-4 nav nav-tabs nav-justified align-items-center courses_tabs"
+                >
                   {catigorieslists?.map((items, index) => (
-
                     <li class="nav-item" role="presentation">
-                      <button onClick={() => handleCategoryClick(items.id)} class="nav-link  " id="justify-tab-example-tab-Trending" role="tab" type="button">{items?.name}</button>
+                      <button
+                        onClick={() => handleCategoryClick(items.id)}
+                        class="nav-link  "
+                        id="justify-tab-example-tab-Trending"
+                        role="tab"
+                        type="button"
+                      >
+                        {items?.name}
+                      </button>
                     </li>
                   ))}
 
                   <li>
-                  <div className="personal_notes_search">
+                    <div className="personal_notes_search">
                       <div className="">
-                          <input className="search_input" placeholder="Search Notes" />
+                        <input
+                          className="search_input"
+                          placeholder="Search Notes"
+                        />
                       </div>
                       <div className="notes_search_icon">
-                          <FontAwesomeIcon icon={faMagnifyingGlass} />
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
                       </div>
-                      </div>
+                    </div>
                   </li>
                 </ul>
 
-<div className="contw">
-<div className="row">
-                  {data?.map((item, index) => (
-                    <div className="col-sm-10 col-lg-6 col-xl-4 col-md-6 mb-5  ">
-                      <div className="course_card">
-                        <div className="course_card_img">
-                          <img
-                            src={base_url + item?.image}
-                            className="w-100"
-                          />
-                        </div>
-
-                        <div className="course_card_body">
-                          <div className="course_ratings">
-                            <div className="course_rating_detail border-0 p-0">
-                              <span className="course_rating_icon">
-                                <FontAwesomeIcon icon={faPlay} />
-                              </span>
-                              <span className="course_rating_information">
-                                20 videos
-                              </span>
-                            </div>
-
-                            <div className="course_rating_detail">
-                              <span className="course_rating_icon">
-                                <FontAwesomeIcon icon={faStar} />
-                              </span>
-                              <span className="course_rating_information">
-                                {item?.total_reviews} Reviews
-                              </span>
-                            </div>
-
-                            <div className="course_rating_detail border-0 p-0">
-                              <span className="course_rating_icon">
-                                <FontAwesomeIcon icon={faTable} />
-                              </span>
-                              <span className="course_rating_information">
-                                8 Tests
-                              </span>
-                            </div>
+                <div className="contw">
+                  <div className="row">
+                    {data?.map((item, index) => (
+                      <div className="col-sm-10 col-lg-6 col-xl-4 col-md-6 mb-5  ">
+                        <div className="course_card">
+                          <div className="course_card_img">
+                            <img
+                              src={base_url + item?.image}
+                              className="w-100"
+                            />
                           </div>
 
-                          <div>
-                            <h4 className="course_card_title">
-                              {/* web development <br /> beginner - master | HTML,
-                                CSS. */}
-                              {item?.course_name}
-                            </h4>
+                          <div className="course_card_body">
+                            <div className="course_ratings">
+                              <div className="course_rating_detail border-0 p-0">
+                                <span className="course_rating_icon">
+                                  <FontAwesomeIcon icon={faPlay} />
+                                </span>
+                                <span className="course_rating_information">
+                                  20 videos
+                                </span>
+                              </div>
 
-                            <span className="students_enrolled_details">
-                              {item?.total_students} Students Enrolled.
-                            </span>
-                          </div>
+                              <div className="course_rating_detail">
+                                <span className="course_rating_icon">
+                                  <FontAwesomeIcon icon={faStar} />
+                                </span>
+                                <span className="course_rating_information">
+                                  {item?.total_reviews} Reviews
+                                </span>
+                              </div>
 
-                          <div className="course_card_body_footer">
+                              <div className="course_rating_detail border-0 p-0">
+                                <span className="course_rating_icon">
+                                  <FontAwesomeIcon icon={faTable} />
+                                </span>
+                                <span className="course_rating_information">
+                                  8 Tests
+                                </span>
+                              </div>
+                            </div>
+
                             <div>
-                              <Link to={`enroll-now/${item?.id}`}>
-                                <button className="course_enroll_btn">
-                                  Enroll
-                                </button>
-                              </Link>
+                              <h4 className="course_card_title">
+                                {/* web development <br /> beginner - master | HTML,
+                                CSS. */}
+                                {item?.course_name}
+                              </h4>
+
+                              <span className="students_enrolled_details">
+                                {item?.total_students} Students Enrolled.
+                              </span>
                             </div>
 
-                            <div className="course_card_price">
-                              <span>${item?.course_price}</span>
+                            <div className="course_card_body_footer">
+                              <div>
+                                <Link to={`enroll-now/${item?.id}`}>
+                                  <button className="course_enroll_btn">
+                                    Enroll
+                                  </button>
+                                </Link>
+                              </div>
+
+                              <div className="course_card_price">
+                                <span>${item?.course_price}</span>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-
-</div>
-             
-               
               </div>
-
 
               {/* <div>
                                 <div>

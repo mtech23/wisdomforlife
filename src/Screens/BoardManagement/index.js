@@ -102,21 +102,86 @@ export const BoardManagement = () => {
 
   return (
     <DashboardLayout>
-      <div className="board-sec container-fluid">
-        <div className="row">
-          <div className="col-md-12">
-            <div className="board-title   ">
-              <p className="board-title-heading"> My Board </p>
-              <p>Enrolled Cources</p>
-            </div>
+      <section className="board-sec ">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="board-title   ">
+                <p className="board-title-heading"> My Board </p>
+                <p>Enrolled Courses</p>
+              </div>
 
-            <div>
-              <div className="row  mb-5 ">
-                {data?.map((item) => (
+              <div>
+                <div className="row  mb-5 ">
+                  {data?.map((item) => (
+                    <div className="col-sm-10 col-lg-6 col-xl-3 mx-auto">
+                      <div className="course_card">
+                        <div className="course_card_img">
+                          <img src={base_url + item?.image} className="w-100" />
+                        </div>
+
+                        <div className="course_card_body">
+                          <div className="course_ratings">
+                            <div className="course_rating_detail border-0 p-0">
+                              <span className="course_rating_icon">
+                                <FontAwesomeIcon icon={faPlay} />
+                              </span>
+                              <span className="course_rating_information">
+                                20 videos
+                              </span>
+                            </div>
+
+                            <div className="course_rating_detail course_rating_detail_BM">
+                              <span className="course_rating_icon">
+                                <FontAwesomeIcon icon={faStar} />
+                              </span>
+                              <span className="course_rating_information">
+                                1.1K Reviews
+                              </span>
+                            </div>
+
+                            <div className="course_rating_detail border-0 p-0">
+                              <span className="course_rating_icon">
+                                <FontAwesomeIcon icon={faTable} />
+                              </span>
+                              <span className="course_rating_information">
+                                8 Tests
+                              </span>
+                            </div>
+                          </div>
+
+                          <div>
+                            <h4 className="course_card_title">
+                              {item?.course_name}
+                            </h4>
+
+                            <span className="students_enrolled_details">
+                              1700 Students Enrolled.
+                            </span>
+                          </div>
+
+                          <div className="course_card_body_footer">
+                            <div>
+                              <Link to={`enroll-now/${item?.id}`}>
+                                <button className="course_enroll_btn">
+                                  Enroll
+                                </button>
+                              </Link>
+                            </div>
+
+                            <div className="course_card_price">
+                              <span>${item?.course_price}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+
                   <div className="col-sm-10 col-lg-6 col-xl-3 mx-auto">
                     <div className="course_card">
                       <div className="course_card_img">
-                        <img src={base_url + item?.image} className="w-100" />
+                        <img src={courseImg02} className="w-100" />
                       </div>
 
                       <div className="course_card_body">
@@ -130,7 +195,70 @@ export const BoardManagement = () => {
                             </span>
                           </div>
 
-                          <div className="course_rating_detail">
+                          <div className="course_rating_detail course_rating_detail_BM">
+                            <span className="course_rating_icon">
+                              <FontAwesomeIcon icon={faStar} />
+                            </span>
+                            <span className="course_rating_information ">
+                              1.1K Reviews
+                            </span>
+                          </div>
+
+                          <div className="course_rating_detail border-0 p-0">
+                            <span className="course_rating_icon">
+                              <FontAwesomeIcon icon={faTable} />
+                            </span>
+                            <span className="course_rating_information">
+                              8 Tests
+                            </span>
+                          </div>
+                        </div>
+
+                        <div>
+                          <h4 className="course_card_title">
+                            web development beginner - master | HTML, CSS.
+                          </h4>
+
+                          <span className="students_enrolled_details">
+                            1700 Students Enrolled.
+                          </span>
+                        </div>
+
+                        <div className="course_card_body_footer">
+                          <div>
+                            <Link to="/course-management">
+                              <button className="course_enroll_btn">
+                                Enroll
+                              </button>
+                            </Link>
+                          </div>
+
+                          <div className="course_card_price">
+                            <span>$99</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="col-sm-10 col-lg-6 col-xl-3 mx-auto">
+                    <div className="course_card">
+                      <div className="course_card_img">
+                        <img src={courseImg03} className="w-100" />
+                      </div>
+
+                      <div className="course_card_body">
+                        <div className="course_ratings">
+                          <div className="course_rating_detail border-0 p-0">
+                            <span className="course_rating_icon">
+                              <FontAwesomeIcon icon={faPlay} />
+                            </span>
+                            <span className="course_rating_information">
+                              20 videos
+                            </span>
+                          </div>
+
+                          <div className="course_rating_detail course_rating_detail_BM">
                             <span className="course_rating_icon">
                               <FontAwesomeIcon icon={faStar} />
                             </span>
@@ -151,7 +279,7 @@ export const BoardManagement = () => {
 
                         <div>
                           <h4 className="course_card_title">
-                        {item?.course_name}
+                            web development beginner - master | HTML, CSS.
                           </h4>
 
                           <span className="students_enrolled_details">
@@ -161,7 +289,7 @@ export const BoardManagement = () => {
 
                         <div className="course_card_body_footer">
                           <div>
-                            <Link to={`enroll-now/${item?.id}`}>
+                            <Link to="/course-management">
                               <button className="course_enroll_btn">
                                 Enroll
                               </button>
@@ -169,153 +297,89 @@ export const BoardManagement = () => {
                           </div>
 
                           <div className="course_card_price">
-                            <span>${item?.course_price}</span>
+                            <span>$99</span>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                ))}
-
-
-<div className="col-sm-10 col-lg-6 col-xl-3 mx-auto">
-                  <div className="course_card">
-                    <div className="course_card_img">
-                      <img src={courseImg02} className="w-100" />
-                    </div>
-
-                    <div className="course_card_body">
-                      <div className="course_ratings">
-                        <div className="course_rating_detail border-0 p-0">
-                          <span className="course_rating_icon">
-                            <FontAwesomeIcon icon={faPlay} />
-                          </span>
-                          <span className="course_rating_information">
-                            20 videos
-                          </span>
-                        </div>
-
-                        <div className="course_rating_detail">
-                          <span className="course_rating_icon">
-                            <FontAwesomeIcon icon={faStar} />
-                          </span>
-                          <span className="course_rating_information">
-                            1.1K Reviews
-                          </span>
-                        </div>
-
-                        <div className="course_rating_detail border-0 p-0">
-                          <span className="course_rating_icon">
-                            <FontAwesomeIcon icon={faTable} />
-                          </span>
-                          <span className="course_rating_information">
-                            8 Tests
-                          </span>
-                        </div>
-                      </div>
-
-                      <div>
-                        <h4 className="course_card_title">
-                          web development beginner - master | HTML, CSS.
-                        </h4>
-
-                        <span className="students_enrolled_details">
-                          1700 Students Enrolled.
-                        </span>
-                      </div>
-
-                      <div className="course_card_body_footer">
-                        <div>
-                          <Link to="/course-management">
-                            <button className="course_enroll_btn">
-                              Enroll
-                            </button>
-                          </Link>
-                        </div>
-
-                        <div className="course_card_price">
-                          <span>$99</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
 
-                <div className="col-sm-10 col-lg-6 col-xl-3 mx-auto">
-                  <div className="course_card">
-                    <div className="course_card_img">
-                      <img src={courseImg03} className="w-100" />
-                    </div>
-
-                    <div className="course_card_body">
-                      <div className="course_ratings">
-                        <div className="course_rating_detail border-0 p-0">
-                          <span className="course_rating_icon">
-                            <FontAwesomeIcon icon={faPlay} />
-                          </span>
-                          <span className="course_rating_information">
-                            20 videos
-                          </span>
-                        </div>
-
-                        <div className="course_rating_detail">
-                          <span className="course_rating_icon">
-                            <FontAwesomeIcon icon={faStar} />
-                          </span>
-                          <span className="course_rating_information">
-                            1.1K Reviews
-                          </span>
-                        </div>
-
-                        <div className="course_rating_detail border-0 p-0">
-                          <span className="course_rating_icon">
-                            <FontAwesomeIcon icon={faTable} />
-                          </span>
-                          <span className="course_rating_information">
-                            8 Tests
-                          </span>
-                        </div>
-                      </div>
-
-                      <div>
-                        <h4 className="course_card_title">
-                          web development beginner - master | HTML, CSS.
-                        </h4>
-
-                        <span className="students_enrolled_details">
-                          1700 Students Enrolled.
-                        </span>
-                      </div>
-
-                      <div className="course_card_body_footer">
-                        <div>
-                          <Link to="/course-management">
-                            <button className="course_enroll_btn">
-                              Enroll
-                            </button>
-                          </Link>
-                        </div>
-
-                        <div className="course_card_price">
-                          <span>$99</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div className="board-title  mb-5 ">
+                  <p className="board-title-heading"> Reportings </p>
+                  <p>Passed Courses</p>
                 </div>
-              </div>
 
-              <div className="board-title  mb-5 ">
-                <p className="board-title-heading"> Reportings </p>
-                <p>Passed Courses</p>
-              </div>
+                <div className="row">
+                  {data?.map((item) => (
+                    <div className="col-sm-10 col-lg-6 col-xl-3 mx-auto">
+                      <div className="course_card">
+                        <div className="course_card_img">
+                          <img src={base_url + item?.image} className="w-100" />
+                        </div>
 
-              <div className="row">
-              {data?.map((item) => (
+                        <div className="course_card_body">
+                          <div className="course_ratings">
+                            <div className="course_rating_detail border-0 p-0">
+                              <span className="course_rating_icon">
+                                <FontAwesomeIcon icon={faPlay} />
+                              </span>
+                              <span className="course_rating_information">
+                                20 videos
+                              </span>
+                            </div>
+
+                            <div className="course_rating_detail course_rating_detail_BM">
+                              <span className="course_rating_icon">
+                                <FontAwesomeIcon icon={faStar} />
+                              </span>
+                              <span className="course_rating_information">
+                                1.1K Reviews
+                              </span>
+                            </div>
+
+                            <div className="course_rating_detail border-0 p-0">
+                              <span className="course_rating_icon">
+                                <FontAwesomeIcon icon={faTable} />
+                              </span>
+                              <span className="course_rating_information">
+                                8 Tests
+                              </span>
+                            </div>
+                          </div>
+
+                          <div>
+                            <h4 className="course_card_title">
+                              {item?.course_name}
+                            </h4>
+
+                            <span className="students_enrolled_details">
+                              1700 Students Enrolled.
+                            </span>
+                          </div>
+
+                          <div className="course_card_body_footer">
+                            <div>
+                              <Link to={`enroll-now/${item?.id}`}>
+                                <button className="course_enroll_btn">
+                                  Enroll
+                                </button>
+                              </Link>
+                            </div>
+
+                            <div className="course_card_price">
+                              <span>${item?.course_price}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+
                   <div className="col-sm-10 col-lg-6 col-xl-3 mx-auto">
                     <div className="course_card">
                       <div className="course_card_img">
-                        <img src={base_url + item?.image} className="w-100" />
+                        <img src={courseImg02} className="w-100" />
                       </div>
 
                       <div className="course_card_body">
@@ -329,7 +393,7 @@ export const BoardManagement = () => {
                             </span>
                           </div>
 
-                          <div className="course_rating_detail">
+                          <div className="course_rating_detail course_rating_detail_BM">
                             <span className="course_rating_icon">
                               <FontAwesomeIcon icon={faStar} />
                             </span>
@@ -350,7 +414,7 @@ export const BoardManagement = () => {
 
                         <div>
                           <h4 className="course_card_title">
-                        {item?.course_name}
+                            web development beginner - master | HTML, CSS.
                           </h4>
 
                           <span className="students_enrolled_details">
@@ -360,7 +424,7 @@ export const BoardManagement = () => {
 
                         <div className="course_card_body_footer">
                           <div>
-                            <Link to={`enroll-now/${item?.id}`}>
+                            <Link to="/course-management">
                               <button className="course_enroll_btn">
                                 Enroll
                               </button>
@@ -368,134 +432,71 @@ export const BoardManagement = () => {
                           </div>
 
                           <div className="course_card_price">
-                            <span>${item?.course_price}</span>
+                            <span>$99</span>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                ))}
 
-                <div className="col-sm-10 col-lg-6 col-xl-3 mx-auto">
-                  <div className="course_card">
-                    <div className="course_card_img">
-                      <img src={courseImg02} className="w-100" />
-                    </div>
-
-                    <div className="course_card_body">
-                      <div className="course_ratings">
-                        <div className="course_rating_detail border-0 p-0">
-                          <span className="course_rating_icon">
-                            <FontAwesomeIcon icon={faPlay} />
-                          </span>
-                          <span className="course_rating_information">
-                            20 videos
-                          </span>
-                        </div>
-
-                        <div className="course_rating_detail">
-                          <span className="course_rating_icon">
-                            <FontAwesomeIcon icon={faStar} />
-                          </span>
-                          <span className="course_rating_information">
-                            1.1K Reviews
-                          </span>
-                        </div>
-
-                        <div className="course_rating_detail border-0 p-0">
-                          <span className="course_rating_icon">
-                            <FontAwesomeIcon icon={faTable} />
-                          </span>
-                          <span className="course_rating_information">
-                            8 Tests
-                          </span>
-                        </div>
+                  <div className="col-sm-10 col-lg-6 col-xl-3 mx-auto">
+                    <div className="course_card">
+                      <div className="course_card_img">
+                        <img src={courseImg03} className="w-100" />
                       </div>
 
-                      <div>
-                        <h4 className="course_card_title">
-                          web development beginner - master | HTML, CSS.
-                        </h4>
+                      <div className="course_card_body">
+                        <div className="course_ratings">
+                          <div className="course_rating_detail border-0 p-0">
+                            <span className="course_rating_icon">
+                              <FontAwesomeIcon icon={faPlay} />
+                            </span>
+                            <span className="course_rating_information">
+                              20 videos
+                            </span>
+                          </div>
 
-                        <span className="students_enrolled_details">
-                          1700 Students Enrolled.
-                        </span>
-                      </div>
+                          <div className="course_rating_detail course_rating_detail_BM">
+                            <span className="course_rating_icon">
+                              <FontAwesomeIcon icon={faStar} />
+                            </span>
+                            <span className="course_rating_information">
+                              1.1K Reviews
+                            </span>
+                          </div>
 
-                      <div className="course_card_body_footer">
+                          <div className="course_rating_detail border-0 p-0">
+                            <span className="course_rating_icon">
+                              <FontAwesomeIcon icon={faTable} />
+                            </span>
+                            <span className="course_rating_information">
+                              8 Tests
+                            </span>
+                          </div>
+                        </div>
+
                         <div>
-                          <Link to="/course-management">
-                            <button className="course_enroll_btn">
-                              Enroll
-                            </button>
-                          </Link>
-                        </div>
+                          <h4 className="course_card_title">
+                            web development beginner - master | HTML, CSS.
+                          </h4>
 
-                        <div className="course_card_price">
-                          <span>$99</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-sm-10 col-lg-6 col-xl-3 mx-auto">
-                  <div className="course_card">
-                    <div className="course_card_img">
-                      <img src={courseImg03} className="w-100" />
-                    </div>
-
-                    <div className="course_card_body">
-                      <div className="course_ratings">
-                        <div className="course_rating_detail border-0 p-0">
-                          <span className="course_rating_icon">
-                            <FontAwesomeIcon icon={faPlay} />
-                          </span>
-                          <span className="course_rating_information">
-                            20 videos
+                          <span className="students_enrolled_details">
+                            1700 Students Enrolled.
                           </span>
                         </div>
 
-                        <div className="course_rating_detail">
-                          <span className="course_rating_icon">
-                            <FontAwesomeIcon icon={faStar} />
-                          </span>
-                          <span className="course_rating_information">
-                            1.1K Reviews
-                          </span>
-                        </div>
+                        <div className="course_card_body_footer">
+                          <div>
+                            <Link to="/course-management">
+                              <button className="course_enroll_btn">
+                                Enroll
+                              </button>
+                            </Link>
+                          </div>
 
-                        <div className="course_rating_detail border-0 p-0">
-                          <span className="course_rating_icon">
-                            <FontAwesomeIcon icon={faTable} />
-                          </span>
-                          <span className="course_rating_information">
-                            8 Tests
-                          </span>
-                        </div>
-                      </div>
-
-                      <div>
-                        <h4 className="course_card_title">
-                          web development beginner - master | HTML, CSS.
-                        </h4>
-
-                        <span className="students_enrolled_details">
-                          1700 Students Enrolled.
-                        </span>
-                      </div>
-
-                      <div className="course_card_body_footer">
-                        <div>
-                          <Link to="/course-management">
-                            <button className="course_enroll_btn">
-                              Enroll
-                            </button>
-                          </Link>
-                        </div>
-
-                        <div className="course_card_price">
-                          <span>$99</span>
+                          <div className="course_card_price">
+                            <span>$99</span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -505,7 +506,7 @@ export const BoardManagement = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </DashboardLayout>
   );
 };
