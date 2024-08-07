@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { courseBannerImage } from "../../Assets/images";
-import { courseImg01, courseImg02, courseImg03, courseImg04, courseImg05, courseImg06 } from "../../Assets/images";
+import {
+  courseImg01,
+  courseImg02,
+  courseImg03,
+  courseImg04,
+  courseImg05,
+  courseImg06,
+} from "../../Assets/images";
 
 import { Dropdown } from "react-bootstrap";
 
@@ -9,104 +16,92 @@ import { DashboardLayout } from "../../Components/Layout/DashboardLayout";
 import CustomTable from "../../Components/CustomTable";
 import CustomModal from "../../Components/CustomModal";
 
-import CustomPagination from "../../Components/CustomPagination"
+import CustomPagination from "../../Components/CustomPagination";
 import CustomInput from "../../Components/CustomInput";
 import CustomButton from "../../Components/CustomButton";
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
-
+import Tab from "react-bootstrap/Tab";
+import Tabs from "react-bootstrap/Tabs";
 
 import "./style.css";
 import { BASE_URL } from "../../Api/apiConfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faUserAlt, faPlay, faStar, faTable } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMagnifyingGlass,
+  faUserAlt,
+  faPlay,
+  faStar,
+  faTable,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const EnrollNow = () => {
+  const [data, setData] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
+  const [showModal3, setShowModal3] = useState(false);
+  const [showModal4, setShowModal4] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(8);
+  const [inputValue, setInputValue] = useState("");
 
-    const [data, setData] = useState([]);
-    const [showModal, setShowModal] = useState(false);
-    const [showModal2, setShowModal2] = useState(false);
-    const [showModal3, setShowModal3] = useState(false);
-    const [showModal4, setShowModal4] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(8);
-    const [inputValue, setInputValue] = useState('');
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
-    const handlePageChange = (pageNumber) => {
-        setCurrentPage(pageNumber);
-    };
+  const hanldeRoute = () => {
+    navigate("/add-user");
+  };
 
-    const hanldeRoute = () => {
-        navigate('/add-user')
-    }
+  const inActive = () => {
+    setShowModal(false);
+    setShowModal2(true);
+  };
+  const ActiveMale = () => {
+    setShowModal3(false);
+    setShowModal4(true);
+  };
 
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+  };
 
-    const inActive = () => {
-        setShowModal(false)
-        setShowModal2(true)
-    }
-    const ActiveMale = () => {
-        setShowModal3(false)
-        setShowModal4(true)
-    }
+  const filterData = data?.filter((item) =>
+    item?.name.toLowerCase().includes(inputValue.toLowerCase())
+  );
 
-    const handleChange = (e) => {
-        setInputValue(e.target.value);
-    }
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filterData?.slice(indexOfFirstItem, indexOfLastItem);
 
-    const filterData = data?.filter(item =>
-        item?.name.toLowerCase().includes(inputValue.toLowerCase())
-    );
+  useEffect(() => {
+    document.title = "Wisdom For Life | User Management";
+    const LogoutData = localStorage.getItem("login");
+    document.querySelector(".loaderBox").classList.remove("d-none");
+    fetch(`${BASE_URL}api/admin/user`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${LogoutData}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        document.querySelector(".loaderBox").classList.add("d-none");
+        setData(data.users);
+      })
+      .catch((error) => {
+        document.querySelector(".loaderBox").classList.add("d-none");
+        console.log(error);
+      });
+  }, []);
 
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
-
-
-
-    useEffect(() => {
-        document.title = 'Wisdom For Life | User Management';
-        const LogoutData = localStorage.getItem('login');
-        document.querySelector('.loaderBox').classList.remove("d-none");
-        fetch(`${BASE_URL}api/admin/user`,
-            {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${LogoutData}`
-                },
-            }
-        )
-
-            .then(response =>
-                response.json()
-            )
-            .then((data) => {
-                console.log(data)
-                document.querySelector('.loaderBox').classList.add("d-none");
-                setData(data.users);
-            })
-            .catch((error) => {
-                document.querySelector('.loaderBox').classList.add("d-none");
-                console.log(error)
-            })
-
-
-    }, []);
-
-
-
-
-    return (
-
-        <DashboardLayout>
-            <div className="container-fluid">
-
-
-                {/* <section className="web">
+  return (
+    <DashboardLayout>
+      <div className="container-fluid">
+        {/* <section className="web">
                     <div className="container-fluid">
                         <div className="container">
                             <div className="row">
@@ -271,126 +266,180 @@ export const EnrollNow = () => {
                     </div>
                 </section> */}
 
-
-
-
-
-                <section>
-                    <div className="container-fluid">
-                        <div className="conatiner">
-                            <div className="row">
-
-                                <div className="col-md-8">
-                                    <div className="cart">
-                                        <h3> My Cart </h3>
-                                        <table className="table">
-                                            <tr>
-                                                <td><img src="image/Rectangle 85.png" alt="" className="img-fluid" /></td>
-                                                <td ><h5>Web Development Beginner - Master <br />| HTML, CSS.</h5>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br /> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
-                                                    <button>Remove</button>
-                                                </td>
-                                                <td><p className="dollar">$99</p></td>
-                                            </tr>
-                                            <tr>
-                                                <td ><img src="image/Rectangle 89.png" alt="" className="img-fluid" /></td>
-                                                <td ><h5 >Web Development Beginner - Master <br />| HTML, CSS.</h5>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br /> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
-                                                    <button>Remove</button>
-                                                </td>
-                                                <td><p className="dollar" >$99</p></td>
-                                            </tr>
-                                            <tr>
-                                                <td ><img src="image/Rectangle 91.png" alt="" className="img-fluid" /></td>
-                                                <td ><h5 >Web Development Beginner - Master <br />| HTML, CSS.</h5>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br /> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
-                                                    <button>Remove</button>
-                                                </td>
-                                                <td><p className="dollar" >$99</p></td>
-                                            </tr>
-                                            <tr>
-                                                <div className="lastrow">
-                                                    <td ><img src="image/Rectangle 178.png" alt="" className="img-fluid" /></td>
-                                                    <td ><h5>Web Development Beginner - Master <br />| HTML, CSS.</h5>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do <br /> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>
-                                                        <button>Remove</button>
-                                                    </td>
-                                                    <td><p className="dollar" >$99</p></td>
-                                                </div>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div className="col-md-4">
-                                    <div className="cart">
-                                        <h3>Cart Summary</h3>
-                                        <div className="row" >
-                                            <div className="col-md-6">
-                                                <p className="summary">Subtotal (4 Items)</p>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p className="sum">$480</p>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <p className="summary">Discount</p>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p className="sum">$35.2</p>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <p className="summary">Tax</p>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p className="sum">$0.00</p>
-                                            </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <p className="summary">Total</p>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <p className="sum">$445</p>
-                                            </div>
-                                        </div>
-                                        <hr/>
-
-                                            <div className="row mx-auto" >
-                                                <div className="col-md-12">
-                                                    <div className="btn">
-                                                        <button className="btn">Checkout</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                    </div>
-
-                                    <div className="cart">
-                                        <div className="row ">
-                                            <div className="col-md-12">
-                                                <h3>Have A Coupon?</h3>
-                                                <div className="dot" >
-                                                    <input type="text" id="fname" name="fname" placeholder="Coupon Code"/>
-                                                        <button >Apply</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
+        <section>
+          <div className="container-fluid">
+            <div className="conatiner">
+              <div className="row">
+                <div className="col-md-8">
+                  <div className="cart">
+                    <h3> My Cart </h3>
+                    <table className="table">
+                      <tr>
+                        <td>
+                          <img
+                            src="image/Rectangle 85.png"
+                            alt=""
+                            className="img-fluid"
+                          />
+                        </td>
+                        <td>
+                          <h5>
+                            Web Development Beginner - Master <br />| HTML, CSS.
+                          </h5>
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do <br /> eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut
+                          </p>
+                          <button>Remove</button>
+                        </td>
+                        <td>
+                          <p className="dollar">$99</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img
+                            src="image/Rectangle 89.png"
+                            alt=""
+                            className="img-fluid"
+                          />
+                        </td>
+                        <td>
+                          <h5>
+                            Web Development Beginner - Master <br />| HTML, CSS.
+                          </h5>
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do <br /> eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut
+                          </p>
+                          <button>Remove</button>
+                        </td>
+                        <td>
+                          <p className="dollar">$99</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <img
+                            src="image/Rectangle 91.png"
+                            alt=""
+                            className="img-fluid"
+                          />
+                        </td>
+                        <td>
+                          <h5>
+                            Web Development Beginner - Master <br />| HTML, CSS.
+                          </h5>
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do <br /> eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut
+                          </p>
+                          <button>Remove</button>
+                        </td>
+                        <td>
+                          <p className="dollar">$99</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <div className="lastrow">
+                          <td>
+                            <img
+                              src="image/Rectangle 178.png"
+                              alt=""
+                              className="img-fluid"
+                            />
+                          </td>
+                          <td>
+                            <h5>
+                              Web Development Beginner - Master <br />| HTML,
+                              CSS.
+                            </h5>
+                            <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing
+                              elit, sed do <br /> eiusmod tempor incididunt ut
+                              labore et dolore magna aliqua. Ut
+                            </p>
+                            <button>Remove</button>
+                          </td>
+                          <td>
+                            <p className="dollar">$99</p>
+                          </td>
                         </div>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <div className="cart">
+                    <h3>Cart Summary</h3>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <p className="summary">Subtotal (4 Items)</p>
+                      </div>
+                      <div className="col-md-6">
+                        <p className="sum">$480</p>
+                      </div>
                     </div>
-                </section>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <p className="summary">Discount</p>
+                      </div>
+                      <div className="col-md-6">
+                        <p className="sum">$35.2</p>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <p className="summary">Tax</p>
+                      </div>
+                      <div className="col-md-6">
+                        <p className="sum">$0.00</p>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <p className="summary">Total</p>
+                      </div>
+                      <div className="col-md-6">
+                        <p className="sum">$445</p>
+                      </div>
+                    </div>
+                    <hr />
+
+                    <div className="row mx-auto">
+                      <div className="col-md-12">
+                        <div className="btn">
+                          <button className="btn">Checkout</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="cart">
+                    <div className="row ">
+                      <div className="col-md-12">
+                        <h3>Have A Coupon?</h3>
+                        <div className="dot">
+                          <input
+                            type="text"
+                            id="fname"
+                            name="fname"
+                            placeholder="Coupon Code"
+                          />
+                          <button>Apply</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-
-        </DashboardLayout >
-
-    );
+          </div>
+        </section>
+      </div>
+    </DashboardLayout>
+  );
 };
-
-

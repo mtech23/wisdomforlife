@@ -72,7 +72,7 @@ export const BoardManagement = () => {
 
   //   const indexOfLastItem = currentPage * itemsPerPage;
   //   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  //   const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
+  //   const currentItems = filterData?.slice(indexOfFirstItem, indexOfLastItem);
 
   const base_url = process.env.REACT_APP_API_URL;
   useEffect(() => {

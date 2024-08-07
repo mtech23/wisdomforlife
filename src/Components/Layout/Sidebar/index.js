@@ -1,8 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBorderAll,
@@ -12,29 +10,44 @@ import {
   faMountainCity,
   faMoneyBill,
   faHeadphonesAlt,
-  faHeadset
+  faHeadset,
+  faHome,
+  faGraduationCap,
+  faUsers,
+  faFilePen,
+  faNewspaper,
+  faCalendar,
+  faPeopleRoof,
+  faCartShopping,
+  faFileInvoiceDollar,
+  faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  faMessage,
-} from "@fortawesome/free-regular-svg-icons";
+import { faMessage } from "@fortawesome/free-regular-svg-icons";
 
 import "./style.css";
 import { logo } from "../../../Assets/images";
 
 export const Sidebar = (props) => {
-
-  const location = useLocation()
+  const location = useLocation();
   return (
     <div className={`sidebar ${props.sideClass}`} id="sidebar">
-      <Link to={"/dashboard"} className="siteLogo text-center text-decoration-none">
+      <Link
+        to={"/dashboard"}
+        className="siteLogo text-center text-decoration-none"
+      >
         {/* <h1>Brad <span>Taylor</span></h1> */}
         <img src={logo} className="mw-100 logo_height_" />
       </Link>
       <ul className="list-unstyled">
         <li className="sidebar-li">
-          <Link className={`sideLink ${location.pathname.includes('/dashboard') ? 'active' : ''}`} to="/dashboard">
+          <Link
+            className={`sideLink ${
+              location.pathname.includes("/dashboard") ? "active" : ""
+            }`}
+            to="/dashboard"
+          >
             <span className="sideIcon">
-              <FontAwesomeIcon icon={faBorderAll} />
+              <FontAwesomeIcon icon={faHome} />
             </span>
             <span className="sideLinkText">Dashboard</span>
           </Link>
@@ -48,9 +61,14 @@ export const Sidebar = (props) => {
           </Link>
         </li> */}
         <li className="sidebar-li">
-          <Link className={`sideLink ${location.pathname.includes('/course-management') ? 'active' : ''}`} to="/course-management">
+          <Link
+            className={`sideLink ${
+              location.pathname.includes("/course-management") ? "active" : ""
+            }`}
+            to="/course-management"
+          >
             <span className="sideIcon">
-              <FontAwesomeIcon icon={faUser} />
+              <FontAwesomeIcon icon={faGraduationCap} />
             </span>
             <span className="sideLinkText">Courses </span>
           </Link>
@@ -64,78 +82,109 @@ export const Sidebar = (props) => {
           </Link>
         </li> */}
         <li className="sidebar-li">
-          <Link className={`sideLink ${location.pathname.includes('/student-forum') ? 'active' : ''}`} to="/student-forum">
+          <Link
+            className={`sideLink ${
+              location.pathname.includes("/student-forum") ? "active" : ""
+            }`}
+            to="/student-forum"
+          >
             <span className="sideIcon">
-              <FontAwesomeIcon icon={faMessage} />
+              <FontAwesomeIcon icon={faUsers} />
             </span>
             <span className="sideLinkText">Student Forum</span>
           </Link>
         </li>
         <li className="sidebar-li">
-          <Link className={`sideLink ${location.pathname.includes('/personal-notes') ? 'active' : ''}`} to="/personal-notes">
+          <Link
+            className={`sideLink ${
+              location.pathname.includes("/personal-notes") ? "active" : ""
+            }`}
+            to="/personal-notes"
+          >
             <span className="sideIcon">
-              <FontAwesomeIcon icon={faMessage} />
+              <FontAwesomeIcon icon={faFilePen} />
             </span>
             <span className="sideLinkText">Personal Notes</span>
           </Link>
         </li>
         <li className="sidebar-li">
-          <Link className={`sideLink ${location.pathname.includes('/events-and-news') ? 'active' : ''}`} to="/events-and-news">
+          <Link
+            className={`sideLink ${
+              location.pathname.includes("/events-and-news") ? "active" : ""
+            }`}
+            to="/events-and-news"
+          >
             <span className="sideIcon">
-              <FontAwesomeIcon icon={faMessage} />
+              <FontAwesomeIcon icon={faNewspaper} />
             </span>
             <span className="sideLinkText">Events & News</span>
           </Link>
         </li>
         <li className="sidebar-li">
-          <Link className={`sideLink ${location.pathname.includes('/calendar-management') ? 'active' : ''}`} to="/calendar-management">
+          <Link
+            className={`sideLink ${
+              location.pathname.includes("/calendar-management") ? "active" : ""
+            }`}
+            to="/calendar-management"
+          >
             <span className="sideIcon">
-              <FontAwesomeIcon icon={faEye} />
+              <FontAwesomeIcon icon={faCalendarDays} />
             </span>
             <span className="sideLinkText">Calendar</span>
           </Link>
         </li>
 
-
         <li className="sidebar-li">
-          <Link className={`sideLink ${location.pathname.includes('/board-management') ? 'active' : ''}`} to="/board-management">
+          <Link
+            className={`sideLink ${
+              location.pathname.includes("/board-management") ? "active" : ""
+            }`}
+            to="/board-management"
+          >
             <span className="sideIcon">
-              <FontAwesomeIcon icon={faTasks} />
+              <FontAwesomeIcon icon={faPeopleRoof} />
             </span>
             <span className="sideLinkText">Board Management</span>
           </Link>
         </li>
 
-
-
-
         <li className="sidebar-li">
-          <Link className={`sideLink ${location.pathname.includes('/cart-management') ? 'active' : ''}`} to="/cart-management">
+          <Link
+            className={`sideLink ${
+              location.pathname.includes("/cart-management") ? "active" : ""
+            }`}
+            to="/cart-management"
+          >
             <span className="sideIcon">
-              <FontAwesomeIcon icon={faTasks} />
+              <FontAwesomeIcon icon={faCartShopping} />
             </span>
             <span className="sideLinkText">Cart Management</span>
           </Link>
         </li>
 
-
         <li className="sidebar-li">
-          <Link className={`sideLink ${location.pathname.includes('/invoice-management') ? 'active' : ''}`} to="/invoice-management">
+          <Link
+            className={`sideLink ${
+              location.pathname.includes("/invoice-management") ? "active" : ""
+            }`}
+            to="/invoice-management"
+          >
             <span className="sideIcon">
-              <FontAwesomeIcon icon={faTasks} />
+              <FontAwesomeIcon icon={faFileInvoiceDollar} />
             </span>
             <span className="sideLinkText">Invoice Management</span>
           </Link>
         </li>
 
-
-
-
-
         <li className="sidebar-li">
-          <Link className={`sideLink ${location.pathname.includes('/profile-management') ? 'active' : ''}`} to="/profile-management">
+          <Link
+            className={`sideLink ${
+              location.pathname.includes("/profile-management") ? "active" : ""
+            }`}
+            to="/profile-management"
+          >
             <span className="sideIcon">
-              <FontAwesomeIcon icon={faTasks} />
+              <FontAwesomeIcon icon={faUser} />
             </span>
             <span className="sideLinkText">Profile Management</span>
           </Link>

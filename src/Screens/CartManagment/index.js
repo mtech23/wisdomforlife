@@ -91,7 +91,7 @@ export const CartManagement = () => {
   console.log("cartItems", cartItems);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filterData?.slice(indexOfFirstItem, indexOfLastItem);
 
   useEffect(() => {
     document.title = "Wisdom For Life | User Management";
@@ -298,7 +298,7 @@ export const CartManagement = () => {
                               <h5> {items?.course_name} </h5>{" "}
                               <p className="cart-para">
                                 {" "}
-                                {items?.course_description.slice(0, 112)}{" "}
+                                {items?.course_description?.slice(0, 112)}{" "}
                               </p>{" "}
                               <button
                                 onClick={() => dispatch(deleteitem(items.id))}

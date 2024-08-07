@@ -3,100 +3,98 @@ import { Link } from "react-router-dom";
 
 import { Dropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisV, faPencil, faCheck, faTimes, faFilter } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEllipsisV,
+  faPencil,
+  faCheck,
+  faTimes,
+  faFilter,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { DashboardLayout } from "../../Components/Layout/DashboardLayout";
 import CustomTable from "../../Components/CustomTable";
 import CustomModal from "../../Components/CustomModal";
 
-import CustomPagination from "../../Components/CustomPagination"
+import CustomPagination from "../../Components/CustomPagination";
 import CustomInput from "../../Components/CustomInput";
 import CustomButton from "../../Components/CustomButton";
 import { SelectBox } from "../../Components/CustomSelect";
 
-
 import "./style.css";
 
 export const BrandListing = () => {
-
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [addUser, setUser] = useState(false);
   const [editUser, setEditUser] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [userForm, setUserFrom] = useState(false);
   const [idUser, setIdUser] = useState(0);
   const [formData, setFormData] = useState({
-    name: '',
-    status: '1'
+    name: "",
+    status: "1",
   });
 
   const optionData = [
     {
       name: "Active",
-      code: "1"
+      code: "1",
     },
     {
       name: "Inactive",
-      code: "0"
+      code: "0",
     },
-  ]
+  ];
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-
-
   const handleChange = (e) => {
     setInputValue(e.target.value);
-  }
+  };
 
-  const filterData = data?.filter(item =>
+  const filterData = data?.filter((item) =>
     item.name.toLowerCase().includes(inputValue.toLowerCase())
   );
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filterData?.slice(indexOfFirstItem, indexOfLastItem);
 
+  const fetchData = () => {
+    const LogoutData = localStorage.getItem("login");
+    document.querySelector(".loaderBox").classList.remove("d-none");
 
-  const fetchData = () =>  {
-    const LogoutData = localStorage.getItem('login');
-    document.querySelector('.loaderBox').classList.remove("d-none");
-
-    fetch('https://custom.mystagingserver.site/mtrecords/public/api/admin/brand-listing',
+    fetch(
+      "https://custom.mystagingserver.site/mtrecords/public/api/admin/brand-listing",
       {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${LogoutData}`
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${LogoutData}`,
         },
       }
     )
-
-      .then(response =>
-        response.json()
-      )
+      .then((response) => response.json())
       .then((data) => {
-        document.querySelector('.loaderBox').classList.add("d-none");
-        console.log(data)
+        document.querySelector(".loaderBox").classList.add("d-none");
+        console.log(data);
         setData(data.brands);
       })
       .catch((error) => {
-        document.querySelector('.loaderBox').classList.add("d-none");
-        console.log(error)
-      })
-  }
+        document.querySelector(".loaderBox").classList.add("d-none");
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
-    document.title = 'Wisdom For Life | Brands Management';
-   
-    fetchData()
+    document.title = "Wisdom For Life | Brands Management";
 
+    fetchData();
   }, []);
 
   const maleHeaders = [
@@ -116,120 +114,115 @@ export const BrandListing = () => {
       key: "action",
       title: "Action",
     },
-
   ];
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log(formData)
-    document.querySelector('.loaderBox').classList.remove("d-none");
-    const LogoutData = localStorage.getItem('login');
-    fetch(`https://custom.mystagingserver.site/mtrecords/public/api/admin/brand-add-edit`,
+    console.log(formData);
+    document.querySelector(".loaderBox").classList.remove("d-none");
+    const LogoutData = localStorage.getItem("login");
+    fetch(
+      `https://custom.mystagingserver.site/mtrecords/public/api/admin/brand-add-edit`,
       {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${LogoutData}`
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${LogoutData}`,
         },
-        body: JSON.stringify(formData)
-      },
+        body: JSON.stringify(formData),
+      }
     )
       .then((response) => {
-        return response.json()
+        return response.json();
       })
       .then((data) => {
-        console.log(data)
-        document.querySelector('.loaderBox').classList.add("d-none");
-        setShowModal(true)
-        setUser(false)
+        console.log(data);
+        document.querySelector(".loaderBox").classList.add("d-none");
+        setShowModal(true);
+        setUser(false);
         setFormData({
-          name: ''
-        })
-        fetchData()
-
+          name: "",
+        });
+        fetchData();
       })
       .catch((error) => {
-        document.querySelector('.loaderBox').classList.add("d-none");
+        document.querySelector(".loaderBox").classList.add("d-none");
         console.log(error);
-      })
-  }
+      });
+  };
 
   const brandID = (unitID) => {
-    document.querySelector('.loaderBox').classList.remove("d-none");
-    const LogoutData = localStorage.getItem('login');
-    fetch(`https://custom.mystagingserver.site/mtrecords/public/api/admin/view-brand/${unitID}`,
+    document.querySelector(".loaderBox").classList.remove("d-none");
+    const LogoutData = localStorage.getItem("login");
+    fetch(
+      `https://custom.mystagingserver.site/mtrecords/public/api/admin/view-brand/${unitID}`,
       {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${LogoutData}`
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${LogoutData}`,
         },
-      },
+      }
     )
       .then((response) => {
-        return response.json()
+        return response.json();
       })
       .then((data) => {
-        console.log(data)
-        document.querySelector('.loaderBox').classList.add("d-none");
-        setIdUser(unitID)
+        console.log(data);
+        document.querySelector(".loaderBox").classList.add("d-none");
+        setIdUser(unitID);
         setFormData({
           ...formData,
           name: data.brands.name,
-          status: data.status
+          status: data.status,
         });
-        setEditUser(true)
-
+        setEditUser(true);
       })
       .catch((error) => {
-        document.querySelector('.loaderBox').classList.add("d-none");
+        document.querySelector(".loaderBox").classList.add("d-none");
         console.log(error);
-      })
-  }
+      });
+  };
 
   const handleEditSubmit = (event) => {
     event.preventDefault();
-    console.log(formData)
-    document.querySelector('.loaderBox').classList.remove("d-none");
-    const LogoutData = localStorage.getItem('login');
-    fetch(`https://custom.mystagingserver.site/mtrecords/public/api/admin/brand-add-edit/${idUser}`,
+    console.log(formData);
+    document.querySelector(".loaderBox").classList.remove("d-none");
+    const LogoutData = localStorage.getItem("login");
+    fetch(
+      `https://custom.mystagingserver.site/mtrecords/public/api/admin/brand-add-edit/${idUser}`,
       {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${LogoutData}`
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${LogoutData}`,
         },
-        body: JSON.stringify(formData)
-      },
+        body: JSON.stringify(formData),
+      }
     )
       .then((response) => {
-        return response.json()
+        return response.json();
       })
       .then((data) => {
-        console.log(data)
-        document.querySelector('.loaderBox').classList.add("d-none");
+        console.log(data);
+        document.querySelector(".loaderBox").classList.add("d-none");
         setFormData({
-          name: ''
-        })
-        fetchData()
-        setEditUser(false)
-
-
+          name: "",
+        });
+        fetchData();
+        setEditUser(false);
       })
       .catch((error) => {
-        document.querySelector('.loaderBox').classList.add("d-none");
+        document.querySelector(".loaderBox").classList.add("d-none");
         console.log(error);
-      })
-  }
+      });
+  };
 
-
-
-  console.log(formData)
+  console.log(formData);
 
   return (
     <>
@@ -244,37 +237,63 @@ export const BrandListing = () => {
                   </div>
                   <div className="col-md-6 mb-2">
                     <div className="addUser">
-                      <CustomButton text="Add Brand" variant='primaryButton' onClick={() => {
-                        setUser(true)
-                      }} />
-                      <CustomInput type="text" placeholder="Search Here..." value={inputValue} inputclassName="mainInput" onChange={handleChange} />
+                      <CustomButton
+                        text="Add Brand"
+                        variant="primaryButton"
+                        onClick={() => {
+                          setUser(true);
+                        }}
+                      />
+                      <CustomInput
+                        type="text"
+                        placeholder="Search Here..."
+                        value={inputValue}
+                        inputclassName="mainInput"
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
                 </div>
                 <div className="row mb-3">
                   <div className="col-12">
-                    <CustomTable
-                      headers={maleHeaders}
-
-                    >
+                    <CustomTable headers={maleHeaders}>
                       <tbody>
                         {currentItems.map((item, index) => (
                           <tr key={index}>
                             <td>{index + 1}</td>
-                            <td className="text-capitalize">
-                              {item.name}
+                            <td className="text-capitalize">{item.name}</td>
+                            <td
+                              className={
+                                item.status == 1 ? "greenColor" : "redColor"
+                              }
+                            >
+                              {item.status == 1 ? "Active" : "Inactive"}
                             </td>
-                            <td className={item.status == 1 ? 'greenColor' : 'redColor'}>{item.status == 1 ? 'Active' : 'Inactive'}</td>
                             <td>
                               <Dropdown className="tableDropdown">
-                                <Dropdown.Toggle variant="transparent" className="notButton classicToggle">
+                                <Dropdown.Toggle
+                                  variant="transparent"
+                                  className="notButton classicToggle"
+                                >
                                   <FontAwesomeIcon icon={faEllipsisV} />
                                 </Dropdown.Toggle>
-                                <Dropdown.Menu align="end" className="tableDropdownMenu">
-                                  <button onClick={() => {
-                                    brandID(item.id)
-                                    setUserFrom(true)
-                                  }} className="tableAction"><FontAwesomeIcon icon={faPencil} className="tableActionIcon" />Edit</button>
+                                <Dropdown.Menu
+                                  align="end"
+                                  className="tableDropdownMenu"
+                                >
+                                  <button
+                                    onClick={() => {
+                                      brandID(item.id);
+                                      setUserFrom(true);
+                                    }}
+                                    className="tableAction"
+                                  >
+                                    <FontAwesomeIcon
+                                      icon={faPencil}
+                                      className="tableActionIcon"
+                                    />
+                                    Edit
+                                  </button>
                                 </Dropdown.Menu>
                               </Dropdown>
                             </td>
@@ -296,40 +315,53 @@ export const BrandListing = () => {
 
           {/* add Brand  */}
 
-          <CustomModal show={addUser} close={() => { setUser(false) }} >
+          <CustomModal
+            show={addUser}
+            close={() => {
+              setUser(false);
+            }}
+          >
             <CustomInput
               label="Add Brand"
               type="text"
               placeholder="Add Brand"
               required
               name="name"
-              labelclassName='mainLabel'
-              inputclassName='mainInput'
+              labelclassName="mainLabel"
+              inputclassName="mainInput"
               value={formData.name}
               onChange={(event) => {
                 setFormData({ ...formData, name: event.target.value });
                 console.log(formData);
               }}
-
             />
-            <CustomButton variant='primaryButton' text='Add' type='button' onClick={handleSubmit} />
+            <CustomButton
+              variant="primaryButton"
+              text="Add"
+              type="button"
+              onClick={handleSubmit}
+            />
           </CustomModal>
 
-          <CustomModal show={editUser} close={() => { setEditUser(false) }} >
+          <CustomModal
+            show={editUser}
+            close={() => {
+              setEditUser(false);
+            }}
+          >
             <CustomInput
               label="Edit Brand"
               type="text"
               placeholder="Edit Brand"
               required
               name="name"
-              labelclassName='mainLabel'
-              inputclassName='mainInput'
+              labelclassName="mainLabel"
+              inputclassName="mainInput"
               value={formData.name}
               onChange={(event) => {
                 setFormData({ ...formData, name: event.target.value });
                 console.log(formData);
               }}
-
             />
 
             <SelectBox
@@ -344,12 +376,22 @@ export const BrandListing = () => {
                 console.log(formData);
               }}
             />
-            <CustomButton variant='primaryButton' text='Add' type='button' onClick={handleEditSubmit} />
+            <CustomButton
+              variant="primaryButton"
+              text="Add"
+              type="button"
+              onClick={handleEditSubmit}
+            />
           </CustomModal>
 
-          <CustomModal show={showModal} close={() => { setShowModal(false) }} success heading='Brand added Successfully.' />
-
-
+          <CustomModal
+            show={showModal}
+            close={() => {
+              setShowModal(false);
+            }}
+            success
+            heading="Brand added Successfully."
+          />
         </div>
       </DashboardLayout>
     </>

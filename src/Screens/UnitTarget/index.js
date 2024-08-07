@@ -3,192 +3,188 @@ import { Link } from "react-router-dom";
 
 import { Dropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisV, faPencil, faRemove, faTimes, faFilter, faEye } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEllipsisV,
+  faPencil,
+  faRemove,
+  faTimes,
+  faFilter,
+  faEye,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { DashboardLayout } from "../../Components/Layout/DashboardLayout";
 import CustomTable from "../../Components/CustomTable";
 import CustomModal from "../../Components/CustomModal";
 
-import CustomPagination from "../../Components/CustomPagination"
+import CustomPagination from "../../Components/CustomPagination";
 import CustomInput from "../../Components/CustomInput";
 import CustomButton from "../../Components/CustomButton";
 import { SelectBox } from "../../Components/CustomSelect";
-import Select from 'react-select'
+import Select from "react-select";
 import { useApi, usePost, usePostUpdate } from "../../Api";
-
-
-
 
 import "./style.css";
 
 export const UnitTarget = () => {
-
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [units, setUnits] = useState({});
   const [addUser, setUser] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [idUser, setIdUser] = useState();
-  const { apiData: unitListing, loading: unitLoading } = useApi('admin/unit-listing');
-  const { apiData: TargetListing, loading: TargetLoding } = useApi('admin/unit-Target-List');
-  const { apiData: TargetResponseData, loading: TragetResponseLoading, error: TargetResponseError, updateDataForm: targetUpdateData, editParam: TargetEditData } = usePostUpdate('admin/unit-targets-edit/');
+  const { apiData: unitListing, loading: unitLoading } =
+    useApi("admin/unit-listing");
+  const { apiData: TargetListing, loading: TargetLoding } = useApi(
+    "admin/unit-Target-List"
+  );
+  const {
+    apiData: TargetResponseData,
+    loading: TragetResponseLoading,
+    error: TargetResponseError,
+    updateDataForm: targetUpdateData,
+    editParam: TargetEditData,
+  } = usePostUpdate("admin/unit-targets-edit/");
 
   const [editFormData, SetEditFormData] = useState({
-    unit_id: '',
-    target: '',
-    year: '2023',
-    status: '1',
-    month: ''
-
+    unit_id: "",
+    target: "",
+    year: "2023",
+    status: "1",
+    month: "",
   });
 
   const handleEditTarget = (event) => {
     event.preventDefault();
-    console.log(editFormData)
+    console.log(editFormData);
 
     TargetEditData(idUser);
     targetUpdateData(editFormData);
-  }
-
-
+  };
 
   const unitValue = [];
 
   useEffect(() => {
-    setUnits(unitListing?.units)
-  }, [unitListing])
-
+    setUnits(unitListing?.units);
+  }, [unitListing]);
 
   for (const key in units) {
     const option = {
       code: units[key].id,
-      name: units[key].name
-    }
+      name: units[key].name,
+    };
 
-    unitValue.push(option)
-
+    unitValue.push(option);
   }
 
-
-
   const [formData, setFormData] = useState({
-    unit_id: '',
-    target: '',
-    year: '2023',
-    status: '1',
-    month: ''
+    unit_id: "",
+    target: "",
+    year: "2023",
+    status: "1",
+    month: "",
   });
-
 
   const monthList = [
     {
       code: 1,
-      name: 'January'
+      name: "January",
     },
     {
       code: 2,
-      name: 'Feburay'
-    }, {
+      name: "Feburay",
+    },
+    {
       code: 3,
-      name: 'March'
+      name: "March",
     },
     {
       code: 4,
-      name: 'April'
+      name: "April",
     },
     {
       code: 5,
-      name: 'May'
+      name: "May",
     },
     {
       code: 6,
-      name: 'June'
+      name: "June",
     },
     {
       code: 7,
-      name: 'July'
+      name: "July",
     },
     {
       code: 8,
-      name: 'August'
+      name: "August",
     },
     {
       code: 9,
-      name: 'September'
+      name: "September",
     },
     {
       code: 10,
-      name: 'Octuber'
+      name: "Octuber",
     },
     {
       code: 11,
-      name: 'November'
+      name: "November",
     },
     {
       code: 12,
-      name: 'December'
-    }
-  ]
-
-
+      name: "December",
+    },
+  ];
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-
-
-
   // const handleChange = (e) => {
   //   setInputValue(e.target.value);
   // }
 
-  const filterData = data?.filter(item =>
+  const filterData = data?.filter((item) =>
     item.name.toLowerCase().includes(inputValue.toLowerCase())
   );
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
-
+  const currentItems = filterData?.slice(indexOfFirstItem, indexOfLastItem);
 
   const fetchData = () => {
-    const LogoutData = localStorage.getItem('login');
-    document.querySelector('.loaderBox').classList.remove("d-none");
-    fetch('https://custom.mystagingserver.site/mtrecords/public/api/admin/unit-Target-List',
+    const LogoutData = localStorage.getItem("login");
+    document.querySelector(".loaderBox").classList.remove("d-none");
+    fetch(
+      "https://custom.mystagingserver.site/mtrecords/public/api/admin/unit-Target-List",
       {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${LogoutData}`
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${LogoutData}`,
         },
       }
     )
-
-      .then(response =>
-        response.json()
-      )
+      .then((response) => response.json())
       .then((data) => {
-        document.querySelector('.loaderBox').classList.add("d-none");
+        document.querySelector(".loaderBox").classList.add("d-none");
 
-
-        console.log(data.data)
+        console.log(data.data);
         setData(data.data);
       })
       .catch((error) => {
-        document.querySelector('.loaderBox').classList.add("d-none");
-        console.log(error)
-      })
-  }
+        document.querySelector(".loaderBox").classList.add("d-none");
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
-    document.title = 'Wisdom For Life | Unit Target';
+    document.title = "Wisdom For Life | Unit Target";
 
-    fetchData()
+    fetchData();
   }, []);
 
   const maleHeaders = [
@@ -216,11 +212,7 @@ export const UnitTarget = () => {
       key: "action",
       title: "Action",
     },
-
   ];
-
-
-
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -228,7 +220,7 @@ export const UnitTarget = () => {
       ...prevData,
       [name]: value,
     }));
-    console.log(formData)
+    console.log(formData);
   };
 
   // const handleSubmit = (event) => {
@@ -238,51 +230,51 @@ export const UnitTarget = () => {
   //   rolesLitingResponse(formData);
   // }
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData)
+    console.log(formData);
 
-    const LogoutData = localStorage.getItem('login');
-    fetch(`https://custom.mystagingserver.site/mtrecords/public/api/admin/set-unit-target`,
+    const LogoutData = localStorage.getItem("login");
+    fetch(
+      `https://custom.mystagingserver.site/mtrecords/public/api/admin/set-unit-target`,
       {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${LogoutData}`
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${LogoutData}`,
         },
-        body: JSON.stringify(formData)
-      },
+        body: JSON.stringify(formData),
+      }
     )
       .then((response) => {
-        return response.json()
+        return response.json();
       })
       .then((data) => {
-        console.log(data)
-        fetchData()
-        setUser(false)
-
-
-
+        console.log(data);
+        fetchData();
+        setUser(false);
       })
       .catch((error) => {
-        document.querySelector('.loaderBox').classList.add("d-none");
+        document.querySelector(".loaderBox").classList.add("d-none");
         console.log(error);
-      })
-  }
+      });
+  };
 
   const deleteTarget = async (id) => {
     try {
-      const LogoutData = localStorage.getItem('login');
-      const response = await fetch(`https://custom.mystagingserver.site/mtrecords/public/api/admin/unit-targets-delete/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${LogoutData}`
-        },
-      });
+      const LogoutData = localStorage.getItem("login");
+      const response = await fetch(
+        `https://custom.mystagingserver.site/mtrecords/public/api/admin/unit-targets-delete/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${LogoutData}`,
+          },
+        }
+      );
 
       const data = await response.json();
       console.log(data);
@@ -293,16 +285,11 @@ export const UnitTarget = () => {
       // Assuming setUser is a function to update user state
       setUser(false);
     } catch (error) {
-      document.querySelector('.loaderBox').classList.add("d-none");
+      document.querySelector(".loaderBox").classList.add("d-none");
       console.error(error);
       // Handle the error appropriately (e.g., display an error message to the user)
     }
   };
-
-
-
-
-
 
   return (
     <>
@@ -317,42 +304,72 @@ export const UnitTarget = () => {
                   </div>
                   <div className="col-md-6 mb-2">
                     <div className="addUser">
-                      <CustomButton text="Add Unit Target" variant='primaryButton' onClick={() => {
-                        setUser(true)
-                      }} />
-                      <CustomInput type="text" placeholder="Search Here..." value={inputValue} inputclassName="mainInput" onChange={handleChange} />
+                      <CustomButton
+                        text="Add Unit Target"
+                        variant="primaryButton"
+                        onClick={() => {
+                          setUser(true);
+                        }}
+                      />
+                      <CustomInput
+                        type="text"
+                        placeholder="Search Here..."
+                        value={inputValue}
+                        inputclassName="mainInput"
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
                 </div>
                 <div className="row mb-3">
                   <div className="col-12">
-                    <CustomTable
-                      headers={maleHeaders}
-
-                    >
+                    <CustomTable headers={maleHeaders}>
                       <tbody>
                         {currentItems.map((item, index) => (
                           <tr key={index}>
                             <td>{index + 1}</td>
-                            <td className="text-uppercase">
-                              {item.name}
-                            </td>
+                            <td className="text-uppercase">{item.name}</td>
                             {/* <td>{item?.current_month_target?.target ? `$ ${item?.current_month_target?.target}` : '$0'}</td> */}
-                            <td>{item?.current_month_target?.target ? `$ ${item?.current_month_target?.target}` : '$0'}</td>
+                            <td>
+                              {item?.current_month_target?.target
+                                ? `$ ${item?.current_month_target?.target}`
+                                : "$0"}
+                            </td>
                             {/* <td>{`$ ${item?.target_score}`}</td> */}
                             {/* <td>{item?.current_month_target?.month}</td> */}
-                            <td className={item.status == 1 ? 'greenColor' : 'redColor'}>{item.status == 1 ? 'Active' : 'Inactive'}</td>
+                            <td
+                              className={
+                                item.status == 1 ? "greenColor" : "redColor"
+                              }
+                            >
+                              {item.status == 1 ? "Active" : "Inactive"}
+                            </td>
                             <td>
                               <Dropdown className="tableDropdown">
-                                <Dropdown.Toggle variant="transparent" className="notButton classicToggle">
+                                <Dropdown.Toggle
+                                  variant="transparent"
+                                  className="notButton classicToggle"
+                                >
                                   <FontAwesomeIcon icon={faEllipsisV} />
                                 </Dropdown.Toggle>
-                                <Dropdown.Menu align="end" className="tableDropdownMenu">
+                                <Dropdown.Menu
+                                  align="end"
+                                  className="tableDropdownMenu"
+                                >
                                   {/* <button onClick={() => {
                                     editTarget(item?.id)
                                   }} className="tableAction"><FontAwesomeIcon icon={faPencil} className="tableActionIcon" />Edit</button> */}
 
-                                  <Link className="tableAction" to={`target-detail/${item?.id}`}><FontAwesomeIcon icon={faEye} className="tableActionIcon" />View Details</Link>
+                                  <Link
+                                    className="tableAction"
+                                    to={`target-detail/${item?.id}`}
+                                  >
+                                    <FontAwesomeIcon
+                                      icon={faEye}
+                                      className="tableActionIcon"
+                                    />
+                                    View Details
+                                  </Link>
                                 </Dropdown.Menu>
                               </Dropdown>
                             </td>
@@ -371,23 +388,24 @@ export const UnitTarget = () => {
               </div>
             </div>
           </div>
-
-
-
         </div>
 
-        <CustomModal show={addUser} close={() => { setUser(false) }} heading="Set Target" >
-
+        <CustomModal
+          show={addUser}
+          close={() => {
+            setUser(false);
+          }}
+          heading="Set Target"
+        >
           <SelectBox
             selectclassName="mainInput"
             name="unit_id"
             label="Select Unit"
-            labelclassName='mainLabel'
+            labelclassName="mainLabel"
             required
             value={formData.unit_id}
             option={unitValue}
             onChange={handleChange}
-
           />
           <CustomInput
             label="Set Target"
@@ -395,26 +413,23 @@ export const UnitTarget = () => {
             placeholder="Set Target"
             required
             name="target"
-            labelclassName='mainLabel'
-            inputclassName='mainInput'
+            labelclassName="mainLabel"
+            inputclassName="mainInput"
             value={formData.target}
             onChange={(event) => {
               setFormData({ ...formData, target: event.target.value });
               console.log(formData);
             }}
-
-
           />
           <SelectBox
             selectclassName="mainInput"
             name="month"
-            labelclassName='mainLabel'
+            labelclassName="mainLabel"
             label="Select Month"
             required
             value={formData.month}
             option={monthList}
             onChange={handleChange}
-
           />
 
           {/* <div className="inputWrapper">
@@ -428,11 +443,15 @@ export const UnitTarget = () => {
               />
             </div> */}
 
-          <CustomButton variant='primaryButton' text='Add' type='button' onClick={handleSubmit} />
+          <CustomButton
+            variant="primaryButton"
+            text="Add"
+            type="button"
+            onClick={handleSubmit}
+          />
         </CustomModal>
 
         {/* Edit Target  */}
-
       </DashboardLayout>
     </>
   );

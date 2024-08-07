@@ -55,6 +55,10 @@ import instructorIconSecondary from "./instructor-icon-secondary.png";
 import languageIconSecondary from "./language-icon-secondary.png";
 import ratingStarIcon from "./rating-stars.png";
 
+import costIcon from "./cost-icon.png";
+import totalSlotIcon from "./total-slot-icon.png";
+import bookedSlotIcon from "./booked-slot-icon.png";
+
 export {
   logo,
   authImage,
@@ -109,4 +113,7 @@ export {
   instructorIconSecondary,
   languageIconSecondary,
   ratingStarIcon,
+  costIcon,
+  totalSlotIcon,
+  bookedSlotIcon,
 };

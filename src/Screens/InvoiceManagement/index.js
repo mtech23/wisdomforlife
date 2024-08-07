@@ -75,7 +75,7 @@ export const InvoiceManagement = () => {
 
   // const indexOfLastItem = currentPage * itemsPerPage;
   // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  // const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
+  // const currentItems = filterData?.slice(indexOfFirstItem, indexOfLastItem);
 
   useEffect(() => {
     document.title = "Wisdom For Life | User Management";

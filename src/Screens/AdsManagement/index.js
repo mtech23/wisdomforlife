@@ -57,7 +57,7 @@ export const AdsManagement = () => {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filterData?.slice(indexOfFirstItem, indexOfLastItem);
 
 
   const AdsListing = () => {

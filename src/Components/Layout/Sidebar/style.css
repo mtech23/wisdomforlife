@@ -104,13 +104,13 @@ body {
 /*----- Sidebar Collapsed End -----*/
 
 @media screen and (max-width: 767px) {
-  .sidebar.collapsed {
+  /* .sidebar.collapsed {
     width: 0;
-  }
+  } */
 
-  .sidebar.collapsed .sideLink {
+  /* .sidebar.collapsed .sideLink {
     display: none;
-  }
+  } */
   /* .sidebar {
         width: 129px;
         height: 100%;

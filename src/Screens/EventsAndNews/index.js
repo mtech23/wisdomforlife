@@ -73,7 +73,7 @@ export const EventsAndNews = () => {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filterData?.slice(indexOfFirstItem, indexOfLastItem);
 
   const base_url = `${process.env.REACT_APP_API_URL}`;
 
@@ -138,7 +138,7 @@ export const EventsAndNews = () => {
 
             {data?.map((item) => (
               <div className="col-xl-4 col-md-6 mb-5">
-                <div className="main_events_card">
+                <div className="main_events_card news_andEventsCard">
                   <div className="event_card_img">
                     <img src={base_url + item?.image} className="w-100" />
                   </div>

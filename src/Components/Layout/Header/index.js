@@ -93,7 +93,7 @@ export const Header = (props) => {
                     <h4 className="mainTitle">Notifications</h4>
                   </div>
                   <div className="notificationsBody">
-                    {notificationState.slice(0, 5).map((notification) => (
+                    {notificationState?.slice(0, 5).map((notification) => (
                       <>
                         <Link className="singleNoti" key={notification.id}>
                           <div className="singleNotiIcon">
