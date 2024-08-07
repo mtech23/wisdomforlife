@@ -1,29 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { courseBannerImage } from "../../Assets/images";
-import {
-  courseImg01,
-  courseImg02,
-  courseImg03,
-  courseImg04,
-  courseImg05,
-  courseImg06,
-} from "../../Assets/images";
+
 
 import { Dropdown } from "react-bootstrap";
 
 import { DashboardLayout } from "../../Components/Layout/DashboardLayout";
-import CustomTable from "../../Components/CustomTable";
-import CustomModal from "../../Components/CustomModal";
-
-import CustomPagination from "../../Components/CustomPagination";
-import CustomInput from "../../Components/CustomInput";
-import CustomButton from "../../Components/CustomButton";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
-
 import "./style.css";
-import { BASE_URL } from "../../Api/apiConfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
@@ -69,61 +52,17 @@ export const CourseManagemet = () => {
     setInputValue(e.target.value);
   };
 
-  // const filterData = data?.filter(item =>
-  //     item?.name.toLowerCase().includes(inputValue.toLowerCase())
-  // );
+  const filterData = data?.filter((item) =>
+    item?.course_name?.toLowerCase().includes(inputValue.toLowerCase())
+  );
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  // const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filterData?.slice(indexOfFirstItem, indexOfLastItem);
 
-  // const catigorylist = () => {
 
-  //   const LogoutData = localStorage.getItem("login");
-  //   document.querySelector(".loaderBox").classList.remove("d-none");
-  //   fetch(`${process.env.REACT_APP_API_URL}api/user/category-listing`, {
-  //     method: "GET",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${LogoutData}`,
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
 
-  //       setCatigorieslists(data?.data);
-  //       document.querySelector(".loaderBox").classList.add("d-none");
 
-  //     })
-  //     .catch((error) => {
-  //       document.querySelector(".loaderBox").classList.add("d-none");
-  //       console.log(error);
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   const LogoutData = localStorage.getItem("login");
-  //   document.querySelector(".loaderBox").classList.remove("d-none");
-  //   fetch(`${process.env.REACT_APP_API_URL}api/user/category-listing`, {
-  //     method: "GET",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${LogoutData}`,
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       document.querySelector(".loaderBox").classList.add("d-none");
-  //       setCatigorieslists(data?.data);
-  //     })
-  //     .catch((error) => {
-  //       document.querySelector(".loaderBox").classList.add("d-none");
-  //       console.log(error);
-  //     });
-  // }, []);
 
   const Catigorylist = () => {
     const LogoutData = localStorage.getItem("login");
@@ -151,123 +90,16 @@ export const CourseManagemet = () => {
     Catigorylist();
   }, []);
 
-  // const courselist = (id) => {
-  //   const logoutData = localStorage.getItem("login");
-  //   document.querySelector(".loaderBox").classList.remove("d-none");
 
-  //   let url = `${process.env.REACT_APP_API_URL}api/user/course-listing/`;
-  //   if (id) {
-  //     url += id;
-  //   }
 
-  //   fetch(url, {
-  //     method: "GET",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${logoutData}`,
-  //     },
-  //   })
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     document.querySelector(".loaderBox").classList.add("d-none");
-  //     setData(data?.data);
-  //   })
-  //   .catch((error) => {
-  //     document.querySelector(".loaderBox").classList.add("d-none");
-  //     console.log(error);
-  //   });
-  // };
-
-  // const courselist = (id) => {
-  //   const logoutData = localStorage.getItem("login");
-
-  //   let url = `${process.env.REACT_APP_API_URL}api/user/course-listing/`;
-  //   if (id) {
-  //     url += id;
-  //   }
-
-  //   fetch(url, {
-  //     method: "GET",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${logoutData}`,
-  //     },
-  //   })
-  //   .then((response) => response.json())
-  //   .then((data) => {
-
-  //     setData(data?.data);
-
-  //     console.log(data?.data);
-  //   })
-  //   .catch((error) => {
-
-  //     console.log(error);
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   courselist();
-  // }, []);
 
   const [isLoading, setIsLoading] = useState(false);
 
-  // const fetchCourseList = (id) => {
-  //   const logoutData = localStorage.getItem("login");
-  //   setIsLoading(true);
 
-  //   let url = `${process.env.REACT_APP_API_URL}api/user/course-listing/`;
-  //   if (id) {
-  //     url += id;
-  //   }
 
-  //   fetch(url, {
-  //     method: "GET",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${logoutData}`,
-  //     },
-  //   })
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     setIsLoading(false);
-  //     setData(data?.data);
-  //   })
-  //   .catch((error) => {
-  //     setIsLoading(false);
-  //     console.log(error);
-  //   });
-  // };
 
-  // const fetchCourseList = (id) => {
-  //   const LogoutData = localStorage.getItem("login");
-  //   document.querySelector(".loaderBox").classList.remove("d-none");
-  //   fetch(`${process.env.REACT_APP_API_URL}api/user/note-view/${id}`, {
-  //     method: "GET",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${LogoutData}`,
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       document.querySelector(".loaderBox").classList.add("d-none");
-  //     setData(data?.data);
-  //     })
-  //     .catch((error) => {
-  //       document.querySelector(".loaderBox").classList.add("d-none");
-  //       console.log(error);
-  //     });
-  // };
 
-  // useEffect(() => {
 
-  //   fetchCourseList();
-  // }, []);
 
   const fetchCourseList = (id) => {
     const LogoutData = localStorage.getItem("login");
@@ -295,49 +127,28 @@ export const CourseManagemet = () => {
       });
   };
 
-  useEffect(() => {
-    fetchCourseList(); // Call fetchCourseList without an ID
-  }, []);
 
   useEffect(() => {
-    fetchCourseList(); // Call fetchCourseList without an ID
+    fetchCourseList();
+  }, []);
+
+
+
+
+  useEffect(() => {
+    fetchCourseList();
   }, []);
 
   const handleCategoryClick = (id) => {
     fetchCourseList(id);
   };
 
-  // const courselist = (id) => {
-  //   // document.title = "Wisdom For Life | Course ";
 
-  //   const LogoutData = localStorage.getItem("login");
-  //   document.querySelector(".loaderBox").classList.remove("d-none");
-  //   fetch(`${process.env.REACT_APP_API_URL}api/user/course-listing/${id}`, {
-  //     method: "GET",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${LogoutData}`,
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
 
-  //       document.querySelector(".loaderBox").classList.add("d-none");
-  //       setData(data?.data);
-  //     })
-  //     .catch((error) => {
-  //       document.querySelector(".loaderBox").classList.add("d-none");
-  //       console.log(error);
-  //     });
-  // };
 
-  // useEffect(() => {
 
-  //   courselist();
-  // }, []);
 
-  console.log("catigorieslists", data);
+
   return (
     <DashboardLayout>
       <div className="container">
@@ -373,32 +184,26 @@ export const CourseManagemet = () => {
             </div>
 
             <div>
+
+
+
+
               <div>
                 <ul
                   role="tablist"
                   class="mb-3 mt-4 nav nav-tabs nav-justified align-items-center courses_tabs"
                 >
                   {catigorieslists?.map((items, index) => (
+
                     <li class="nav-item" role="presentation">
-                      <button
-                        onClick={() => handleCategoryClick(items.id)}
-                        class="nav-link  "
-                        id="justify-tab-example-tab-Trending"
-                        role="tab"
-                        type="button"
-                      >
-                        {items?.name}
-                      </button>
+                      <button onClick={() => handleCategoryClick(items.id)} class="nav-link  " id="justify-tab-example-tab-Trending" role="tab" type="button">{items?.name}</button>
                     </li>
                   ))}
 
                   <li className="course_searchBar">
                     <div className="personal_notes_search">
                       <div className="">
-                        <input
-                          className="search_input"
-                          placeholder="Search Notes"
-                        />
+                        <input onChange={handleChange} className="search_input" placeholder="Search Notes" />
                       </div>
                       <div className="notes_search_icon">
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
@@ -450,12 +255,12 @@ export const CourseManagemet = () => {
                             </div>
 
                             <div>
-                              <h4 className="course_card_title">
-                                {/* web development <br /> beginner - master | HTML,
-                                CSS. */}
-                                {item?.course_name}
-                              </h4>
 
+                              <h4 className="course_card_title">
+                                {item?.course_name?.substring(0, 15)}
+                                <br />
+                                {item?.course_name?.substring(15)}
+                              </h4>
                               <span className="students_enrolled_details">
                                 {item?.total_students} Students Enrolled.
                               </span>
@@ -479,18 +284,13 @@ export const CourseManagemet = () => {
                       </div>
                     ))}
                   </div>
+
                 </div>
+
+
               </div>
 
-              {/* <div>
-                                <div>
-                                    <input placeholder="Search Courses"/>
-                                </div>
 
-                                <div>
-                                    <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
-                                </div>
-                            </div> */}
             </div>
           </div>
         </div>

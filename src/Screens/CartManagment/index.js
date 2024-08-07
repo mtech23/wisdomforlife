@@ -60,7 +60,7 @@ export const CartManagement = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const [inputValue, setInputValue] = useState("");
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const navigate = useNavigate();
 
   const handlePageChange = (pageNumber) => {
@@ -88,7 +88,12 @@ export const CartManagement = () => {
     item?.name.toLowerCase().includes(inputValue.toLowerCase())
   );
 
-  console.log("cartItems", cartItems);
+
+
+
+
+
+  console.log("cartItems", cartItems)
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filterData?.slice(indexOfFirstItem, indexOfLastItem);
@@ -118,7 +123,8 @@ export const CartManagement = () => {
   }, []);
 
   const baseurl = `${process.env.REACT_APP_API_URL}`;
-  console.log("baseurl ,", baseurl);
+  console.log("baseurl ,", baseurl)
+
 
   const quantity = cartItems.reduce((total, currentItem) => {
     return total + currentItem.category_id;
@@ -130,14 +136,18 @@ export const CartManagement = () => {
     return total + currentItem.course_price;
   }, 0);
 
+
+
+
+  console.log("cartItems", cartItems)
   const handleSubmit = (event) => {
     const LogoutData = localStorage.getItem("login");
     event.preventDefault();
 
     const formDataMethod = new FormData();
-    for (const key in formData) {
-      formDataMethod.append(key, formData[key]);
-    }
+       formDataMethod.append('products', JSON.stringify(cartItems));
+      //  formDataMethod.append('quantity', 1);
+    
 
     document.querySelector(".loaderBox").classList.remove("d-none");
     fetch(`${process.env.REACT_APP_API_URL}api/user/checkout`, {
@@ -366,22 +376,7 @@ export const CartManagement = () => {
                     </div>{" "}
                   </div>
                 </div>
-                <div className="cart">
-                  <div className="row ">
-                    <div className="col-md-12">
-                      <h3> Have A Coupon ? </h3>{" "}
-                      <div className="dot">
-                        <input
-                          type="text"
-                          id="fname"
-                          name="fname"
-                          placeholder="Coupon Code"
-                        />
-                        <button> Apply </button>{" "}
-                      </div>{" "}
-                    </div>{" "}
-                  </div>{" "}
-                </div>{" "}
+               
               </div>
             </div>{" "}
           </div>{" "}
